@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 site_name: SCALES Documentation
 
 theme: 
@@ -35,7 +36,7 @@ theme:
 
 plugins:
   - search  # To have search functionality on the document
-  - mkdocs-pdf #PDF Embed Ability
+  #- mkdocs-pdf #PDF Embed Ability
 
 markdown_extensions:
   - attr_list
@@ -53,9 +54,6 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.superfences:
