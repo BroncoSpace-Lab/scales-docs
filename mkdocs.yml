@@ -73,6 +73,7 @@ nav: # Setting up the navigation. The below list will be tabs on left panel
     
   - Hardware:
     - i.MX 8X Development: imx8x_procedures.md
+    - i.MX 8X Carrier Board PCB Design: imx_carrier_board.md
     - FlatSat Development: FlatSat_Development.md
     - SatCat Custom PCB Design: satcat_board_design.md
     - Power System Design: power_system.md
