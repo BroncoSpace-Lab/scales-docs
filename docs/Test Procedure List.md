@@ -23,7 +23,9 @@ FC Tasks:
 
 
 ## FC Individual Testing
+
 ### 1. Communication Testing
+
 > <ins>Objective:</ins> We will be verifying each communication protocol individually by taking in sensor data and writing to memory. We will then perform the same test, but with all protocols running at the same time. We will be keeping note on runtime, bandwidth and power draw.
 
  <ins>Test Equipment:</ins>

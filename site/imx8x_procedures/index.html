@@ -1,0 +1,1694 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../FlatSat_Development/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>i.MX 8X Development - SCALES Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#imx-8x-testing-procedures" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SCALES Documentation" class="md-header__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SCALES Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              i.MX 8X Development
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../imx_yocto_bsp/" class="md-tabs__link">
+          
+  
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Test%20Procedure%20List/" class="md-tabs__link">
+          
+  
+  
+  Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SCALES Documentation" class="md-nav__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SCALES Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Development
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Development
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yocto-linux-bsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Yocto Linux BSP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Yocto Linux BSP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifying-the-bsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modifying the BSP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-directly-to-the-imx-8x" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting directly to the i.MX 8X
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting directly to the i.MX 8X">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-host-computer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up Host Computer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up Host Computer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-materials_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-ethernet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up Ethernet
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up Ethernet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-materials_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copying-files-over-to-the-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying files over to the board
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i2c-interfacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      I2C Interfacing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I2C Interfacing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-materials_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required materials
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Required materials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f-prime-test-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      F Prime Test Deployment
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FlatSat_Development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FlatSat Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../satcat_board_design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SatCat Custom PCB Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Power System Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imx_yocto_bsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Yocto BSP Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scales_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SCALES Demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Testing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Test%20Procedure%20List/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Test Procedure for i.MX and VOXL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_Jetson_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Inference Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_Training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Training Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yocto-linux-bsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Yocto Linux BSP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Yocto Linux BSP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifying-the-bsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modifying the BSP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-directly-to-the-imx-8x" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting directly to the i.MX 8X
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting directly to the i.MX 8X">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-host-computer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up Host Computer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up Host Computer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-materials_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-ethernet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up Ethernet
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up Ethernet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-materials_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copying-files-over-to-the-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying files over to the board
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i2c-interfacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      I2C Interfacing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I2C Interfacing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-materials_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required materials
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Required materials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f-prime-test-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      F Prime Test Deployment
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="imx-8x-testing-procedures">i.MX 8X Testing Procedures</h1>
+<p>This document lists the interfacing and testing procedures required to get the i.MX 8X development board up and running for SCALES.</p>
+<p>Important note: It is ideal to be using a 64-bit Linux host machine as opposed to Windows or a virtual machine. An ARM Cortex Linux machine will not work (cannot use a Jetson as host computer for development). </p>
+<h2 id="yocto-linux-bsp">Yocto Linux BSP</h2>
+<p>It is very important to be using a 64-bit host computer with Ubuntu 18.04 installed. Any other version - especially newer versions of Ubuntu - will not build the BSP properly.</p>
+<p>We followed <a href="https://docs.phytec.com/projects/yocto-phycore-imx8x/en/latest/developingwithyocto/buildBSP.html">this guide to build the BSP</a>. This documentation, as of February 2025, does not work properly on it's own. </p>
+<h3 id="build-errors">Build Errors</h3>
+<p>At first, you may encounter some build errors while trying to run the <code>bitbake imx-image-multimedia</code> command in the "Start the Build" section of the guide. Most of these errors result from mistakes in the importing of other files and libraries in the code. To remedy this, we took the following steps:</p>
+<ol>
+<li>Open <code>...BSP-Yocto-FSL-i.MX8X-PD21.1.0/sources/poky/bitbake/lib/bb/compat.py</code> on your host computer and make the import lines near the beginning of the code match the following:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>from collections.abc import MutableMapping, KeysView, ValuesView, ItemsView
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>from collections import OrderedDict
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>from functools import total_ordering
+</span></code></pre></div>
+<p>Here, the change is to change the first import from <code>collections</code> to <code>collections.abc</code>, and to add the line <code>from collections import OrderedDict</code>.</p>
+<ol>
+<li>Open <code>.../BSP-Yocto-FSL-i.MX8X-PD21.1.0/sources/poky/bitbake/lib/bb/persist_data.py</code> and match the beginning on your code to the following:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>import collections
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>import collections.abc
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>import logging
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>import os.path
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>import sys
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>import warnings
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>from bb.compat import total_ordering
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>from collections.abc import Mapping
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>import sqlite3
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>import contextlib
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>sqlversion = sqlite3.sqlite_version_info
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>if sqlversion[0] &lt; 3 or (sqlversion[0] == 3 and sqlversion[1] &lt; 3):
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    raise Exception(&quot;sqlite3 version 3.3.0 or later is required.&quot;)
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>logger = logging.getLogger(&quot;BitBake.PersistData&quot;)
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>@total_ordering
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>class SQLTable(collections.abc.MutableMapping):
+</span></code></pre></div>
+<p>Here, the change is adding the <code>import collections.abc</code> line and modifying the last line shown here to include <code>collections.abc.MutableMapping</code>.</p>
+<ol>
+<li>Open <code>.../BSP-Yocto-FSL-i.MX8X-PD21.1.0/sources/poky/bitbake/lib/bb/data_smart.py</code> and match your import section to the following:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>import copy, re, sys, traceback
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>from collections.abc import MutableMapping
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>import logging
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>import hashlib
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>import bb, bb.codeparser
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>from bb   import utils
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>from bb.COW  import COWDictBase
+</span></code></pre></div>
+<p>Here, the change is to add the line <code>from collections.abc import MutableMapping</code>.</p>
+<p>After fixing those errors, there was another one that came up when trying to build:</p>
+<p><img alt="bitbake build error" src="../Images/bitbake_build_error.png" /></p>
+<p>Phytec support gave us the following guidance:</p>
+<p>Here is a patch for fixing the dependencies.</p>
+<p>The imx8x is on an older BSP. Github has deprecated <em>anonymous</em> use of the git protocol so the fetching is failing. This patch adds <strong>.bbappend</strong> files for all the failing recipes.</p>
+<p>The bbappends files update the <strong>SRC_URI</strong> to use the <strong>https</strong> protocol, as well as define the <strong>main</strong> branch instead of master, which has been deprecated.</p>
+<p><strong>Applying the Patch</strong></p>
+<p>To apply the patch you will want to make a file called <strong>0001-Fix-SRC_URI-git-protocol-changed.patch</strong> in your meta-phytec folder. We used nano to do this.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cd Yocto/sources/meta-phytec/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>nano 0001-Fix-SRC_URI-git-protocol-changed.patch
+</span></code></pre></div>
+<p>In the file you just created, paste the following and then save and exit the nano editor.</p>
+<details>
+<summary>Click to toggle the patch file code.</summary>
+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>From 21b454eafb3a5a61963a6d8ff53fdd8a8bd2a565 Mon Sep 17 00:00:00 2001
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>From: Garrett Giordano &lt;ggiordano@phytec.com&gt;
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Date: Thu, 30 Jan 2025 11:38:13 -0800
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Subject: [PATCH] Fix SRC_URI git protocol changed
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>Added protocol=https and branch=main to the following recipes:
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a> - glslang
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a> - spirv-tools
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a> - bmap-tools
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a> - googletest
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a> - teseract-lang
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>Signed-off-by: Garrett Giordano &lt;ggiordano@phytec.com&gt;
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>---
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a> .../recipes-graphics/tesseract/tesseract-lang_%.bbappend    | 4 ++++
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a> .../recipes-graphics/vulkan/glslang_git.bbappend            | 5 +++++
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a> .../recipes-graphics/vulkan/spirv-tools_git.bbappend        | 6 ++++++
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a> .../recipes-support/bmap-tools/bmap-tools_%.bbappend        | 4 ++++
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a> .../recipes-test/googletest/googletest_%.bbappend           | 4 ++++
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a> 5 files changed, 23 insertions(+)
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a> create mode 100644 meta-phytec-fsl/recipes-graphics/tesseract/tesseract-lang_%.bbappend
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a> create mode 100644 meta-phytec-fsl/recipes-graphics/vulkan/glslang_git.bbappend
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a> create mode 100644 meta-phytec-fsl/recipes-graphics/vulkan/spirv-tools_git.bbappend
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a> create mode 100644 meta-phytec-fsl/recipes-support/bmap-tools/bmap-tools_%.bbappend
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a> create mode 100644 meta-phytec-fsl/recipes-test/googletest/googletest_%.bbappend
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>diff --git a/meta-phytec-fsl/recipes-graphics/tesseract/tesseract-lang_%.bbappend b/meta-phytec-fsl/recipes-graphics/tesseract/tesseract-lang_%.bbappend
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>new file mode 100644
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>index 0000000..1a34dce
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>--- /dev/null
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>+++ b/meta-phytec-fsl/recipes-graphics/tesseract/tesseract-lang_%.bbappend
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>@@ -0,0 +1,4 @@
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>+# Git has deprecated anonymous git:// protocol. Add protocol=https
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>+# master branch has been changed to main. Add branch=main
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>+
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>+SRC_URI = &quot;git://github.com/tesseract-ocr/tessdata.git;protocol=https;branch=main;&quot;
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>diff --git a/meta-phytec-fsl/recipes-graphics/vulkan/glslang_git.bbappend b/meta-phytec-fsl/recipes-graphics/vulkan/glslang_git.bbappend
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>new file mode 100644
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>index 0000000..fa29589
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>--- /dev/null
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>+++ b/meta-phytec-fsl/recipes-graphics/vulkan/glslang_git.bbappend
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>@@ -0,0 +1,5 @@
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>+# Git has deprecated anonymous git:// protocol. Add protocol=https
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>+# master branch has been changed to main. Add branch=main
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>+
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>+SRC_URI = &quot;git://github.com/KhronosGroup/glslang;protocol=https;branch=main \
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>+&quot;
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>diff --git a/meta-phytec-fsl/recipes-graphics/vulkan/spirv-tools_git.bbappend b/meta-phytec-fsl/recipes-graphics/vulkan/spirv-tools_git.bbappend
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>new file mode 100644
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a>index 0000000..35e8bf3
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>--- /dev/null
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>+++ b/meta-phytec-fsl/recipes-graphics/vulkan/spirv-tools_git.bbappend
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a>@@ -0,0 +1,6 @@
+</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a>+# Git has deprecated anonymous git:// protocol. Add protocol=https
+</span><span id="__span-4-55"><a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a>+# master branch has been changed to main. Add branch=main
+</span><span id="__span-4-56"><a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a>+
+</span><span id="__span-4-57"><a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a>+SRC_URI = &quot;git://github.com/KhronosGroup/SPIRV-Tools.git;protocol=https;branch=main;name=spirv-tools \
+</span><span id="__span-4-58"><a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a>+           git://github.com/KhronosGroup/SPIRV-Headers.git;protocol=https;branch=main;name=spirv-headers;destsuffix=${DEST_DIR}/spirv-headers \
+</span><span id="__span-4-59"><a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>+&quot;
+</span><span id="__span-4-60"><a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a>diff --git a/meta-phytec-fsl/recipes-support/bmap-tools/bmap-tools_%.bbappend b/meta-phytec-fsl/recipes-support/bmap-tools/bmap-tools_%.bbappend
+</span><span id="__span-4-61"><a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a>new file mode 100644
+</span><span id="__span-4-62"><a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a>index 0000000..220a048
+</span><span id="__span-4-63"><a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a>--- /dev/null
+</span><span id="__span-4-64"><a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a>+++ b/meta-phytec-fsl/recipes-support/bmap-tools/bmap-tools_%.bbappend
+</span><span id="__span-4-65"><a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a>@@ -0,0 +1,4 @@
+</span><span id="__span-4-66"><a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a>+# Git has deprecated anonymous git:// protocol. Add protocol=https
+</span><span id="__span-4-67"><a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a>+# master branch has been changed to main. Add branch=main
+</span><span id="__span-4-68"><a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a>+
+</span><span id="__span-4-69"><a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a>+SRC_URI = &quot;git://github.com/intel/${BPN};protocol=https;branch=main&quot;
+</span><span id="__span-4-70"><a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a>diff --git a/meta-phytec-fsl/recipes-test/googletest/googletest_%.bbappend b/meta-phytec-fsl/recipes-test/googletest/googletest_%.bbappend
+</span><span id="__span-4-71"><a id="__codelineno-4-71" name="__codelineno-4-71" href="#__codelineno-4-71"></a>new file mode 100644
+</span><span id="__span-4-72"><a id="__codelineno-4-72" name="__codelineno-4-72" href="#__codelineno-4-72"></a>index 0000000..7b95ce5
+</span><span id="__span-4-73"><a id="__codelineno-4-73" name="__codelineno-4-73" href="#__codelineno-4-73"></a>--- /dev/null
+</span><span id="__span-4-74"><a id="__codelineno-4-74" name="__codelineno-4-74" href="#__codelineno-4-74"></a>+++ b/meta-phytec-fsl/recipes-test/googletest/googletest_%.bbappend
+</span><span id="__span-4-75"><a id="__codelineno-4-75" name="__codelineno-4-75" href="#__codelineno-4-75"></a>@@ -0,0 +1,4 @@
+</span><span id="__span-4-76"><a id="__codelineno-4-76" name="__codelineno-4-76" href="#__codelineno-4-76"></a>+# Git has deprecated anonymous git:// protocol. Add protocol=https
+</span><span id="__span-4-77"><a id="__codelineno-4-77" name="__codelineno-4-77" href="#__codelineno-4-77"></a>+# master branch has been changed to main. Add branch=main
+</span><span id="__span-4-78"><a id="__codelineno-4-78" name="__codelineno-4-78" href="#__codelineno-4-78"></a>+
+</span><span id="__span-4-79"><a id="__codelineno-4-79" name="__codelineno-4-79" href="#__codelineno-4-79"></a>+SRC_URI = &quot;git://github.com/google/googletest.git;protocol=https;branch=main&quot;
+</span><span id="__span-4-80"><a id="__codelineno-4-80" name="__codelineno-4-80" href="#__codelineno-4-80"></a>-- 
+</span><span id="__span-4-81"><a id="__codelineno-4-81" name="__codelineno-4-81" href="#__codelineno-4-81"></a>2.25.1
+</span></code></pre></div>
+
+</details>
+
+<p>You can then cd into your meta-phytec folder and apply the patch</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cd sources/meta-phytec/
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git apply 0001-Fix-SRC_URI-git-protocol-changed.patch 
+</span></code></pre></div>
+<p>You should then be able to build the BSP using </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>bitbake imx-image-multimedia
+</span></code></pre></div>
+<hr />
+<p>After applying those changes, the BSP built just fine, and we were able to use balenaEtcher to flash a microSD card for the i.MX using the <code>imx-image-multimedia-imx8x-phycore-kit.sdcard.bz2</code> image created during the build found in the <code>$BUILDDIR/tmp/deploy/images/imx8x-phycore-kit/</code> directory.</p>
+<h3 id="modifying-the-bsp">Modifying the BSP</h3>
+<p>Following <a href="https://docs.phytec.com/projects/yocto-phycore-imx8x/en/latest/developingwithyocto/modifyBSP.html">this guide to modify the BSP</a> we built in the previous section. We did not run into any issues when following this guide.</p>
+<p>Add any packages from the list that you feel are relevant to your use case. When finished, you would have to re-flash the microSD card with the updated BSP and boot the i.MX with a clean install after each update.</p>
+<h2 id="connecting-directly-to-the-imx-8x">Connecting directly to the i.MX 8X</h2>
+<p>Connect to the dev board following the <a href="https://docs.phytec.com/projects/yocto-phycore-imx8x/en/latest/quickstart/index.html#basic-evaluation-requirements">Quick Start guide</a>. </p>
+<h3 id="required-materials">Required materials</h3>
+<ul>
+<li>i.MX 8X development board, with microUSB UART cable and power cable. </li>
+<li>A Windows computer with Tera Term installed (or other serial communication software.) </li>
+</ul>
+<h3 id="directions">Directions</h3>
+<ol>
+<li>
+<p>Do not power the board yet. Connect the UART debug cable to X51 UART0 on the board, and the USB part into your computer. </p>
+<ul>
+<li>There are two serial ports that are specific to the i.MX 8X. One will be the debug terminal, and the other will be the main command terminal. Each different Windows host computer will have different names for these ports, so in the next few steps the ports COM15 and COM16 are example ports from Kelly’s computer. </li>
+<li>It is a good idea to open both serial ports that appear as options in Tera Term during your first setup, so that you know which ports are which for your specific computer. </li>
+</ul>
+</li>
+<li>
+<p>Start Tera Term (Windows computer). Select Serial COM15. Go to Setup &gt; Serial Port. Change the speed to 115200. Press OK. </p>
+<ul>
+<li>COM15 is the command terminal. To see the debug terminal, follow the same steps for COM16. </li>
+<li>COM15 and 16 may be different on other computers. To be safe, set up both ports on the first boot to your device. </li>
+<li>Make sure to set them up before powering the board, or you will miss the sign in prompt. </li>
+</ul>
+</li>
+<li>
+<p>Plug in the DC power cable to power on the board. </p>
+</li>
+<li>
+<p>Sign in when prompted. Password is “root”. </p>
+</li>
+</ol>
+<h2 id="setting-up-host-computer">Setting up Host Computer</h2>
+<p>Following <a href="https://docs.phytec.com/projects/yocto-phycore-imx8x/en/latest/applicationdevelopment/InstallTheSDK.html">this guide to install the SDK</a> on the host computer. </p>
+<h3 id="required-materials_1">Required materials</h3>
+<ul>
+<li>64-bit Linux host machine. </li>
+</ul>
+<h3 id="directions_1">Directions</h3>
+<ol>
+<li>
+<p>Once the SDK is set up on the host computer, it never needs to be done again. </p>
+</li>
+<li>
+<p>Be sure to source the environment before doing any work on the host computer: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>source /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
+</span></code></pre></div></p>
+</li>
+</ol>
+<h2 id="setting-up-ethernet">Setting up Ethernet</h2>
+<h3 id="required-materials_2">Required materials</h3>
+<ul>
+<li>Windows computer with Tera Term installed </li>
+<li>Ethernet cable </li>
+<li>Router/Ethernet hub </li>
+<li>i.MX 8X development board </li>
+</ul>
+<h3 id="directions_2">Directions</h3>
+<ol>
+<li>
+<p>Connect an ethernet cable from the router to an ethernet hub. Then connect another ethernet cable from your computer to the hub, and a third cable from the board to the hub. </p>
+</li>
+<li>
+<p>Test internet connection on the board. Press Ctrl+C to end the operation after the command runs for a while.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ping 8.8.8.8
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Find the IP address of the board in Tera Term 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ifconfig 
+</span></code></pre></div></p>
+<ul>
+<li>The IP will be following the words “inet addr” under the ethernet port number you connected to. </li>
+<li>The following image shows the IP is 192.168.0.190 for eth0 </li>
+<li>This may change each time you boot the board, so be sure to check.</li>
+</ul>
+</li>
+</ol>
+<p><img alt="ifconfig example output" src="../Images/imx8x_ipaddress_example.png" /></p>
+<ol>
+<li>
+<p>Run VS Code and open a WSL terminal </p>
+<ul>
+<li>Good practice is to run the following: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo apt-get update
+</span></code></pre></div></li>
+<li>Use <code>sudo apt-get install ssh</code> to update ssh if needed. </li>
+</ul>
+</li>
+<li>
+<p>Command to ssh into board: (make sure to update the IP) 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ssh root@192.168.0.145 -o HostKeyAlgorithms=+ssh-rsa -o PubKeyAcceptedAlgorithms=+ssh-rsa
+</span></code></pre></div></p>
+</li>
+<li>Congrats you are now in the board on your computer. </li>
+</ol>
+<h3 id="copying-files-over-to-the-board">Copying files over to the board</h3>
+<ol>
+<li>Make sure the board is connected to the host computer via ethernet.</li>
+<li>Navigate to the directory with the file you would like to copy to the i.MX 8X. Use the following command to secure copy that file to the board. Fill in the blank for the file name and the IP address of the board.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cd &lt;file directory&gt;
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>scp -o HostKeyAlgorithms=+ssh-rsa -o PubKeyAcceptedAlgorithms=+ssh-rsa &lt;file name&gt; root@&lt;ip address&gt;:~
+</span></code></pre></div></li>
+<li>You should be able to see the file in the main directory of the i.MX 8X.</li>
+</ol>
+<h2 id="i2c-interfacing">I2C Interfacing</h2>
+<p>Following <a href="https://docs.phytec.com/projects/yocto-phycore-imx8x/en/latest/interfaceguides/i2c.html">this guide on I2C interfacing</a>. </p>
+<h3 id="required-materials_3">Required materials</h3>
+<ul>
+<li>MPC9808 Temp. Sensor with 4 female to female dupont wires </li>
+<li>i.MX 8X development board </li>
+<li>Windows computer with Tera Term installed </li>
+<li>64-bit Linux host computer </li>
+</ul>
+<h4 id="hardware-setup">Hardware Setup</h4>
+<p>Wire Legend: </p>
+<p>red - Vdd       black - Gnd     brown - SCL     blue - SDA </p>
+<p><img alt="i2c sensor setup" src="../Images/i2c_sensor_setup.png" /></p>
+<p>red goes into pin 1 of X60. </p>
+<h3 id="directions_3">Directions</h3>
+<ol>
+<li>
+<p>Follow instructions for setting up ethernet. The following commands can be done either in Tera Term on a Windows machine connected to the board or in terminal ssh’d into the board from the Linux host computer. </p>
+</li>
+<li>
+<p>List the available I2C devices 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ls /dev/i2c*
+</span></code></pre></div></p>
+</li>
+<li>Scan the board for devices 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>i2cdetect -y -r 16
+</span></code></pre></div></li>
+<li>Default output: (time to play spot the difference to find your device’s address) </li>
+</ol>
+<p><img alt="i2cdetect expected output" src="../Images/expected_i2cdetect_output.png" /></p>
+<p>Expected Output</p>
+<p><img alt="i2cdetect output with sensor" src="../Images/my_i2cdetect_output.png" /></p>
+<p>my output (device address is 0x18) </p>
+<ol>
+<li>In the host computer’s terminal, source the correct cross-compiler for C code: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>source /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
+</span></code></pre></div></li>
+<li>Enter the C compiler directory: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cd /opt/fsl-imx-xwayland/5.4-zeus/sysroots/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux
+</span></code></pre></div></li>
+<li>
+<p>Run the code for the sensor: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo ./aarch64-poky-linux-gcc -mcpu=cortex-a35+crc+crypto -fstack-protector-strong -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/opt/fsl-imx-xwayland/5.4-zeus/sysroots/aarch64-poky-linux -O ~/imx8x/i2c-temp-sensor/MCP9808.c -o ~/imx8x/i2c-temp-sensor/mcp9808a
+</span></code></pre></div>
+Notes:</p>
+<ul>
+<li>
+<p>This path only works for C code. If you want to use C++, change the gcc at the beginning to g++. I am still trying to figure out how to do python code so stay tuned for that. </p>
+</li>
+<li>
+<p>Note: This code is from GitHub. It was listed as free to use, distributed with a free-will license (mentioned in first line of code comments). </p>
+</li>
+</ul>
+</li>
+<li>
+<p>This code will generate an executable file. To run this code on the board, you may choose to use a USB flash drive or pull the code from our GitHub repo: </p>
+</li>
+</ol>
+<p><strong>USB:</strong></p>
+<ol>
+<li>Copy the file to a USB and insert it in the board. Run the following commands on the board to set up the USB: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>echo host &gt; /sys/kernel/debug/ci_hdrc.0/role
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>cd /sys/class/gpio/
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>echo 30 &gt; export
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>echo out &gt; gpio30/direction
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>echo 0 &gt; gpio30/value
+</span></code></pre></div></li>
+<li>Check to make sure the sda1 is accessible by running: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ls /run/media/
+</span></code></pre></div></li>
+<li>Run the code for the sensor by running: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>cd /run/media/sda1
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>./mcp9808a
+</span></code></pre></div></li>
+<li>You should see the temperature readings in the terminal. </li>
+</ol>
+<p><strong>GitHub:</strong></p>
+<ol>
+<li>
+<p>The board must be connected to internet via wifi or ethernet for this method to work. </p>
+</li>
+<li>
+<p>Clone the scales-hardware GitHub repo to your home directory if you not previously done so.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>cd
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>git clone https://github.com/BroncoSpace-Lab/scales-hardware.git
+</span></code></pre></div></p>
+</li>
+<li>On the board navigate to the scales-hardware directory (this is a clone of our GitHub repo.) and update the repo 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cd scales-hardware
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>git add .
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>git pull
+</span></code></pre></div></li>
+<li>Then navigate to the imx8x folder and (optionally) view the files there. 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cd imx8x
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>ls
+</span></code></pre></div></li>
+<li>And run the code for the sensor in the same way as before: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>./mcp9808a
+</span></code></pre></div></li>
+<li>You should see the temperature sensor readings in the terminal.</li>
+</ol>
+<h2 id="f-prime-test-deployment">F Prime Test Deployment</h2>
+<p>We created a test deployment of F Prime version 3.5 found in <a href="https://github.com/kdizzlle/fprime.git">this repository</a>. Make sure the host computer is connected to the i.MX 8X via ethernet.</p>
+<ol>
+<li>Use the following code to enter the F Prime directory on the host computer and source the F Prime environment:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>cd fprime/fprime-hub-pattern-example
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>source fprime-venv/bin/activate
+</span></code></pre></div></li>
+<li>Use the following code to enter the Test Deployment directory on the host computer and secure copy the deployment to the board. Fill in the blank with the ip address if the board:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>cd build-artifacts/imx8x/TestDeployment/bin
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>scp -o HostKeyAlgorithms=+ssh-rsa -o PubKeyAcceptedAlgorithms=+ssh-rsa TestDeployment root@&lt;ip of imx8x&gt;:~
+</span></code></pre></div></li>
+<li>Use the following command on the i.MX 8X to run the Test Deployment:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>./TestDeployment -a 0.0.0.0 -p 50000
+</span></code></pre></div></li>
+<li>Use the following command on the host computer to launch the F Prime gds. Fill in the blank with the ip address if the board:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>cd ..
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>cd dict/
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>fprime-gds -n --dictionary TestDeploymentTopologyDictionary.json --ip-client --ip-address &lt;ip of imx8x&gt;
+</span></code></pre></div></li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/proveskit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "header.autohide", "navigation.path", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

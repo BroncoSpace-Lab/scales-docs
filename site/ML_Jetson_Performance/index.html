@@ -1,0 +1,1720 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Test%20Procedure%20List/">
+      
+      
+        <link rel="next" href="../ML_Training/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Jetson Inference Performance - SCALES Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#machine-learning-model-inference-performance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SCALES Documentation" class="md-header__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SCALES Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Jetson Inference Performance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../imx8x_procedures/" class="md-tabs__link">
+          
+  
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../imx_yocto_bsp/" class="md-tabs__link">
+          
+  
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Test%20Procedure%20List/" class="md-tabs__link">
+          
+  
+  
+  Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SCALES Documentation" class="md-nav__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SCALES Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imx8x_procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FlatSat_Development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FlatSat Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../satcat_board_design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SatCat Custom PCB Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Power System Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imx_yocto_bsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Yocto BSP Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scales_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SCALES Demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Testing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Test%20Procedure%20List/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Test Procedure for i.MX and VOXL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Jetson Inference Performance
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Inference Performance
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#models-tested" class="md-nav__link">
+    <span class="md-ellipsis">
+      Models Tested
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-missions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference Missions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-set-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Set Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resnet-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resnet Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resnet Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raw Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maxn-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      MAXN Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#50w-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      50W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30w-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      30W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15w-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      15W Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depth-anything-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Depth Anything Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Depth Anything Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raw Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maxn-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      MAXN Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#50w-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      50W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30w-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      30W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15w-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      15W Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phi-3-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phi-3 Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phi-3 Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graphs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maxn-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      MAXN Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#50w-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      50W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30w-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      30W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15w-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      15W Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_Training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Training Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#models-tested" class="md-nav__link">
+    <span class="md-ellipsis">
+      Models Tested
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-missions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference Missions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-set-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Set Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resnet-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resnet Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resnet Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raw Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maxn-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      MAXN Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#50w-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      50W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30w-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      30W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15w-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      15W Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depth-anything-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Depth Anything Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Depth Anything Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raw Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maxn-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      MAXN Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#50w-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      50W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30w-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      30W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15w-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      15W Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phi-3-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phi-3 Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phi-3 Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graphs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maxn-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      MAXN Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#50w-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      50W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30w-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      30W Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15w-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      15W Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="machine-learning-model-inference-performance">Machine Learning Model Inference Performance</h1>
+<p>This document will go over the performance of the Jetson AGX Orin 64 Dev Kit while inferecing over a variety of different common models. This is supposed to provide a reference baseline for developers to gather and understanding of how their models may performa on the SCALES system.</p>
+<h2 id="models-tested">Models Tested</h2>
+<ul>
+<li>
+<p>Resnet-152</p>
+<ul>
+<li>Image classification</li>
+<li><a href="https://huggingface.co/microsoft/resnet-152">Model Card</a></li>
+<li>Parameters: 60.3M</li>
+</ul>
+</li>
+<li>
+<p>Depth Anything V2</p>
+<ul>
+<li>Depth Estimation </li>
+<li><a href="https://huggingface.co/depth-anything/Depth-Anything-V2-Base-hf">Model Card</a></li>
+<li>Parameters: 97.5M</li>
+</ul>
+</li>
+<li>YOLO V8<ul>
+<li>Image Classification</li>
+<li><a href="https://huggingface.co/Ultralytics/YOLOv8">Model Card</a></li>
+<li>Parameters: 3.2M</li>
+</ul>
+</li>
+<li>Phi-3.5<ul>
+<li>Language Model</li>
+<li><a href="https://huggingface.co/microsoft/Phi-3.5-mini-instruct">Model Card</a></li>
+<li>Parameters: 3.82B</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference-missions">Reference Missions</h2>
+<p>There is a couple of reference missions that can be represented through the use of the above models and play a factor in why they were choosen to conduct testing on. </p>
+<p>Mission 1: 
+ Using Classification Models
+ Clssification Models are used to basically group images to certain "classes" this can be very useful onboard spacecraft because you can use them to filter incoming data streams to see if the images have target objects in them. A great example is with Earth Observation Satellites users want to know if the image taken has cloud cover in it or not, most customers buying imagery do not want to have clouds in their imagery as it increases the complexity of proccessing and provides less data. Classification algorithims running onboard can anazle the live stream of imagery or saved imagery to indentify cloud coverage in images and then priotrize downlinking the images without clouds in them. </p>
+<p>Mission 2: 
+ Using Depth Models
+ Depth Esetmation models are used to estimate how far something is using camera imagery. This has many uses cases in space applications. The first is in RPO missions where cameras can be used to determine how far apart two spacecraft are and in real time update how two spacecraft are moving. The speed of depth estimation algorithims is quite benficial in time dependent situations like docking. </p>
+<p>Mission 3: 
+ Using LLMs</p>
+<p>LLMs are large language models that are used to converse in natural language and syhtensize data. As far as we are currently aware there hasnt been an active technology demonstration of these modesl deployed in space but they are very new and we believe there is a path to use in the future. We currently see use cases in basically allowing the satellites to have conversations with ground operators being able to ingest all the information about the satellite and then the user can ask questions about the state of the spacecraft and get a response in natural language. This is a longer timeline mission case but we felt like it was important to run a test using the one of the newest archetectures of models for developer refernce as the use of LLMs is expanding at a rapid pace. </p>
+<h2 id="procedure">Procedure</h2>
+<p>Models were choosen from the hugging face model hub and then completed inference tests on the jetson. The hugging face transformer pipeline api as well as data sets were used to crate the inference enviroment and data. </p>
+<p>The data was collected using the <a href="https://github.com/ssaraff98/tegrastats_parser">tegrastats data parser</a> which is able to read all the metrics from the jetson and save all the data into a csv file while also plotting some of the key metrics. </p>
+<p>If interested in other metrics Tegrastats records all of the following metrics:</p>
+<ul>
+<li>Time</li>
+<li>Used RAM</li>
+<li>Total Ram</li>
+<li>Number of Free RAM Blocks</li>
+<li>Size of Free RAM Blocks</li>
+<li>Used SWAP</li>
+<li>Total SWAP</li>
+<li>Cached SWAP</li>
+<li>CPU Frequency</li>
+<li>CPU 0-11 Load %</li>
+<li>Used GR3D %</li>
+<li>GR3D Frequency</li>
+<li>CPU Temperature</li>
+<li>tboard Temperature</li>
+<li>Temperature </li>
+<li>tdiode Temperature</li>
+<li>tj Temperature</li>
+</ul>
+<p>Each of the models were tested at all 4 of the Jetson power modes to show performance in resource constrained enviroments</p>
+<h2 id="data-set-description">Data Set Description</h2>
+<p>The <a href="https://huggingface.co/datasets/uoft-cs/cifar100">CIFAR100</a> is a commonly used dataset that contaains 50000 training images and 10000 test images that have corresponding labels that align to 100 different classes. The classes are completly mutually exlculsive. The data set is further broken down into smaller batches for each of the training and test sets. The test batch of images contains ramdonly selected images from all of the different classes in equal amounts. The training batch may have unequal amounts of each classes. Each images is only 32x32 pixels making them very small images basically thumbnail size. The purpose of using this dataset was that it was a small data set that was able to run quickly on the jetson for all the different model types. The team could conduct testing with larger size images but the general jist of performance will stay the same. Bigger images means longer run times. </p>
+<h2 id="resnet-results">Resnet Results</h2>
+<p>The resnet model was tested using the <a href="https://huggingface.co/datasets/uoft-cs/cifar100">CIFAR100</a> dataset.The team used the test split to inference 10,000 images.</p>
+<p><ins>Resnet Test Results</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Average FPS</th>
+<th>Average GPU %</th>
+<th>Average RAM (MB)</th>
+<th>Total Inference Time (s)</th>
+<th>Power Draw (W)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MaxN</td>
+<td>21.015</td>
+<td>59.07</td>
+<td>7905.32</td>
+<td>475.03</td>
+<td>14.78</td>
+</tr>
+<tr>
+<td>50W</td>
+<td>15.27</td>
+<td>52.39</td>
+<td>10161.1</td>
+<td>655.08</td>
+<td>12.18</td>
+</tr>
+<tr>
+<td>30W</td>
+<td>16.91</td>
+<td>61.29</td>
+<td>4255.58</td>
+<td>591.32</td>
+<td>12.72</td>
+</tr>
+<tr>
+<td>15W</td>
+<td>10.64</td>
+<td>72.35</td>
+<td>3882.09</td>
+<td>939.46</td>
+<td>10.16</td>
+</tr>
+</tbody>
+</table>
+<h3 id="raw-data">Raw Data</h3>
+<ul>
+<li><a href="../data/resnet_test.csv">MaxN Raw Data</a></li>
+<li><a href="../data/resnet_50W.csv">50W Raw Data</a></li>
+<li><a href="../data/resnet_30W.csv">30W Raw Data</a></li>
+<li><a href="../data/resnet_15W.csv">15W Raw Data</a></li>
+</ul>
+<h3 id="graphs">Graphs</h3>
+<h4 id="maxn-data">MAXN Data</h4>
+<p><img alt="MAXN Used GR3D %" src="../Images/resnet_maxn_gr3d.png" />
+<img alt="MAXN Used RAM" src="../Images/resnet_maxn_used_ram.png" /></p>
+<h4 id="50w-data">50W Data</h4>
+<p><img alt="50W Used GR3D %" src="../Images/restnet_50W_gr3d.png" />
+<img alt="50W Used RAM" src="../Images/resnet_50W_used_ram.png" /></p>
+<h4 id="30w-data">30W Data</h4>
+<p><img alt="30W Used GR3D %" src="../Images/resnet_30W_gr3d.png" />
+<img alt="30W Used RAM" src="../Images/resnet_30W_used_ram.png" /></p>
+<h4 id="15w-data">15W Data</h4>
+<p><img alt="15W Used GR3D %" src="../Images/resnet_15W_gr3d.png" />
+<img alt="15W Used RAM" src="../Images/resenet_15W_used_ram.png" /></p>
+<h2 id="depth-anything-results">Depth Anything Results</h2>
+<p>The resnet model was tested using the <a href="https://huggingface.co/datasets/uoft-cs/cifar100">CIFAR100</a> dataset.The team used the test split to inference 1,000 images.</p>
+<p><ins>Depth Anything Test Results</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Average FPS</th>
+<th>Average GPU %</th>
+<th>Average RAM (MB)</th>
+<th>Total Inference Time (s)</th>
+<th>Power Draw (W)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MaxN</td>
+<td>5.25</td>
+<td>45.98</td>
+<td>4453.77</td>
+<td>190.54</td>
+<td>21.25</td>
+</tr>
+<tr>
+<td>50W</td>
+<td>3.71</td>
+<td>90.62</td>
+<td>4967.38</td>
+<td>269.25</td>
+<td>27.78</td>
+</tr>
+<tr>
+<td>30W</td>
+<td>1.53</td>
+<td>93.67</td>
+<td>4665.56</td>
+<td>655.45</td>
+<td>15.13</td>
+</tr>
+<tr>
+<td>15W</td>
+<td>0.83</td>
+<td>95.95</td>
+<td>4903.13</td>
+<td>1198.83</td>
+<td>11.91</td>
+</tr>
+</tbody>
+</table>
+<h3 id="raw-data_1">Raw Data</h3>
+<ul>
+<li><a href="../data/depth_maxn.csv">MaxN Raw Data</a></li>
+<li><a href="../data/depth_50W.csv">50W Raw Data</a></li>
+<li><a href="../data/depth_30W.csv">30W Raw Data</a></li>
+<li><a href="../data/depth_15W.csv">15W Raw Data</a></li>
+</ul>
+<h3 id="graphs_1">Graphs</h3>
+<h4 id="maxn-data_1">MAXN Data</h4>
+<p><img alt="MAXN Used GR3D %" src="../Images/depth_maxn_gr3d.png" />
+<img alt="MAXN Used RAM" src="../Images/depth_maxn_used_ram.png" /></p>
+<h4 id="50w-data_1">50W Data</h4>
+<p><img alt="50W Used GR3D %" src="../Images/depth_50W_gr3d.png" />
+<img alt="50W Used RAM" src="../Images/depth_50W_used_ram.png" /></p>
+<h4 id="30w-data_1">30W Data</h4>
+<p><img alt="30W Used GR3D %" src="../Images/depth_30W_gr3d.png" />
+<img alt="30W Used RAM" src="../Images/depth_30W_used_ram.png" /></p>
+<h4 id="15w-data_1">15W Data</h4>
+<p><img alt="15W Used GR3D %" src="../Images/depth_15W_gr3d.png" />
+<img alt="15W Used RAM" src="../Images/depth_15W_used_ram.png" /></p>
+<h2 id="phi-3-results">Phi-3 Results</h2>
+<p><ins>Phi-3 Test Results</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Tokens/s</th>
+<th>Average GPU %</th>
+<th>Average RAM (MB)</th>
+<th>Total Generation Time (s)</th>
+<th>Power Draw (W)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MaxN</td>
+<td>3.66</td>
+<td>60.78</td>
+<td>11248.46</td>
+<td>131.55</td>
+<td>13.99</td>
+</tr>
+<tr>
+<td>50W</td>
+<td>3.60</td>
+<td>49.75</td>
+<td>10200.76</td>
+<td>133.48</td>
+<td>12.54</td>
+</tr>
+<tr>
+<td>30W</td>
+<td>3.83</td>
+<td>63.74</td>
+<td>12136.26</td>
+<td>125.59</td>
+<td>14.07</td>
+</tr>
+<tr>
+<td>15W</td>
+<td>2.6</td>
+<td>52.31</td>
+<td>10752.25</td>
+<td>184.66</td>
+<td>11.33</td>
+</tr>
+</tbody>
+</table>
+<h3 id="graphs_2">Graphs</h3>
+<h4 id="maxn-data_2">MAXN Data</h4>
+<p><img alt="MAXN Used GR3D %" src="../Images/phi_maxn_gr3d.png" />
+<img alt="MAXN Used RAM" src="../Images/phi_maxn_used_ram.png" /></p>
+<h4 id="50w-data_2">50W Data</h4>
+<p><img alt="50W Used GR3D %" src="../Images/phi_50W_gr3d.png" />
+<img alt="50W Used RAM" src="../Images/phi_50W_used_ram.png" /></p>
+<h4 id="30w-data_2">30W Data</h4>
+<p><img alt="30W Used GR3D %" src="../Images/phi_30W_gr3d.png" />
+<img alt="30W Used RAM" src="../Images/phi_30W_used_ram.png" /></p>
+<h4 id="15w-data_2">15W Data</h4>
+<p><img alt="15W Used GR3D %" src="Images/phi_15W_gr3d.png" />
+<img alt="15W Used RAM" src="Images/phi_15W_used_ram.png" /></p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>The jetson power modes are designed to optimize for power draw which can limit the upper end of performance. For example when running the Phi-3 model in MaxN mode the GPU was running at the minium frequency of 300 Mhz and gets the 3.72 tokens/second. If the user is to manually edit the power modes to set the GPU frequency to the max of 1.3 GHz the jetson is able to produce ~8 tokens/second of performance. Now the downside is that you jump from ~20W of power draw to ~50W but this is an operational trade off between uptime and speed. </p>
+</li>
+<li>
+<p>From the previous note we have noticed that this performance is only acheived on some models. This might be because of implemenation methodolies but for example we saw large performance increases with the phi-3 model but for the resnet and depth anything there was no impactful change in performance even when the GPU frequency was manually increased. </p>
+</li>
+<li>
+<p>There may be other settings for each power mode that can continue to improve performance of models. The metrics data primarly use the default power states of of the Jetson</p>
+</li>
+<li>
+<p>There is a weird discrpancy in the NVIDIA documentation about the AGX Orin Power modes. So all the testing for this file has been done on a 32GB version of the AGX orin and the documentation says that there should be a 40W mode but there is only a 50W mode which is the documentation for the 64gb version of the board. additionally this board is having the max gpu frequency that is only supposed to be on the 64Gb version. So worried about the consistecny of the results on a 64gb board. </p>
+</li>
+</ul>
+<p>Things to do still </p>
+<ul>
+<li>Flash and test everything on a 64gb Jetson AGX Orin</li>
+<li>Yolo V8 inference testing</li>
+<li></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/proveskit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "header.autohide", "navigation.path", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1906 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../scales_demo/">
+      
+      
+        <link rel="next" href="../ML_Jetson_Performance/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Test Procedure for i.MX and VOXL - SCALES Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testing-procedure-script" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SCALES Documentation" class="md-header__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SCALES Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Test Procedure for i.MX and VOXL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../imx8x_procedures/" class="md-tabs__link">
+          
+  
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../imx_yocto_bsp/" class="md-tabs__link">
+          
+  
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SCALES Documentation" class="md-nav__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SCALES Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imx8x_procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FlatSat_Development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FlatSat Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../satcat_board_design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SatCat Custom PCB Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Power System Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imx_yocto_bsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Yocto BSP Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scales_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SCALES Demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Testing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Test Procedure for i.MX and VOXL
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Test Procedure for i.MX and VOXL
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mock-drm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mock DRM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fc-individual-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      FC Individual Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FC Individual Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-communication-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Communication Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-power-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Power Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-watchdog-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Watchdog Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jetson
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-power-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Power Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-system-level-test-fc-and-jetson-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      First System Level Test (FC and Jetson Only)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First System Level Test (FC and Jetson Only)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fc-to-jetson-watchdog-timer-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. FC to Jetson Watchdog Timer Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-fc-to-jetson-reflashing-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. FC to Jetson Reflashing Test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-system-level-test-fc-satcat5-and-jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final System Level Test (FC, SatCat5, and Jetson)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final System Level Test (FC, SatCat5, and Jetson)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-transfer-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Data Transfer Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-total-power-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Total Power Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-full-fprime-to-fprime-communication-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Full FPrime-to-FPrime Communication Test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_Jetson_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Inference Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_Training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Training Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mock-drm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mock DRM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fc-individual-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      FC Individual Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FC Individual Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-communication-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Communication Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-power-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Power Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-watchdog-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Watchdog Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jetson
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-power-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Power Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-system-level-test-fc-and-jetson-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      First System Level Test (FC and Jetson Only)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First System Level Test (FC and Jetson Only)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fc-to-jetson-watchdog-timer-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. FC to Jetson Watchdog Timer Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-fc-to-jetson-reflashing-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. FC to Jetson Reflashing Test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-system-level-test-fc-satcat5-and-jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final System Level Test (FC, SatCat5, and Jetson)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final System Level Test (FC, SatCat5, and Jetson)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-transfer-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Data Transfer Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-total-power-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Total Power Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-full-fprime-to-fprime-communication-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Full FPrime-to-FPrime Communication Test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="testing-procedure-script">Testing Procedure Script</h1>
+<p>This document will create a mock DRM test to run on both the VOXL2 and IMX8. This document also includes individual component testing and system level testing according to the DRM.</p>
+<h2 id="mock-drm">Mock DRM</h2>
+<p>sensors:</p>
+<ul>
+<li>SPI: HUMIDITY SENSOR</li>
+<li>I2C: TEMP SENSOR</li>
+<li>UART: IMU</li>
+<li>Ethernet: CAMERA</li>
+<li>USB: CAMERA</li>
+<li>CAN: PHOTORESISTIVE SENSOR</li>
+<li>GPIO: WATCHDOG</li>
+</ul>
+<p>Mock Mission:</p>
+<ul>
+<li>FILL IN</li>
+</ul>
+<p>FC Tasks:</p>
+<ul>
+<li>constantly monitor atmosphere using I2C, SPI, UART</li>
+</ul>
+<h2 id="fc-individual-testing">FC Individual Testing</h2>
+<h3 id="1-communication-testing">1. Communication Testing</h3>
+<blockquote>
+<p><ins>Objective:</ins> We will be verifying each communication protocol individually by taking in sensor data and writing to memory. We will then perform the same test, but with all protocols running at the same time. We will be keeping note on runtime, bandwidth and power draw.</p>
+</blockquote>
+<p><ins>Test Equipment:</ins></p>
+<ul>
+<li>Flight Computer (IMX8 dev board / VOXL2 dev board)</li>
+<li>Sensors for each communication protocol (SPI, I2C, UART, Ethernet, USB, CAN, GPIO)</li>
+<li>variety of jumper wires</li>
+</ul>
+<p><ins>FPrime Component and Commands (need to be developed):</ins></p>
+<ul>
+<li>Component: REALTIME_DATA_PROCESSING</li>
+<li>Description: This component will have commands that take data from sensors and write it to the flight computer's memory for 30 seconds<ul>
+<li>Commands: (individual commands to start each protocol for 30 sec, and one multi-communication command for 30 sec)</li>
+<li>SPI_START</li>
+<li>I2C_START</li>
+<li>UART_START</li>
+<li>ETHERNET_START</li>
+<li>USB_START</li>
+<li>CAN_START</li>
+<li>GPIO_START</li>
+<li>ALL_START</li>
+<li>Telemetry Channels:<ul>
+<li>sensorState</li>
+<li>sensorValue</li>
+<li>runtime</li>
+<li>bandwidth</li>
+<li>powerDraw</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><ins>Pass/Fail Criteria:</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>FAIL</th>
+<th>PASS</th>
+<th>yes/no?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data transfer</td>
+<td>doesnt write to memory</td>
+<td>writes to memeory</td>
+<td>?</td>
+</tr>
+<tr>
+<td>individual functionality</td>
+<td>not every protocol works</td>
+<td>every protocol works</td>
+<td>?</td>
+</tr>
+<tr>
+<td>multi-sensor functionality</td>
+<td>no/partial functionality</td>
+<td>full functionality</td>
+<td>?</td>
+</tr>
+<tr>
+<td>runtime</td>
+<td></td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td>bandwidth</td>
+<td></td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td>power draw</td>
+<td></td>
+<td></td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><ins>Procedure:</ins></p>
+<ul>
+<li>wire all sensors to the filght computer</li>
+<li>run REALTIME_DATA_PROCESSING FPrime deployment and start GDS</li>
+<li>run SPI_START command</li>
+<li>Measure runtime, bandwidth, powerdraw, etc.</li>
+<li>verify data was written into memory</li>
+<li>Repeat this process to each command listed below:</li>
+<li>I2C_START: TEMP SENSOR</li>
+<li>UART_START: IMU</li>
+<li>Ethernet_START: CAMERA</li>
+<li>USB_START: CAMERA</li>
+<li>CAN_START: PHOTORESISTIVE SENSOR</li>
+<li>GPIO_START: WATCHDOG</li>
+<li>ALL_START: starts all sensor data collection</li>
+</ul>
+</blockquote>
+<h3 id="2-power-testing">2. Power Testing</h3>
+<blockquote>
+<p><ins>Objective:</ins> We will be observing different power states of both flight computers (high, middle, low, overclocked, underclocked, idle) to obtain a better understanding of how much power each flight computer will generally use. To do this, we will be using cpuburn to activate different percentages(100%, 50%, and 10%) of the cpu's cores and the power consumption at each percentage. For over and under clocking, we will manually set the clockspeed of the cpu to (clockspeed-0.4GHz) for underclocking and (clockspeed+0.2GHz) for overclocking. For the idle state, we will turn flight computer on with no tasks running and observe power consumption.</p>
+</blockquote>
+<p><ins>Test Equipment:</ins></p>
+<ul>
+<li>Flight Computer (IMX8 dev board / VOXL2 dev board)</li>
+</ul>
+<p><ins>Pass/Fail Criteria:</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>high power state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>high power state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>high power state 10%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Low power state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Low power state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Low power state 10%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Undeclock state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Undeclock state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Undeclock state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Overclocking state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Overclocking state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Overclocking state 10%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Idle</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><ins>Procedure:</ins></p>
+<ul>
+<li>download cpuburn on the flight computer</li>
+<li>Test high power draw by running ./cpuburn and record power draw</li>
+<li>Test medium power draw by running ./cpuburn -n 2 and record power draw</li>
+<li>Test low power draw by running ./cpuburn -n 1 and record power draw</li>
+<li>Test overlocking by setting clock speed to (clockspeed+0.2GHz) and record power draw</li>
+<li>Test underclocking by setting clock speed to (clockspeed-0.4GHz) and record power draw</li>
+<li>Test Idle by turning flight computer on with no tasks running and record power draw</li>
+</ul>
+</blockquote>
+<h3 id="3-watchdog-testing">3. Watchdog Testing</h3>
+<blockquote>
+<p><ins>Objective:</ins> We will be verifying the functionality of an external watchdog timer circuit with our flight computers. We will observe what the WDT does at 5 seconds, 5+0.2 seconds, and 5-0.2 seconds to ensure that the WDT is resetting at 5sec properly.</p>
+</blockquote>
+<p><ins>Test Equipment:</ins></p>
+<ul>
+<li>Flight Computer (IMX8 dev board / VOXL2 dev board)</li>
+<li>external watchdog timer circuit</li>
+<li>jumper wires</li>
+</ul>
+<p><ins>FPrime Component and Commands (need to be developed):</ins></p>
+<ul>
+<li>Component: WATCHDOG</li>
+<li>Description: This component will serve as the trigger for an external watchdog circuit.<ul>
+<li>Commands: (GPIO on/off timers)</li>
+<li>GPIO_ON (turns gpio pin on)</li>
+<li>GPIO_OFF (turns gpio pin off)</li>
+<li>GPIO_ON_5SEC (toggles gpio pin ever 5 seconds)</li>
+<li>GPIO_ON_4.8SEC (toggles gpio pin ever 4.8 seconds)
+  -GPIO_ON_5.2SEC (toggles gpio pin ever 5.2 seconds)</li>
+<li>Telemetry Channels:<ul>
+<li>gpioState</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><ins>Pass/Fail Criteria:</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>FAIL</th>
+<th>PASS</th>
+<th>yes/no?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5sec cycle</td>
+<td>WDT does reset FC</td>
+<td>WDT does NOT reset FC</td>
+<td>?</td>
+</tr>
+<tr>
+<td>4.8sec cycle</td>
+<td>WDT does reset FC</td>
+<td>WDT does NOT reset FC</td>
+<td>?</td>
+</tr>
+<tr>
+<td>5.2sec cyle</td>
+<td>WDT does NOT reset FC</td>
+<td>WDT does reset FC</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><ins>Procedure:</ins></p>
+<ul>
+<li>Attach watchdog circuit to FC</li>
+<li>run WATCHDOG FPrime deployment and start GDS</li>
+<li>run the command GPIO_ON </li>
+<li>Wait 15 seconds and verify FC stays ON</li>
+<li>run the command GPIO_OFF</li>
+<li>wait and verify FC RESETS (this should be about 5 seconds)</li>
+<li>run the command GPIO_ON_5SEC</li>
+<li>wait 15 seconds and verify FC stays ON</li>
+<li>run the command GPIO_ON_4.8SEC</li>
+<li>wait 15 seconds and verify FC stays ON</li>
+<li>run the command GPIO_ON_5.2SEC</li>
+<li>wait 10 seconds and verify FC RESETS</li>
+</ul>
+</blockquote>
+<h3 id="jetson">Jetson</h3>
+<h3 id="1-power-testing">1. Power Testing</h3>
+<blockquote>
+<p><ins>Objective:</ins> We will be observing different power states of the Jetson AGX Orin (high, middle, low, overclocked, underclocked, idle) to obtain a better understanding of how much power it will generally use. To do this, we will use different percentages of gpu burn to test high, middle, and low power states. For over and under clocking, we will manually set the clockspeed of the cpu to (clockspeed-0.4GHz) for underclocking and (clockspeed+0.2GHz) for overclocking. For the idle state, we will turn the Jetson on with no tasks running and observe power consumption.</p>
+</blockquote>
+<p><ins>Test Equipment:</ins></p>
+<ul>
+<li>Jetson AGX Orin</li>
+</ul>
+<p><ins>Pass/Fail Criteria:</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAXN state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>MAXN state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>MAXN power state 10%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>50W power state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>50W power state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>50W power state 10%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>30W power state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>30W power state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>30W power state 10%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>15W power state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>15W power state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>15W power state 10%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Undeclock state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Undeclock state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Undeclock state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Overclocking state 100%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Overclocking state 50%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Overclocking state 10%</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+<tr>
+<td>Idle</td>
+<td>Draw:</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><ins>Procedure:</ins></p>
+<ul>
+<li>download gpu burn on the Jetson (https://github.com/wilicc/gpu-burn)</li>
+<li>open Jetson Power GUI to obtain power draw in the duration of this test</li>
+<li>Test high power draw by running 'gpu_burn -m 100' and record power draw</li>
+<li>Test medium power draw by running 'gpu_burn -m 50' and record power draw</li>
+<li>Test low power draw by running 'gpu_burn -m 10' and record power draw</li>
+<li>Test overlocking by setting clock speed to (clockspeed+0.2GHz) and record power draw</li>
+<li>Test underclocking by setting clock speed to (clockspeed-0.4GHz) and record power draw</li>
+<li>Test Idle by turning Jetson on with no tasks running and record power draw</li>
+</ul>
+</blockquote>
+<h2 id="first-system-level-test-fc-and-jetson-only">First System Level Test (FC and Jetson Only)</h2>
+<h3 id="1-fc-to-jetson-watchdog-timer-test">1. FC to Jetson Watchdog Timer Test</h3>
+<blockquote>
+<p><ins>Objective:</ins> We will be verifying that the FC is able to act as the Jetson's watchdog timer. This will be done by connecting a GPIO pin from the FC to the Jetson, which will have the Jetson send a pulse every 5 seconds to the FC to reset a digital counter on the FC. The Jetson will also be connected to the FC through its reset pin, which allows the FC to reset the Jetson if the Jetson stops sending a pulse through the GPIO pin. This test will test the case when the Jetson stops sending a pulse, which will force the FC to reset the Jetson.</p>
+</blockquote>
+<p><ins>Test Equipment:</ins></p>
+<ul>
+<li>Flight computer (IMX8 dev board / VOXL2 dev board)</li>
+<li>Jetson</li>
+<li>variety of jumper wires</li>
+</ul>
+<p><ins>FC and Jetson Scripts: (need to be developed)</ins></p>
+<ul>
+<li>The FC will have a script that will have a counter. One the counter reaches 5 seconds, it will pull the reset button on the Jetson high to reset the Jetson. This counter will reset to zero when the FC recieves a pulse from the GPIO pin from the Jetson.</li>
+<li>The Jetson will have a script that will send a pulse through the GPIO pin every 4 seconds.</li>
+</ul>
+<p><ins>Pass/Fail Criteria:</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>FAIL</th>
+<th>PASS</th>
+<th>yes/no?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5sec cycle</td>
+<td>FC does reset Jetson</td>
+<td>FC does NOT reset Jetson</td>
+<td>?</td>
+</tr>
+<tr>
+<td>4.8sec cycle</td>
+<td>FC does reset Jetson</td>
+<td>FC does NOT reset Jetson</td>
+<td>?</td>
+</tr>
+<tr>
+<td>5.2sec cyle</td>
+<td>FC does NOT reset Jetson</td>
+<td>FC does reset Jetson</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><ins>Procedure:</ins></p>
+<ul>
+<li>Connect the FC and Jetson. This includes the GPIO pin and the RST pin</li>
+<li>Wait 15 seconds and verify Jetson stays ON</li>
+<li>Change the Jetson script to send a pulse every 4.8 seconds</li>
+<li>wait 15 seconds and verify Jetson stays ON</li>
+<li>Change the Jetson script to send a pulse every 5.2 seconds</li>
+<li>wait 10 seconds and verify Jetson RESETS</li>
+</ul>
+</blockquote>
+<h3 id="2-fc-to-jetson-reflashing-test">2. FC to Jetson Reflashing Test</h3>
+<blockquote>
+<p><ins>Objective:</ins> We will be verifying that the FC is capabable of reflashing the Jetson. We will do this by connecting the FC to the Jetson through USB, and running a script that will reflash the Jetson.</p>
+</blockquote>
+<p><ins>Test Equipment:</ins></p>
+<ul>
+<li>Flight computer (IMX8 dev board / VOXL2 dev board)</li>
+<li>Jetson</li>
+<li>USB to USB-C Cable</li>
+</ul>
+<p><ins>Reflash Script: (needs to be developed)</ins></p>
+<ul>
+<li>The reflash script will run commands that will reflash the Jetson.</li>
+</ul>
+<p><ins>Pass/Fail Criteria:</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>FAIL</th>
+<th>PASS</th>
+<th>yes/no?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reflash capability</td>
+<td>unable to relfash</td>
+<td>successfully reflash</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><ins>Procedure:</ins></p>
+<ul>
+<li>Connect the FC to the Jetson using the USB cable</li>
+<li>Run the reflash script on the FC</li>
+<li>Verify that the Jetson Reflashes</li>
+</ul>
+</blockquote>
+<h2 id="final-system-level-test-fc-satcat5-and-jetson">Final System Level Test (FC, SatCat5, and Jetson)</h2>
+<h3 id="1-data-transfer-test">1. Data Transfer Test</h3>
+<blockquote>
+<p><ins>Objective:</ins> We will be verifying ethernet switching capability on the Arty A7 FPGA dev board between a FC and Jetson. To do this, we will have data collected from a sensor connected to a FC. That FC will be connected through ethernet to SatCat5, where it will relay the data to the Jetson through ethernet as well. Then, the data recieved on the Jetson will be echoed back to the FC and save it to the FC's memory.</p>
+</blockquote>
+<p><ins>Test Equipment:</ins></p>
+<ul>
+<li>SatCat5 FPGA dev board</li>
+<li>Jetson</li>
+<li>flight computer (IMX8 dev board / VOXL2 dev board)</li>
+<li>2x ethernet cables</li>
+<li>1x Ethernet PMod connector</li>
+<li>sensor (for data)</li>
+</ul>
+<p><ins>FPGA Script (need to be developed):</ins></p>
+<ul>
+<li>Description: This script needs to define 2 ethernet gates where the laptop and FC will be plugged into. The code will create a pathway for the two to talk to each other and pass over data in realtime.</li>
+</ul>
+<p><ins>Flight Computer and Jetson Script (need to be developed):</ins></p>
+<ul>
+<li>The flight computer that will start the sensor data and send it through its ethernet port, and also to recieve data and write it down in its memory. </li>
+<li>The Jetson script will recieve data from its ethernet port, save it, and echo it back to the flight computer.</li>
+</ul>
+<p><ins>Pass/Fail Criteria:</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>FAIL</th>
+<th>PASS</th>
+<th>yes/no?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>full system functionality</td>
+<td>system does not transfer data from FC to Jetson and vice versa</td>
+<td>system is able to transfer data between FC and Jetson and vice versa</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Jetson Writing</td>
+<td>Jetson is unable to write data received from FC</td>
+<td>Jetson successfully writes data received from FC</td>
+<td>?</td>
+</tr>
+<tr>
+<td>transfer speed</td>
+<td>noticable lag</td>
+<td>no noticeable lag</td>
+<td>?</td>
+</tr>
+<tr>
+<td>SatCat5 functionality</td>
+<td>SatCat5 stops working during data transfer</td>
+<td>SatCat5 runs with no issues during data transfer</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><ins>Procedure:</ins></p>
+<ul>
+<li>connect sensor to the flight computer</li>
+<li>connect the Jetson and FC to the FPGA using ethernet cables</li>
+<li>program the FPGA </li>
+<li>start data transfer scripts on both the flight computer and Jetson</li>
+<li>wait 30 seconds and verify the data saved on the Jetson and flight computer</li>
+</ul>
+</blockquote>
+<h3 id="2-total-power-test">2. Total Power Test</h3>
+<blockquote>
+<p><ins>Objective:</ins> We will be oberving the overall power draw of the entire system including the FC, SatCat5, and Jetson. We will do this by running the data transfer test (the test right above this test) and monitor the power draw levels on the FC, SatCat5, and Jetson. We will add up the power draw from each of these components to obtain the overall power draw of the sytem.</p>
+</blockquote>
+<p><ins>Test Equipment:</ins></p>
+<ul>
+<li>SatCat5 FPGA dev board</li>
+<li>Jetson</li>
+<li>flight computer (IMX8 dev board / VOXL2 dev board)</li>
+<li>2x ethernet cables</li>
+<li>1x Ethernet PMod connector</li>
+<li>sensor (for data)</li>
+</ul>
+<p><ins>Pass/Fail Criteria:</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>FAIL</th>
+<th>PASS</th>
+<th>yes/no?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overall Power Draw</td>
+<td>over #</td>
+<td>under #</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><ins>Procedure:</ins></p>
+<ul>
+<li>Connect the FC, SatCat5, and Jetson together</li>
+<li>Run the same procedure listed under the Data Transfer Test above</li>
+<li>Monitor and record power draw from the FC, SatCat5, and Jetson</li>
+<li>Sum the power draws together to obtain the overall power draw</li>
+</ul>
+</blockquote>
+<h3 id="3-full-fprime-to-fprime-communication-test">3. Full FPrime-to-FPrime Communication Test</h3>
+<blockquote>
+<p><ins>Objective:</ins> We will verify the communication between the FC and the Jetson with FPrime running on both of the systems. We will do this by having the FC FPrime deployment pull telemetry channel data through the Jetson's FPrime Deployment and vice versa.</p>
+</blockquote>
+<p><ins>Test Equipment:</ins></p>
+<ul>
+<li>SatCat5 FPGA dev board</li>
+<li>Jetson</li>
+<li>flight computer (IMX8 dev board / VOXL2 dev board)</li>
+<li>2x ethernet cables</li>
+<li>1x Ethernet PMod connector</li>
+<li>sensor (for data)</li>
+</ul>
+<p><ins>FPrime Component and Commands (need to be developed):</ins></p>
+<ul>
+<li>Component: ?</li>
+<li>
+<p>Description: ?</p>
+<ul>
+<li>Commands:</li>
+<li>
+<p>?</p>
+</li>
+<li>
+<p>Telemetry Channels:</p>
+<ul>
+<li>?</li>
+</ul>
+</li>
+<li>Component: ?</li>
+<li>Description: ?</li>
+<li>Commands:</li>
+<li>
+<p>?</p>
+</li>
+<li>
+<p>Telemetry Channels:</p>
+<ul>
+<li>?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><ins>Pass/Fail Criteria:</ins></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>FAIL</th>
+<th>PASS</th>
+<th>yes/no?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FC to Jetson Communication</td>
+<td>FC unable to retreive data</td>
+<td>FC able to retreive data</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Jetson to FC Communication</td>
+<td>Jetson unable to retreive data</td>
+<td>Jetson able to retreive data</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><ins>Procedure:</ins>
+- Connect the FC, SatCat5, and Jetson together
+- Run the respective FPrime deployments on the FC and Jetson
+- Run the GDS's for the FC deployment and the Jetson deployment
+- (<strong>need help on Alex's side to finish the rest of the procedure and making the right components on FPrime</strong>)</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/proveskit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "header.autohide", "navigation.path", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1241 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../imx8x_procedures/">
+      
+      
+        <link rel="next" href="../satcat_board_design/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>FlatSat Development - SCALES Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#flatsat-development" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SCALES Documentation" class="md-header__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SCALES Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              FlatSat Development
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../imx8x_procedures/" class="md-tabs__link">
+          
+  
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../imx_yocto_bsp/" class="md-tabs__link">
+          
+  
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Test%20Procedure%20List/" class="md-tabs__link">
+          
+  
+  
+  Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SCALES Documentation" class="md-nav__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SCALES Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imx8x_procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    FlatSat Development
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    FlatSat Development
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#current-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Updates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Updates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-ethernet-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Ethernet Connection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#satcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      SatCat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voxl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      VOXL2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imx-8x" class="md-nav__link">
+    <span class="md-ellipsis">
+      iMX 8X
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-flatsat-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future FLATSAT Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future FLATSAT Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Metrics
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../satcat_board_design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SatCat Custom PCB Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Power System Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imx_yocto_bsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Yocto BSP Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scales_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SCALES Demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Testing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Test%20Procedure%20List/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Test Procedure for i.MX and VOXL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_Jetson_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Inference Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_Training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Training Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#current-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Updates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Updates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-ethernet-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Ethernet Connection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#satcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      SatCat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voxl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      VOXL2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imx-8x" class="md-nav__link">
+    <span class="md-ellipsis">
+      iMX 8X
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-flatsat-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future FLATSAT Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future FLATSAT Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Metrics
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="flatsat-development">FlatSat Development</h1>
+<p>This document is an overview of the current and future state of our FlatSat development for SCALES.</p>
+<h2 id="current-updates">Current Updates</h2>
+<h3 id="direct-ethernet-connection"><strong>Direct Ethernet Connection</strong></h3>
+<p>We are currently able to connect the boards directly in the following configuration:</p>
+<p><img alt="direct ethernet connection" src="../Images/direct_ethernet.png" /></p>
+<p>From there, we have to set a temporary ip on the iMX, in this case it is set to 10.3.2.6 so we can ping the Jetson's ip.</p>
+<p><img alt="imx pinging jetson" src="../Images/imx_ping_jetson.png" /></p>
+<p>We can also use the iMX to ssh into the Jetson:</p>
+<p><img alt="imx ssh into jetson" src="../Images/imx_ssh_into_jetson.png" /></p>
+<p>And we can do the same process of pinging the iMX and ssh from the Jetson:</p>
+<p><img alt="jetson ping imx" src="../Images/jetson_ping_imx.png" /></p>
+<p><img alt="jetson ssh into imx" src="../Images/jetson_ssh_into_imx.png" /></p>
+<p>We are also able to copy files from the iMX to the Jetson. In this example, we copied a file called mcp9808a from the iMX to the Jetson:</p>
+<p><img alt="scp from imx to jetson" src="../Images/imx_scp_to_jetson.png" /></p>
+<h3 id="satcat"><strong>SatCat</strong></h3>
+<p>We are currently only able to use SatCat to send/recieve messages from different serial ports within the same windows host computer. </p>
+<p>We followed <a href="https://github.com/the-aerospace-corporation/satcat5/tree/main/examples/arty_a7">this example setup from SatCat's GitHub</a> to download the software onto the FPGA and set up the hardware in the following configuration: </p>
+<p><img alt="satcat setup" src="../Images/satcat_setup.png" /></p>
+<p>With the python chat client, we were able to get data transfer speeds on both UART and Ethernet:</p>
+<p><img alt="ethernet configuration" src="../Images/satcat_ethernet_config.png" /></p>
+<p><img alt="uart configuration" src="../Images/satcat_uart_config.png" /></p>
+<p>This provided example only allows connection from SatCat to the COM ports of the local computer used, and NOT connection between different systems (which is what we need). This example also only supports one ethernet and one UART, and we would prefer to have 2 ethernet ports available. We tried using a UART to ethernet converter, but it didn't work. We believe this is mainly due to the verilog programmed onto the FPGA only being able to handle UART protocol for that port, so this is something we will have to look into as well. </p>
+<p><strong>Next Step:</strong> Develop Verilog code to enable communication between two different external systems (Jetson to the flight computer) and communicate via two ethernet ports.</p>
+<h3 id="voxl2"><strong>VOXL2</strong></h3>
+<p>The VOXL2 is currently bricked after attempting to update the software using the command "voxl-configure-mpa".</p>
+<p>We followed the unbricking tutorial numerous times and encountered issues with VOXL's firmware files that fail to call on its own files when flashing the board. We submitted a ticket to the ModalAI forum two weeks ago and havent heard back.</p>
+<p>The error we are receiving when attempting to flash the board is shown below:</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/95d4e173-b450-4e02-9d51-37697092857a" /></p>
+<p><strong>Next Step:</strong> Reach out to ModalAI to get more assistance from the team to help debug.</p>
+<h3 id="imx-8x">iMX 8X</h3>
+<p>For more details, take a look at <a href="https://scales-hardware.readthedocs.io/en/latest/imx8x_procedures/">documentation</a>.</p>
+<p><strong>Main updates:</strong></p>
+<ul>
+<li>successfully re-flashed the operating system to a Yocto Linux kernel</li>
+<li>set up the SDK on a Linux host computer to cross compile code</li>
+<li>got an I2C sensor up and running with a C code executable file to read sensor data on the board</li>
+<li>able to copy code from GitHub instead of using as USB every time</li>
+<li>figured out how to run python code on the board</li>
+<li>started trying to get F Prime up and running on board</li>
+</ul>
+<p><strong>Development Environment</strong></p>
+<p>To run python code on the iMX, any python code file can be marked as executable and run on the board. For example, the following hello world python script runs as expected on the iMX:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#!/usr/bin/env python
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>print(&quot;Hello, World!&quot;)
+</span></code></pre></div>
+The setup and output on the board looks like this:</p>
+<p><img alt="hello world python output" src="../Images/helloworldpython_output.png" /></p>
+<p>For other languages including C and C++, code must be cross-compiled in the SDK on the Linux Host machine. We have currently tested this using both C and C++ code and compiliers. After the code is cross-compiled in the SDK, it generates an executable file that can be run on the iMX. For more information on the cross-compilation process, reference the <a href="https://scales-hardware.readthedocs.io/en/latest/imx8x_procedures/#i2c-interfacing">I2C Interfacing Guide</a> from our docs. In that guide, we cross-compile C code to read data from an I2C temperature sensor and output the result in terminal on the board. </p>
+<p><strong>PhyTEC Guide Experience</strong></p>
+<p>The guides from PhyTEC for this board are a bit rough to work with at times. Many of the issues we ran into during development were due to a lack of description and detail in the docs and guides. We mainly found that the guides are great at getting you started, but lack the explaination on how many of these interfaces and protocols can be used outside of basic setup. Some interfacing guides are better than others, though, and others can sometimes be outdated. There are also not many tutorials on compiling code, the only examples shown compile C++ code. This is something that may become a challenge later on in development. </p>
+<p>However, it is worthy to note that phyTEC's support team does reply quickly and consistently, usually within 1-2 days and with helpful feedback, which makes development a little easier. </p>
+<p><strong>F Prime Development</strong></p>
+<p>We are in the process of getting F Prime deployed on the iMX. We made a <a href="https://github.com/nasa/fprime/discussions/3002#discussioncomment-11158814">discussion post</a> on the F Prime GitHub going over our process and the current issues we have. We have recieved some feedback that will be looked into in the next few days.</p>
+<p>Ideally we can get F Prime up and running in the next week or so, that way we can use it for real-time data transmission between boards instead of just copying over files over ethernet. </p>
+<h2 id="future-flatsat-plan">Future FLATSAT Plan</h2>
+<p><strong>General Goals</strong></p>
+<ul>
+<li>set up static ip address on the iMX</li>
+<li>fix F Prime deployment on the iMX</li>
+<li>set up sensor data transfer from iMX to Jetson using F Prime</li>
+<li>change SatCat verilog to work with external systems</li>
+<li>change SatCat verilog to work with ethernet instead of UART</li>
+<li>get the VOXL to work</li>
+<li>create a unified power system</li>
+<li>right now, all FlatSat components are plugged into wall outlets, so we need to begin development on the power distribution block of the overall system architecture</li>
+<li>ideally, we will be able to power the system with one source that is regulated and distributed to the proper components</li>
+</ul>
+<p>After viewing the full capabilities of our chosen FPGA, we are currently comparing three different hardware architectures for our SCALES system:</p>
+<h3 id="architecture-1">Architecture 1</h3>
+<p>Architecture 1 has sensors attached to the <strong>flight computer</strong>.</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/3d400f78-7bee-4894-8597-d6ad3240c092" /></p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Lower power consumption from internal system (less ethernet ports)</li>
+<li>immediate sensor logging</li>
+<li>eliminates bandwidth limitation by having seperate data streams for each sensor</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>slightly longer sensor data transferring from the flight computer to the Jetson</li>
+<li>requires FPGA software development and custom FPGA board</li>
+</ul>
+<h3 id="architecture-2">Architecture 2</h3>
+<p>Architecure 2 has sensors attached to <strong>SATCAT</strong></p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/0c57dd32-698c-42cd-b15a-72d68b3255de" /></p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Sensor data is accesible to both the flight computer and Jetson</li>
+<li>5 GigEthernet Ports</li>
+<li>22 Low speed ports (SPI, I2C, UART, CAN)</li>
+<li>slightly faster sensor data transfer directly from SatCat to Jetson</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>requires heavily modified FPGA software and custom FPGA board</li>
+<li>requires extra 2W to power all ports</li>
+<li>bandwidth limitation</li>
+</ul>
+<h3 id="architecture-3">Architecture 3</h3>
+<p>Architecure 2 has <strong>no SATCAT</strong> and has sensors attached to the <strong>flight computer</strong></p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/ccabc11a-8d09-4ec7-8b13-47663f7ba29c" /></p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>easiest architecture to develop</li>
+<li>lowest power consumption</li>
+<li>no FPGA development</li>
+<li>one less source error</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>less communication ports</li>
+<li>more development needed on flight computer board (to enable more ethernet ports)</li>
+</ul>
+<h2 id="testing-metrics">Testing Metrics</h2>
+<p>These are the test metrics that will help make hardware design decisions:</p>
+<ul>
+<li>lowest power consumption</li>
+<li>will be tested at component level and system level during different tasks including real-time inferencing and data transfer</li>
+<li>data transfer speed</li>
+<li>ease of use</li>
+<li>hardware setup: How many internal connections are required? How long did it take to set up?</li>
+<li>software setup: How much manual input do we have to put in to get the system to work? How long do certain critical tasks take?</li>
+<li>amount of manual input/labor</li>
+<li>read/write ability: Are there any issues when flight computer and Jetson are trying to access the data at the same time?</li>
+<li>availability of I/O</li>
+</ul>
+<p><strong><a href="https://scales-hardware.readthedocs.io/en/latest/Test%20Procedure%20List/">Test Procedure</a></strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/proveskit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "header.autohide", "navigation.path", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

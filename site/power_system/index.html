@@ -1,0 +1,1790 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../satcat_board_design/">
+      
+      
+        <link rel="next" href="../imx_yocto_bsp/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Power System Design - SCALES Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scales-power-distribution-system-development" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SCALES Documentation" class="md-header__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SCALES Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Power System Design
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../imx8x_procedures/" class="md-tabs__link">
+          
+  
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../imx_yocto_bsp/" class="md-tabs__link">
+          
+  
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Test%20Procedure%20List/" class="md-tabs__link">
+          
+  
+  
+  Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SCALES Documentation" class="md-nav__button md-logo" aria-label="SCALES Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SCALES Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imx8x_procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FlatSat_Development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FlatSat Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../satcat_board_design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SatCat Custom PCB Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Power System Design
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Power System Design
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Links:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components-to-be-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components to be used:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standardize-power-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standardize Power Input
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-diagramsbasic-design-ideas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Block Diagrams/Basic Design Ideas:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Block Diagrams/Basic Design Ideas:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13025" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1/30/25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2325" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2/3/25)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#research-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Research Notes:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Research Notes:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#12825" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1/28/25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12925" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1/29/25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2325-21025" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2/3/25) - (2/10/25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21125" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2/11/25)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imx_yocto_bsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    i.MX 8X Yocto BSP Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scales_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SCALES Demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Testing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Test%20Procedure%20List/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Test Procedure for i.MX and VOXL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_Jetson_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Inference Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_Training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jetson Training Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Links:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components-to-be-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components to be used:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standardize-power-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standardize Power Input
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-diagramsbasic-design-ideas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Block Diagrams/Basic Design Ideas:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Block Diagrams/Basic Design Ideas:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13025" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1/30/25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2325" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2/3/25)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#research-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Research Notes:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Research Notes:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#12825" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1/28/25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12925" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1/29/25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2325-21025" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2/3/25) - (2/10/25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21125" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2/11/25)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="scales-power-distribution-system-development">SCALES Power Distribution System Development</h1>
+<h2 id="quick-links">Quick Links:</h2>
+<ul>
+<li>Find parts from major distributors: https://octopart.com/
+By Luca Lanzillotta</li>
+</ul>
+<h2 id="requirements">Requirements:</h2>
+<p>Supply Power to sub-components on SCALES Carrier Board</p>
+<h2 id="components-to-be-used">Components to be used:</h2>
+<p>Components to be used are still being finalized, but they are based on the following <a href="https://livecsupomona.sharepoint.com/:x:/r/sites/broncospacelab/Shared%20Documents/SCALES%20-%20General/Documentation/Hardware/SCALES%20Hardware%20Component%20Selection.xlsx?d=w0a79ca0a7f3241a1b204a2bc7466c9c3&amp;csf=1&amp;web=1&amp;e=7n6GZM">SCALES Component Selection List</a>.
+- <strong>Flight Computer: IMX8/VOXL2</strong>
+  - <strong>IMX8:</strong> 
+      - 3.3V / 2A (Inrush Max) - Power (Max) = 3.63W <em>(based on datasheet)</em>
+  - <strong>VOXL2:</strong> 
+      - 12V / 6A (Inrush Max) - Power (Max) = 7W <em>(based on Janelle's testing; check datasheet for idle values)</em></p>
+<ul>
+<li><strong>Edge Computer: Nvidia Jetson AGX Orin</strong></li>
+<li>End-user must have access to peak power, so they can switch between performance modes.</li>
+<li>
+<p><strong>AGR Orin:</strong> </p>
+<ul>
+<li>20V / 3.75A (MAX) - Power (Max) = 75W <em>(based on max current/voltage ratings)</em></li>
+</ul>
+</li>
+<li>
+<p><strong>FPGA System:</strong>
+    <strong>AMD Artix 7 XC7A200T SOM</strong></p>
+<ul>
+<li>5V / 2A (MAX) - Power (Max) = 10W <em>(based on datasheet and max utilization data)</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="standardize-power-input">Standardize Power Input</h2>
+<ul>
+<li><strong>28V power supply/battery input</strong></li>
+<li>Based on information compiled above <em>(Does this include system peripherals?)</em>:<ul>
+<li><strong>OBC:</strong> 3.3V @ 2A Max (IMX8) / 12V @ 6A Max (VOXL2)</li>
+<li><strong>EC:</strong> 20V @ 3.75A Max (Jetson AGX)</li>
+<li><strong>FPGA:</strong> 5V @ 2A Max (Artix 7 SOM)</li>
+</ul>
+</li>
+</ul>
+<h2 id="block-diagramsbasic-design-ideas">Block Diagrams/Basic Design Ideas:</h2>
+<h3 id="13025">(1/30/25)</h3>
+<ul>
+<li><a href="https://drive.google.com/file/d/1f2GgWEEMVI20wVgbpNZj8v8eEYCyvHen/view?usp=sharing">Basic Block Diagram of EPS board for SCALES Components</a></li>
+<li>Requirements: (Using Janelles Power Board Block Diagram for reference)<ul>
+<li>Microcontroller (Ex: STM32F091)<ul>
+<li>Checks Watchdog Timer</li>
+<li>Measures current and voltage outputs</li>
+<li>Utilizes CAN/I2C to relay current/voltage info to OBC</li>
+</ul>
+</li>
+<li>External Voltage in connector<ul>
+<li>start thinking about types of connectors that can handle high current input @ 24/28V inputs that are standard in aerospace/cubesat applications</li>
+</ul>
+</li>
+<li>Analog to Digital converters <ul>
+<li>Used to measure voltage/current values and translate them to GPIO inputs for the MCU</li>
+</ul>
+</li>
+<li>Voltage Channel Buck Converters/Switching regulators</li>
+<li>RBF System<ul>
+<li>Use relay to bypass high current/ MOSFET/FET?</li>
+</ul>
+</li>
+<li>Temperature Sensors for Buck/Switching Regulators</li>
+</ul>
+</li>
+</ul>
+<h3 id="2325">(2/3/25)</h3>
+<ul>
+<li>1st Block Diagram:
+ <img alt="EPSBlock_V1" src="images/EPS_BlockV1.png" /></li>
+<li>
+<p>Comments from Zach: 
+      No need for MCU, Watchdog takes care of system stability based on timing pings
+      Watchdog should be powered straight from the 28v stepped down to 5v/3v3
+      Does Each voltage line needs to have voltage/current sensors? This is because it may be completely redundant, theres no point in adding a sensor that depends on the OBC to be running and even if what would it be doing?
+      Stick to a simple design, we need to make sure the watchdog can operate independently from the 3 subsystems, just needs a switching regulator to function, then the pinged input from the OBC will stop the system from resetting.
+      Because the watchdog will be what triggers the power cycle, we need to add some sort of system relay that triggers if a ping is not recieved.</p>
+</li>
+<li>
+<p>2nd Block Diagram:
+<img alt="EPSBlock_V2" src="images/EPS_BlockV2.png" /></p>
+</li>
+<li>
+<p>Requirements: (More simple design, almost purely analog)</p>
+<ul>
+<li>28V V+/GND Connector</li>
+<li>Relay/Switch system to be triggered by Watchdog (Normally Closed, Watchdog RST command triggers Open Switch)</li>
+<li>Switching Regulators<ul>
+<li>28v -&gt; 20v (up to 8A) (Jetson)</li>
+<li>28v -&gt; 24v/22v (Watchdog)</li>
+<li>28V -&gt; 12v (OBC VOXL2/IMX8)</li>
+<li>28v -&gt; 5v (FPGA Artix 7)</li>
+</ul>
+</li>
+<li><a href="https://private-user-images.githubusercontent.com/61564344/374731107-10ac20a2-ea8e-4982-9281-9fe7444e7854.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzg2MTExOTksIm5iZiI6MTczODYxMDg5OSwicGF0aCI6Ii82MTU2NDM0NC8zNzQ3MzExMDctMTBhYzIwYTItZWE4ZS00OTgyLTkyODEtOWZlNzQ0NGU3ODU0LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAyMDMlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMjAzVDE5MjgxOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTg3ZjEyZDBmOTkwYWZhOTM1N2NhZjU4NmU1ZmFkOTNkODBkMDVmYjcwODc0MjhlMjZlYTAxMWM5NjRiMzk3M2MmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.Eo-wQk_yyZsGSnr17a3k5jSkEDWWzKaskMTcdA0J3aw">Watchdog System</a><ul>
+<li>Based on the TLV1704-SEP (Voltage input rated up to 24v)</li>
+<li>No idea how it works but its what we will be using, schematic is complicated, linked above</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Comments from Zach: Simple, makes sense</p>
+</li>
+<li>Comments from Michael:
+        - Watchdog system for each logic system, to trigger each individual line rather than the whole system
+        - To trigger the reset, dont use relays, find some sort of solid state system 
+        - Power sequencing to turn on each section individually, inrush current will be too high if we turn them on all at once
+         - delay timer to sequence each section</li>
+</ul>
+<h2 id="research-notes">Research Notes:</h2>
+<h3 id="12825">(1/28/25)</h3>
+<ul>
+<li>Figure out each of the maximum power requirements for each of the components</li>
+<li>Start looking into how power distribution systems work for different power levels</li>
+<li>Resources: <ul>
+<li><a href="https://www.ti.com/lit/an/slva887/slva887.pdf?ts=1738125836647&amp;ref_url=https%3A%2F%2Fwww.ti.com%2Fproduct%2FTPS22993">TI Application Notes</a></li>
+<li><a href="https://www.ti.com/lit/an/slvae51a/slvae51a.pdf?ts=1738126325034&amp;ref_url=https%3A%2F%2Fwww.ti.com%2Fproduct%2FTPS2115A">Basics Power MUX</a></li>
+<li><a href="https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/#:~:text=Power%20storage%20is%20typically%20applied,control%20to%20spacecraft%20electrical%20loads.">SmallSat Power Systems - NASA</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="12925">(1/29/25)</h3>
+<ul>
+<li>Examples of existing EPS distribution boards</li>
+<li><a href="https://www.ibeos.com/150w-eps-datasheet">IBEOS 150-Watt SmallSat EPS</a></li>
+<li><a href="https://www.pumpkininc.com/space/datasheet/710-01952-C_DS_EPSM_1.pdf">Pumpkin EPSM1</a></li>
+<li><a href="https://gomspace.com/UserFiles/Subsystems/datasheet/gs-ds-nanopower-p31u-32_(1).pdf">GOMSPACE NanoPower P31u</a></li>
+<li><a href="https://www.isispace.nl/wp-content/uploads/2019/04/ISIS-ICEPS2-DSH-0001-ICEPS2_Datasheet-01_02.pdf">ISISPACE ICEPS2</a></li>
+<li>
+<p><a href="https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/#:~:text=Power%20storage%20is%20typically%20applied,control%20to%20spacecraft%20electrical%20loads.">Skylabs NanoEPS 158W</a></p>
+<ul>
+<li><strong>Common Components in Power Boards</strong>
+  This list of components for the power board is based on information gathered from the various power systems above<ul>
+<li><em>MCU</em>:<ul>
+<li>Power regulation monitoring</li>
+<li>voltage and current measuring</li>
+<li>Fault detection and protection</li>
+<li>protects against shorts, overcurrent, brownouts and undervolting situations</li>
+<li>can send system reset commands</li>
+<li>OBC communication for power telemetry</li>
+<li>integrate with IMX8/VOXL2</li>
+</ul>
+</li>
+<li><em>Temperature sensors</em>:<ul>
+<li>Used to monitor connector/converter temps in case of high current cases</li>
+<li>Some smallsat EPS use thermistors as a way to easily measure temperature, may be innacurate, or simple enough</li>
+</ul>
+</li>
+<li><em>Watchdog</em>:<ul>
+<li>sends regular intervals to main components to check that they are operating correctly, IIRC only the jetson will have this</li>
+</ul>
+</li>
+<li><em>Switching Regulator/(DC/DC) Buck Converter</em>:
+    -Steps down voltage with minimal loss to respective subsystem (Uses capacitors, inductors and transistors to step down voltages using switching frequencies)<ul>
+<li>28V -&gt; 3v3/5v/12v @high current input/output</li>
+</ul>
+</li>
+<li><em>RBF Pin/Kill Switch/Reset Switch</em>:<ul>
+<li>Some</li>
+</ul>
+</li>
+<li><em>Fuse</em>: (probably not the best to use because if it blows, the whole system is inoperable until it comes back down)<ul>
+<li>Last bastion of defense in case of a current surge, protecting all components from frying (not likely to be used)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2325-21025">(2/3/25) - (2/10/25)</h3>
+<ul>
+<li>EPS:</li>
+<li>28V Power Input<ul>
+<li>Connectors:<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Load Switches <a href="https://www.ti.com/lit/an/slva652a/slva652a.pdf?ts=1738793997138&amp;ref_url=https%253A%252F%252Fwww.google.com%252F">INFO</a></p>
+<ul>
+<li>Load switches come AFTER switch regulators<ul>
+<li><a href="https://www.ti.com/lit/ds/symlink/lm7310.pdf?ts=1738872017422&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FLM7310">Load Switch</a><ul>
+<li>TILM73100 </li>
+<li>Going with ths one for now because of the high current and voltage rating, has integrated current sensing, over and undervoltage protection, and an enable pin. Also has an analog current sensor.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Switching regulator <a href="https://www.vicorpower.com/documents/datasheets/ds_pi3740-00.pdf">Vicor PI3740-00</a> (this is probably insanely fucking overkill, but better safe than sorry)</p>
+<ul>
+<li>Using one for each subsystem, they are about 12 dollars each, and have very high efficiency ratings, they also have the majority of components already integrated.<ul>
+<li>Datasheet has recommended capacitors for specific voltage ranges as well as calculation sheet for inductor selection</li>
+</ul>
+</li>
+<li>28v -&gt; 5v (Watchdogs)</li>
+<li>28v -&gt; 20v (Jetson)</li>
+<li>28v -&gt; 12v (OBC)</li>
+<li>28v -&gt; 5v (FPGA)</li>
+</ul>
+</li>
+<li>Voltage/Current monitor<ul>
+<li><a href="https://www.ti.com/lit/ds/symlink/ina230.pdf?ts=1739195723292">INA230</a>
+     -36V, Voltage and Power sensor, I2C communication</li>
+</ul>
+</li>
+<li>Watchdog(s)<ul>
+<li>Need 3, one for Jetson, OBC, FPGA<ul>
+<li>Use Proves implementation available <a href="https://github.com/BroncoSpace-Lab/scales-rad-tolerant-watchdog?tab=readme-ov-file">here</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Watchdog for each voltage level instead of the full system</li>
+</ul>
+<h3 id="21125">(2/11/25)</h3>
+<ul>
+<li>Notes on Rev A from michael:</li>
+<li>Switching Regulator: Vicor PI3740 is not in stock, find another one, stick to TI or Analog devices</li>
+<li>Add a GPIO pin to toggle the enable pin on each regulator, if its needed to reset power output</li>
+<li>Make sure all capacitors are ceramic, electrolytic caps can explode in space</li>
+<li>Move to Rev B:</li>
+<li>
+<p>Implement the following:
+       ## Switching regulators ##
+            - [LT8638SEV] (https://www.mouser.com/ProductDetail/Analog-Devices/LT8638SEVPBF?qs=sGAEpiMZZMsMIqGZiACxIZbomz1DP27AbMqUs%252Bj26yi9VZ8WhNpLhw%3D%3D)
+            (2.8V to 42V 10A/12A) Both should be the same
+            - Left off on implementing footprint and symbol will implement design wednesday
+            - Daisy Chain CLK implementation:
+               The goal with this is to put each regulator (4) slightly out of phase with the others but all at the same switching frequency, this is to reduce input current ripple on each regulator
+               PHMODE sets the phase angle output for the clock cycle, so the idea would be to set the first one to a PHMODE of 0, the next for a PHMODE of 90deg, then the next 180, and then 270 so well have 4 out of phase.
+               - Pins:
+                   - PHMODE: Tie to ground for single phase operation
+                   - BIAS: Because output voltage is from 3.3v to 25v, datasheet says to tie it to Vout
+                   - INTVcc: Internal 3.4V regulator bypass pin. Use a 1uf ESR capacitor from here to ground CLOSE to the ICEPS2
+                     - 1uF capacitor
+                   - BST: Used to provide a drive voltage, higher than the input voltage, supplies current to the topside power switch, us a 0.1uF boost capacitor
+                     - 0.1uF capacitor
+                   - SW: Outputs of the internal power switches. Tie them together and connect them to the inductor. For the PCB keep the nodes small and close together.
+                     - Confirm inductor value
+                   - GND: Place the gnd terminal of the input capacitor as close to the GND pins as possible. Try to use pins 29 and 32 for best thermal performance although they may be left disconnected.
+                   - Vin: VIN pin supply current to the LT8638S internal circuitry and to the topside switch. To be tied together and be locally bypassed by a 4.7uF capacitor.
+                     - 4.7uf capacitor
+                     - Place the capacitor + side as close to the VIN pins, and the - side as close as possible to the GND pins
+                  - EN/UV: Enable pin for the IC, you can use a voltage divider configuration from Vin to set a threshold voltage to program the IC to turn off if the voltage drops below this level. I will not be using this.
+                  - RT: A resistor is tied between RT and ground to set the switching frequency
+                     - Confirm switching frequency for output voltage and current
+                  - CLKOUT: Output clock signal for PolyPhase Operation, in forced continuous, spread spectrum, and synchronization mode it outputs a 50% duty cycle square wave of the switching frequency. If in burst mode operation, the CLKOUT pin. If not use, let it float. I  wont be using this pin. NC
+                  - Sync/Mode: Has four operating modes:
+                     - Burst Mode: Tie to ground for this mode.
+                     - Forced Continuous Mode, fast transient response and full frequency load over a wide load range, Float pin for this mode.
+                     - Forced Continuous Mode with Spread Spectrum, allows for FCM but with a small modulation of the switching frequency to reduce EMI, if desired tie to INTVcc
+                     - Synchronization Mode, drive it with a clock source to an external frequency, during the sync it will behave in forced continuous mode
+                  - PG: Power good pin, remains low until the FB pin is within +-7.75% of the final regulation voltage. PG is valid when Vin is above 2.8V
+                  - SS: Output tracking and a soft start pin, allows for regulation of the output voltage ramp rate. Documentation has a function that relates the input voltage to the pin to the rate at which the output voltage can increase by. I will not be using this as a load switch will take care of this. In order to disable this, set SS to higher than 1v, or may be left floating.
+                  - FB: Feedback pin that sets the output voltage according to a provided formula in the data sheet
+                  - Vc: Internal error amplifier, used to help stability in the output voltage, recommended by data sheet is a 10kohm resistor with a 1nF cap to ground.             <br />
+               - Jetson Config:
+                  - Enable FCM:
+                     - Leave Sync/Mode pin floating
+                  - FB Resistor Network:
+                     - Program the output voltage with a resistor divider, Jetson requires 20V.
+                     - Formula: R1 = R2((Vout/.6v)-1)
+                     - Calculated Values: R1 = 100kOhm, R2 = 3kOhm, Check calculations sheet to check.
+                  - RT Resistor Selection:
+                     - Resistor value that sets the switching frequency based on the following formula
+                     - RT = (44.8/fsw) -5.9, RT is in Kohms
+                     - Settled on 400Khz so RT about 105KOhms
+                     - Calculations done on sheet on my ipad, will link here later
+                  - Inductor Calculation and Selection:
+                     - Requires about 4 different calculations including the frequency selection.
+                     - Concluded with L &gt;= 6uH with Irms &gt;= 15A for safe operation
+                  - Sync Pin has to be tied to external clock with phase shift (4 total so 0, 90, 180, 270)
+               - OBC Config:
+                  - Enable FCM:
+                     - Leave Sync/Mode pin floating
+                  - FB Resistor Network:
+                     - Program the output voltage with a resistor divider, OBC requires 12V.
+                     - Formula: R1 = R2((Vout/.6v)-1)
+                     - Calculated Values: R1 = 95kOhm, R2 = 5kOhm, Check calculations sheet to check.
+                  - RT Resistor Selection:
+                     - Resistor value that sets the switching frequency based on the following formula
+                     - RT = (44.8/fsw) -5.9, RT is in Kohms
+                     - Settled on 400Khz so RT about 105KOhms
+                     - Calculations done on sheet on my ipad, will link here later
+                  - Inductor Calculation and Selection:
+                     - Requires about 4 different calculations including the frequency selection.
+                     - Concluded with L &gt;= 6uH with Irms &gt;= 13A for safe operation, with L calculation settled on 6.4uH
+                  - Sync Pin has to be tied to external clock with phase shift (4 total so 0, 90, 180, 270)
+               - FPGA Config:
+                  - Enable FCM:
+                     - Leave Sync/Mode pin floating
+                  - FB Resistor Network:
+                     - Program the output voltage with a resistor divider, FPGA requires 5V.
+                     - Formula: R1 = R2((Vout/.6v)-1)
+                     - Calculated Values: R1 =22kOhm, R2 = 3kOhm, Check calculations sheet to check.
+                  - RT Resistor Selection:
+                     - Resistor value that sets the switching frequency based on the following formula
+                     - RT = (44.8/fsw) -5.9, RT is in Kohms
+                     - Settled on 400Khz so RT about 105KOhms
+                     - Calculations done on sheet on my ipad, will link here later
+                  - Inductor Calculation and Selection:
+                     - Requires about 4 different calculations including the frequency selection.
+                     - Concluded L calculation settled on 2.9uH so 3uH should work fine
+                  - Sync Pin has to be tied to external clock with phase shift (4 total so 0, 90, 180, 270)
+               - +5v Peripheral Config:
+                  - Enable FCM:
+                     - Leave Sync/Mode pin floating
+                  - FB Resistor Network:
+                     - Program the output voltage with a resistor divider, FPGA requires 5V.
+                     - Formula: R1 = R2((Vout/.6v)-1)
+                     - Calculated Values: R1 =22kOhm, R2 = 3kOhm, Check calculations sheet to check.
+                  - RT Resistor Selection:
+                     - Resistor value that sets the switching frequency based on the following formula
+                     - RT = (44.8/fsw) -5.9, RT is in Kohms
+                     - Settled on 400Khz so RT about 105KOhms
+                     - Calculations done on sheet on my ipad, will link here later
+                  - Inductor Calculation and Selection:
+                     - Requires about 4 different calculations including the frequency selection.
+                     - Concluded L calculation settled on 2.9uH so 3uH should work fine
+                  - Sync Pin has to be tied to external clock with phase shift (4 total so 0, 90, 180, 270)
+      ## Load Switch ##
+         - [LTC4375] (https://www.analog.com/media/en/technical-documentation/data-sheets/LTC4365.pdf)
+            - Requires: [SISB46DN-T1-GE3] (https://www.vishay.com/docs/76655/sisb46dn.pdf)
+            - ^ Dual channel 40v MOSFET
+            - Has an active high pin that when triggered low sets the current output to be very low, labeled SHDN pin
+            - Has overvoltage and undervoltage pins that set safety levels for OV and UV which can be configured by voltage dividers. Will configure +-2V for each component. More on this below
+            - SHDN Config -&gt; Tied to Watchdog output, triggered high when everything is working correctly and when set low the load switch disables the load
+            - No utilizing fault output</p>
+<p>## Clock ##
+     - [LTC6902] (https://www.analog.com/en/products/ltc6902.html) 
+        - Allows for setting phase outputs as well as resistor programmable frequency timings
+           - Set Phase Mode: 4 Phase connect PH to V+, set N to floating which is 10 due to frequency range of 5Khz &lt;= 400Khz &lt;= 500Khz
+           - Since SSFM (Spread Spectrum Frequency Modulation)
+           - Review calculations page in EPS-&gt; Calculations folder to verify with datasheet instructions.
+           - Phases set:
+              - 5v Perif -&gt; 0deg
+              - FGPA -&gt; 90 deg
+              - OBC -&gt; 180 deg
+              - Jetson -&gt; 270 deg
+  ## Current/Voltage Sensors ##
+     - <a href="https://www.ti.com/lit/ds/symlink/ina230.pdf?ts=1739195723292">INA230</a>
+     - Shunt resistors have really low resistance to allow for high currents on each line, Vbus is also used to measure voltage. Bear in mind each shunt resistor should have a   relatively high power dissipation rating to prevent it from burning up.
+   - Notes for RevB:
+  - Add decoupling capacitors to input voltage lines
+  To Do (2/19/25):
+   - Add soft start capacitors to every switch regulator so that they delay long enough for the clock to be powered first
+  - Each is given a 25nF Soft Start capacitor to take 10ms to fully turn on the regulator, this allows the clock to be powered first by setting a shorter slew rate time therefore setting them all out of phase before they fully turn on. [DONE]
+   - Start calculating load switch resistors and capacitor values [DONE]
+   - Pick and integrate 28v to 5v buck converter for clock [DONE]
+   - Add decoupling capacitors to input voltage lines [DONE]</p>
+</li>
+<li>
+<p>Notes (2/19/25) </p>
+<ul>
+<li>Filter caps added at power input</li>
+<li>Notes are written for everything, calculations are in the EPC calculations folder. Rev B schematic DONE. </li>
+<li>Next phase is review with Michael and then ERC cleaning. </li>
+</ul>
+<p>=======
+   ## EPS REV.B Review Notes ##
+- https://scales-hardware.readthedocs.io/en/latest/meeting_notes/feb_21_25/
+- REV C -&gt; Satcat dropped moving to new FPGA board
+- Make an updated Block diagram to reflect what the schematic is without getting too complicated</p>
+</li>
+</ul>
+<p>### To do 2/25/25
+   - Rev C: (Make new block diagram)
+      - Power Input Spec:
+         - Define power input requirement
+         - How low is undervoltage?
+            - Jetson:
+               - Soft start capability?
+               - Idle current
+               - Max operational average current
+               - Max transient current
+      - Load Switches: (Need a new selection)
+         - Go BEFORE switching regulators
+         - Need current sensing capability
+         - Add slew rate caps for turn on time
+      - Switching Regulators:
+         - Verify Rt sets clock when power drops
+         - Power on first, then worry about syncing
+      - Clock: (Need a new selection)
+         - Switch to a crytal oscillating clock instead of what is current chosen</p>
+<p>## Week of 3/3 ## 
+      - Goals:
+         - Complete Block Diagram of Rev C [DONE]
+         (LINK HERE)[https://drive.google.com/file/d/1UQ95z8zSc4xQTobpHLgdMU17UKOtdfAZ/view?usp=sharing]
+         - Finalize Rev C Requirements:
+            - Interface requirements for OBC/Jetson/Peripheral Board
+               - Gecko Connectors?
+            - Power: The EPS system will supply 4 switching regulators with adecuate voltage and current:
+            - Load Switch Configuration: 
+               - Each subsystem has a load switch with a rst toggle, all are handled by the OBC, as well as the watch dog timer. Meaning both can be pulled down depending on the state.
+               - Watchdog system has a load switch which in the case of a watch dog failure, indicated by the I/V sensor can reset the timing for ensured redundancy
+            - Switching Regulator Configuration:
+               - Jetson: 28v to 20v @ 6A MAX
+                  - Start in sync with OBC
+               - OBC: 28v to 5v @ 3A MAX
+                  - Start in sync with Jetson
+               - Perif: 28v to 5v @ 2A Max
+                  - Start Early to boot up smaller components
+               - Watchdogs and Clock: Powered by OBC, boots first
+               Startup sequence:
+               OBS powers on first due to shortest SS. Clock turns on, sets frequency and phase, then it pulls the Enable pins on the load switches high and then the Jetson and Perif Load switch turn on. Then I2c Sensors are powered on for each and data is starting to be read for each subsystem.</p>
+<div class="language-text highlight"><pre><span></span><code>     ## Modifications for this to happen ## 
+        - Set SS capacitor for OBC/Jetson/Perif Load Switch to cause slightly longer turn on time compared to Clock and WDs
+        - WD intial boot capacitor must be set for longer time to allow for proper system boot sequence
+        - Software on OBC should allow for when the WDs are to be reset, to pull its own RST pin for the load switch high, so on reset the watch dogs do not false trigger the reset on the OBC load switch
+        - Need to implement I2C Program to monitor incoming I/V sensor signals for each subsystem
+
+     - Finalize Rev C Component Selection:
+        - Edge Computer: Jetson Orin AGX (20V/6A Out)
+        - Flight Computer: IMX8 (Have a 5v/3A Out)
+        - Peripheral Board: N/A (Have a 5v/2A Out)
+
+        - Capacitors: SMD Ceramics
+        - Resistors: SMD Wire Wounds
+        - Inductors: SMD No-Air Ceramic
+
+        - Load Switche(s): [LTC4365](https://www.analog.com/media/en/technical-documentation/data-sheets/LTC4365.pdf)
+           - Require: [SISB46DN-T1-GE3](https://www.vishay.com/docs/76655/sisb46dn.pdf)
+        - Switching Regulator(s): [LT8638SEV#PBF](https://www.mouser.com/ProductDetail/Analog-Devices/LT8638SEVPBF?qs=sGAEpiMZZMsMIqGZiACxIZbomz1DP27AbMqUs%252Bj26yi9VZ8WhNpLhw%3D%3D)
+        - Clock: [LTC 6902](https://www.analog.com/media/en/technical-documentation/data-sheets/6902f.pdf) (Use SSFM)
+        - I/V Sensor(s): [INA230](https://www.ti.com/lit/ds/symlink/ina230.pdf?ts=1739195723292)
+
+
+     - Complete Rev C Schematic:
+
+     - Begin EPS Board Layout:
+        PCB Notes:
+           -JLC PCB has specific requirements for manufacturing be sure to check everything needed to make sure it is correct.
+           Check Here[https://jlcpcb.com/capabilities/pcb-capabilities]
+
+           -Each component has specific design constraints so make sure that the component is following its pcb layout design spec
+
+           -How should I go about routing?
+              - So far ive just been connecting nets together and when I cant make a connection from the top plane im just using vias to connect things together through the planes. Not entirely sure if this is how it should be done but it seems to be working so far.
+              - Latest problem is the SIS mosfet which the pads wont let me do connections to easily
+
+        - Rev C Dev Board Notes 3/26/25
+           - Ran into some bullshit github issues to be honest I have no fucking clue what the problem is but thankfully I was able to remove the problem by nuking my branch, and pulling from main again and then merging it to main. 
+           - Redid layout for all the components, im happy with what i have right now. Going to go over this and start routing from the beginning. What I will try is doing the jetson subsystem and then trying to copy the same tracks and use multichannel
+           - I also removed the XNOR configuration because it doesnt make sense to add it. Sure it can be useful but on a boot sequence its useless because it can throw me into a infinite boot loop essentially a race condition because its trying to turn on faster than it is triggered off by the first system to power on
+
+     ## Week of 3/31/25 ##
+        -REV C Dev Board To Do&#39;s 3/31/25
+           - Gecko Connectors swap to DF11-16DP-2DSA(08) Connector [DONE]
+              - Make sure the footprint has the through holes
+           - Add meme to the front of the board
+           - Add schematic layout to the back of the board for dev purposes
+           - Test WD kit Michael made on the scope, test with different voltage ranges
+
+        -REV C Dev Board Revision Suggestions from Andrew Greenberg (4/1/25)
+           Main Concerns:
+           - Stop working on layout so you dont waste your time [DONE]
+           - Rename +28V as Vbatt and display voltage ranges (Vbatt = [24.0, 28.8, 33.6]) [DONE]
+              -Reconfigure the UV and OV numbers to allow for this voltage range [DONE]
+                 - Modify in the calculations page (be sure to note the numbers) 
+           - 100nF caps on +28V inputs can be removed due to 10uF [DONE]
+           - Ensure the capacitors are +75v rated so they dont explode at the input side [DONE]
+              -Must be ceramic [DONE]
+              -Must be around double of what the peak input voltage is for safe margins [DONE]
+
+           SISB46DN: [DONE]
+              -Replace symbol with 2 MOSFETS so that the end user can understand what the schematic actually represents
+           INA230:
+              -Calculate proper resistor values for the INA230 voltage and current detection [DONE] (In rev c calcs last page)
+              -Remove 4.7k resistors on the INA230 side, you want to include them on the host side, be sure to add these notes in the schematic [DONE]
+
+           -Physical Design Revision Notes:
+              -For each component go to its manufacturing page and make note of all the component types that are used for the individual designs, this means that the devices that are used for each are recommended by the manufacturer in the evaluation board.
+
+              -Replace the footprints for all the inductors to ensure they have the proper current ratings and also have proper spacing for additions to it on the board.
+
+              Manufacturer recommended components around subsystem comcponents: [DONE]
+                 LTC4365:
+                       -No hard restrictions on component selection for those that will go around it
+                       -Worth adding test points to the UV/OV side to see the values it should trip at
+                 LS8638SEV: 
+                       -Use +50v rated ceramic caps, 3225 metric packages
+                       -Use this kind of inductor: https://www.coilcraft.com/en-us/products/power/shielded-inductors/molded-inductor/xel/xel6030/?srsltid=AfmBOoqxe6hS-AVIr3woqGFRZjt3QaXyQi86MwGE0zvqKz2AENsjz4RA
+                       this is the one referenced in the evaluation board. Having trouble finding the footprint for the right sizing
+                 INA230: No specifics on what caps or resistors to use, go with ceramic caps and carbon/ceramic resistors as usual
+                 LTC6902:
+                       -No strict requirements on what type of components are used with it
+
+            Watchdogs:
+              -Probe C19 and C20 as well as the 100k resistor.
+              -Worth doing circuit analysis on to make out mathematically what is going on in the circuit
+
+           Extra Stuff:
+              -For the OBC SDA/SCL, we need to include an i2c buffer to ensure proper signaling, for this we can use the    LTC4300A
+</code></pre></div>
+<h1 id="scales-eps-rev-c-design-development">SCALES EPS REV C Design Development</h1>
+<ul>
+<li>By Luca Lanzillotta</li>
+<li>4/15/2025</li>
+<li>4/16/2025</li>
+</ul>
+<h2 id="abstract">Abstract ##</h2>
+<ul>
+<li>The SCALES EPS Board is a power distribution board designed with the intention of powering a flight computer, a machine learning edge computer, and a peripheral system for onboard diagnostics and user defined sensors to interface with both the flight computer and the edge computer. Each subsystem is equipped with an error mitigation feature known as a watchdog, which is pet by each corresponding subsystem and serves as a reset point for each subsystem. The flight computer has access to power diagnostics for each subsystem and can be is software programmable of its direct control of each subsystems operation mode.</li>
+</ul>
+<p>### Component Selection ###
+   <strong>Primary Components:</strong> </p>
+<ul>
+<li>
+<p>IV Sensor: 
+   <a href="https://www.ti.com/lit/ds/symlink/ina230.pdf?ts=1744680590205&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FINA230">INA230</a></p>
+</li>
+<li>
+<p>Switching Regulator: 
+   <a href="https://www.mouser.com/ProductDetail/Analog-Devices/LT8638SEVPBF?qs=sGAEpiMZZMsMIqGZiACxIZbomz1DP27AbMqUs%252Bj26yi9VZ8WhNpLhw%3D%3D">LT8638SEV</a></p>
+</li>
+<li>
+<p>Load Switch:
+   <a href="https://www.analog.com/media/en/technical-documentation/data-sheets/LTC4365.pdf">LTC4365</a></p>
+</li>
+<li>
+<p>Dual-Gate Mosfet: 
+   <a href="https://www.vishay.com/docs/76655/sisb46dn.pdf">SISB46DN-T1-GE3</a></p>
+</li>
+<li>
+<p>Clock: 
+   <a href="https://www.analog.com/media/en/technical-documentation/data-sheets/6902f.pdf">LTC 6902</a></p>
+</li>
+<li>
+<p>Power Connector: 
+   <a href="https://outofdarts.com/products/xt-60-connector-90-degree-connector?srsltid=AfmBOoqKylA6kCYljerReYkHtwbVrW2sa4yj6tmw-vBZRMtz7rP4LZ-8">XT-60</a></p>
+</li>
+<li>
+<p>Watchdog Comparator: 
+   <a href="https://www.ti.com/lit/ds/symlink/tlv1704-sep.pdf?ts=1744728353106&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTLV1704-SEP%252Fpart-details%252FTLV1704AMPWPSEP">TLV-1704SEV</a></p>
+</li>
+</ul>
+<p><strong>Secondary Components:</strong></p>
+<p><strong>Resistors:</strong>
+   - (0603):
+      - Load Switch (UV/OV, SHDN Pull Down)
+      - Switching Regulator (Vc, Rt, Bias, Fb)
+      - Clock (Mode set, Rt set)
+      - Watchdog (WDT-Vin, every block within the system)
+   - (2512):
+      - IV Sensor Shunt (IN+ to IN-)</p>
+<p><strong>Capacitors:</strong></p>
+<ul>
+<li>(1210) +75V:<ul>
+<li>Input Power Connector (Filter caps)</li>
+<li>Load Switch Output (Filter caps)</li>
+<li>Switching regulator (BST to SW, BIAS to FB, SW to INA IN+)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Inductors:</strong></p>
+<ul>
+<li>Per recommendation of the LT8638SEV evaluation board design the recommended inductors are the following<ul>
+<li><a href="https://www.coilcraft.com/getmedia/ed8d0314-5cbb-4be3-85da-32235c3701c8/xel6030.pdf">XEL6030</a></li>
+<li>Switching regulator (BST to SW)</li>
+<li>Rated from 0v to 80v</li>
+<li>AEC-200 rated (automotive standard)</li>
+<li>IRMS ratings are more than reasonable based on REV C calculations requirements</li>
+<li>Refer to layout requirements in the datasheet</li>
+</ul>
+</li>
+</ul>
+<p>### Requirements ###</p>
+<ul>
+<li>
+<p>Power: (XT-60 Connector)</p>
+<ul>
+<li>28V/12A Max Input</li>
+<li>3 Subsystems, OBC, Edge Computer, Peripheral</li>
+<li>Existing calculations for inductors and input power are overspecked</li>
+</ul>
+</li>
+<li>
+<p>Load Switches: (LTC4365)</p>
+<ul>
+<li>Dual Gate Mosfet (SISB46DN-T1-GE3) is utilized to pass the output based on the inputs of the load switch IC</li>
+<li>SHDN feature is held by the WD and/or the flight computer depending on the subsystem</li>
+<li>UV/OV thresholds are adapted to the input ratings set by LiPO operating ranges, each subsystem has a calculation in the REV C calculations in this subfolder.</li>
+<li>Soft Start capacitors for each subsystem mitigate current spikes at the input side when initializing, they also serve as start up delays</li>
+</ul>
+</li>
+<li>
+<p>Clock: (LTC6902)</p>
+<ul>
+<li>Set to 400khz based on average performance metrics for the switching regulator(s)</li>
+<li>Using SSFM to reduce system wide noise of a specific signal</li>
+<li>3 Phases used to seperate switching frequency timing across each regulator</li>
+</ul>
+</li>
+<li>
+<p>Switching Regulators: (LT8638SEV)</p>
+<ul>
+<li>Switching frequency set by clock, phase set by clock</li>
+<li>In the case of clock failure, a frequency setting resistor on the switching regulator will maintain a constant switching frequencyIn the case of clock failure, a frequency setting resistor on the switching regulator will maintain a constant switching frequency</li>
+</ul>
+</li>
+<li>
+<p>Watchdog(s): (TLV1704SEV)</p>
+<ul>
+<li>Watchdogs for each subsystem</li>
+<li>OBC controls which subsystem is on, OBC is always on</li>
+<li>Watchdogs are PET every ~30s by their respective subsystem</li>
+<li>Utilizing an adapted version of the OreSAT design provided by Andrew Greenberg <a href="https://github.com/BroncoSpace-Lab/scales-hardware/pull/280">Design HERE</a></li>
+<li>NOTE: The current watchdog implementation is currently not operating as expected, refer to testing notes.md in this folder for more information on progress    </li>
+</ul>
+</li>
+</ul>
+<h3 id="rev-c-block-diagram">Rev. C Block Diagram</h3>
+<p><img alt="REVC" src="../docs/Images/EPS_REVC_BlockDiagram.png" /></p>
+<h3 id="design-revision-notes">Design Revision Notes</h3>
+<ul>
+<li>
+<p>Use the JLCPCB Component stock checker plugin </p>
+</li>
+<li>
+<p>Fix Dual Gate Mosfet input and output pins Vin and Vout are references for the Load Switch [FIXED]</p>
+</li>
+<li>
+<p>Add a resistor to the WD_Toggle so when the WD pulls low it doesnt short the GPIO pin on the subsystem GPIO [FIXED]</p>
+</li>
+<li>
+<p>Set all caps to be +75v rated [FIXED]</p>
+</li>
+<li>
+<p>Set the shunt resistor to 10mohms [FIXED]</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/proveskit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "header.autohide", "navigation.path", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
