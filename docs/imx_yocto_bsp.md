@@ -94,11 +94,11 @@ The guide they sent us will be relayed here.
     PARALLEL_MAKE ?= "-j 4"
     ```
 
-5. Start the build. The `-c populate_sdk` is to build the SDK for the host machine, but if you run into issues, try building without it.
+5. Start the build.
 
     ```
     cd $BUILDDIR
-    bitbake phytec-headless-image -c populate_sdk
+    bitbake phytec-headless-image
     ```
     If you run into errors, you can clean the build directory with the following:
     ```
@@ -176,7 +176,7 @@ The guide they sent us will be relayed here.
 
 # Setting up the SDK
 
-1. If you haven't already, make sure you have a successful build after bitbaking with the populate SDK option. Make sure you set up the BSP build enviornment (described above) before you do this.
+1. Make sure you set up the BSP build enviornment (described above), and run the following command to populate the SDK.
 
     ```
     bitbake phytec-headless-image -c populate_sdk
