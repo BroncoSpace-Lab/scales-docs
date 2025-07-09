@@ -174,6 +174,7 @@ The guide they sent us will be relayed here.
 
     ![IMX Booting Ampliphy](Images/imx_booting_ampliphy.png)
 
+
 # Setting up the SDK
 
 1. Make sure you set up the BSP build enviornment (described above), and run the following command to populate the SDK.
@@ -189,3 +190,27 @@ The guide they sent us will be relayed here.
 4. A window will open to SDK setup. Leave everything as default, you should be able to just hit “Enter”.
 
 5. The toolchains for compiling will be here: `/opt/ampliphy-vendor/5.0.4-devel/sysroots/x86_64-phytecsdk-linux/usr/bin/aarch64-phytec-linux`
+
+In our F Prime deployment, we use environment variables for the toolchain paths. The following instructions will guide you through setting up global environment variables.
+
+1. To create a global environment variable, start a new terminal session. From your home directory, edit the `/etc/environment/` file.
+
+    ```
+    sudo anno /etc/environment
+    ```
+
+2. Add a new line defining the variables.
+
+    ```
+    IMX_C_COMPILER="/opt/ampliphy-vendor/5.0.4-devel/sysroots/x86_64-phytecsdk-linux/usr/bin/aarch64-phytec-linux/aarch64-phytec-linux-gcc"
+    IMX_CXX_COMPILER="/opt/ampliphy-vendor/5.0.4-devel/sysroots/x86_64-phytecsdk-linux/usr/bin/aarch64-phytec-linux/aarch64-phytec-linux-g++"
+    IMX_ROOT_PATH="/opt/ampliphy-vendor"
+    ```
+
+3. Save and exit the text editor. Restart your computer for the changes to take effect. Once your computer boots up again, you can test your variables with the following commands in terminal:
+
+    ```
+    echo $IMX_C_COMPILER
+    echo $IMX_CXX_COMPILER
+    echo $IMX_ROOT_PATH
+    ```

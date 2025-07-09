@@ -50,7 +50,6 @@ sudo minicom -s
 </details>
 
 <details>
-
 <summary>Using Windows Tera Term</summary>
 
 1. Do not power the board yet. Connect the UART debug cable to X51 UART0 on the board, and the USB part into your computer. 
@@ -73,24 +72,15 @@ sudo minicom -s
 
 ## Setting up Host Computer
 
-Following [this guide to install the SDK](https://docs.phytec.com/projects/yocto-phycore-imx8x/en/latest/applicationdevelopment/InstallTheSDK.html) on the host computer. 
+Following [this guide to install the SDK](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/) on the host computer. 
 
-### Required materials
+Once the SDK is set up on the host computer, it never needs to be done again. 
 
-- 64-bit Linux host machine. 
-
-### Directions
-1. Once the SDK is set up on the host computer, it never needs to be done again. 
-
-2. Be sure to source the environment before doing any work on the host computer: 
-```
-source /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
-```
 ## Setting up Ethernet
 
 ### Required materials
 
-- Windows computer with Tera Term installed 
+- Windows computer with Tera Term installed or Linux environment
 - Ethernet cable 
 - Router/Ethernet hub 
 - i.MX 8X development board 
