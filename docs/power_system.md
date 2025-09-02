@@ -34,14 +34,14 @@ Design Requirements:
 - Monitoring is done by the OBC via I2C from the I/V sensors, and temp sensors, which allows the subsystem to get basic telemetry on the subsystem state of operation
 
 ## Concept of Operations Block Diagram
-![Con. Ops Diagram](Images\EPSREVF_ConOps.png)
+![Con. Ops Diagram](Images/EPSREVF_ConOps.png)
 
 # Component Selection
 Based on a few months of research and evaluating the most efficient options for what the overall design should do, I concluded on the following components after establishing a system topology through the following block diagram.
 Note: The watchdog timer circuit was generously given to us for use by Andrew Greenberg from over at Portland State University.
 
 ### EPS Rev. F Block Diagram
-![EPS REV F Block Diagram](Images\EPS_REVF_BlockDiagram.png)
+![EPS REV F Block Diagram](Images/EPS_REVF_BlockDiagram.png)
 
   - Load Switch + Controller: TPS1HA08-Q1
   - Switching Regulator: LT8612
@@ -58,48 +58,48 @@ The root contains the layout for the entire system in both block diagram form as
 Each subsystem is nearly identical, likewise for the watchdogs other than a few pull ups that dictate which systems are normally operating.
 
 Root:
-![Root](images\EPSREVF_Root.png)
+![Root](Images/EPSREVF_Root.png)
 
 OBC Subsystem:
-![OBC Subsystem](images\EPSREVF_OBCSubsystem.png)
+![OBC Subsystem](Images/EPSREVF_OBCSubsystem.png)
 
 Peripheral Subsystem:
-![Perif Subsystem](images\EPSREVF_PerifSubsystem.png)
+![Perif Subsystem](Images/EPSREVF_PerifSubsystem.png)
 
 Jetson Subsystem:
-![Jetson Subsystem](images\EPSREVF_JetsonSubsystem.png)
+![Jetson Subsystem](Images/EPSREVF_JetsonSubsystem.png)
 
 OBC Watchdog Circuit:
-![OBC Watchdog Circuit](images\EPSREVF_OBCWD.png)
+![OBC Watchdog Circuit](Images/EPSREVF_OBCWD.png)
 
 Peripheral Watchdog Circuit:
-![Perif. Watchdog Circuit](images\EPSREVF_PerifWD.png)
+![Perif. Watchdog Circuit](Images/EPSREVF_PerifWD.png)
 
 Jetson Watchdog Circuit:
-![Jetson Watchdog Circuit](images\EPSREVF_JetsonWD.png)
+![Jetson Watchdog Circuit](images/EPSREVF_JetsonWD.png)
 
 # PCB Layout
 Due to being a power board, having thicker traces was a necessary design constraint along with thicker copper pours on each layer. This board utses 2oz fill on the internal layers and a 1oz fill on the external layers. Traces up to 1mm were used for specific high current lines to ensure low impedance high surface area and volume conductivity.
 
 Signal1 Layer:
-![Signal1 Layer](images\EPSREVF_Signal1.png)
+![Signal1 Layer](Images/EPSREVF_Signal1.png)
 
 GND Layer:
-![GND Layer](images\EPSREVF_GND.png)
+![GND Layer](Images/EPSREVF_GND.png)
 
 Power Layer:
-![Power Layer](images\EPSREVF_Power.png)
+![Power Layer](Images/EPSREVF_Power.png)
 
 Signal2 Layer:
-![Signal2](images\EPSREVF_Signal2.png)
+![Signal2](Images/EPSREVF_Signal2.png)
 
 
 # PCB 3D Renders
 Front:
-![EPSREVF Front](images\EPSREVF_Front.png)
+![EPSREVF Front](Images/EPSREVF_Front.png)
 
 Back:
-![EPSREVF Back](images\EPSREVF_Back.png)
+![EPSREVF Back](Images/EPSREVF_Back.png)
 
 ### Access this design with the link below
 https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/power_system
