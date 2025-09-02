@@ -59,16 +59,22 @@ Each subsystem is nearly identical, likewise for the watchdogs other than a few 
 
 Root:
 ![Root](images\EPSREVF_Root.png)
+
 OBC Subsystem:
 ![OBC Subsystem](images\EPSREVF_OBCSubsystem.png)
+
 Peripheral Subsystem:
 ![Perif Subsystem](images\EPSREVF_PerifSubsystem.png)
+
 Jetson Subsystem:
 ![Jetson Subsystem](images\EPSREVF_JetsonSubsystem.png)
+
 OBC Watchdog Circuit:
 ![OBC Watchdog Circuit](images\EPSREVF_OBCWD.png)
+
 Peripheral Watchdog Circuit:
 ![Perif. Watchdog Circuit](images\EPSREVF_PerifWD.png)
+
 Jetson Watchdog Circuit:
 ![Jetson Watchdog Circuit](images\EPSREVF_JetsonWD.png)
 
@@ -77,16 +83,21 @@ Due to being a power board, having thicker traces was a necessary design constra
 
 Signal1 Layer:
 ![Signal1 Layer](images\EPSREVF_Signal1.png)
+
 GND Layer:
 ![GND Layer](images\EPSREVF_GND.png)
+
 Power Layer:
 ![Power Layer](images\EPSREVF_Power.png)
+
 Signal2 Layer:
 ![Signal2](images\EPSREVF_Signal2.png)
+
 
 # PCB 3D Renders
 Front:
 ![EPSREVF Front](images\EPSREVF_Front.png)
+
 Back:
 ![EPSREVF Back](images\EPSREVF_Back.png)
 
@@ -102,6 +113,7 @@ Using the on board test points and the expected probe locations based on the sch
 - Current Limit @4.0A (Designed for up to 8A)
     
 > Overall Board
+
 - TP 31, 39, 25 → 28v (Vbatt)
    - [x]  TP31 = 28v
    - [x]  TP39 = 28v
@@ -109,6 +121,7 @@ Using the on board test points and the expected probe locations based on the sch
    - [x]  Mounting Holes → GND
     
 > OBC Subsystem
+
    - [x] WD Pad Soldered:
    - [x] TP 36 → EN
          - 4.2v
@@ -124,13 +137,15 @@ Using the on board test points and the expected probe locations based on the sch
         - 3.3v works as intended
     
 > WD_OBC
+
    - [x] TP 47 → Ensures WD is supplied with power
       - ~2.7v works as intended
    - [x] TP 59 → WD Input from OBC GPIO for pet
       - Works as intended, after no pet, output is driven low of the WD which holds the switch low.
       - Input from function generator
     
-> Jetson Subsystem: 
+> Jetson Subsystem:
+
    - [x]  TP 38 → Tests the GPIO input from the OBC/WD EN Pin (Should be held high when System is active, low on PET failure)
       - Pulled up by either a GPIO or Power supply for testing
       - When the GPIO is driven above ~2.3v, the Load Switch allows the Vbatt to pass
@@ -146,6 +161,7 @@ Using the on board test points and the expected probe locations based on the sch
       - 20v works as intended
         
 > WD_Jetson:
+
    - [x]  TP 30 → Check WD Supply power
       - ~5.7v to power supply rails, using voltage divider, 20v(43k/143010) = 6.1v, works as intended
    - [x]  TP 54 → WD Interface input line, held high when there is a pet
@@ -154,6 +170,7 @@ Using the on board test points and the expected probe locations based on the sch
       - Is pulled up to GPIO/power supply, pulls low after pet window isnt met.
     
 > Peripheral Subsystem:
+
    - [x]  TP 37→ OBC GPIO input for EN line and WD En line, should be ~1.4v when high for OBC holding it high, and low when not held high.
       - Works as intended
         
@@ -168,11 +185,13 @@ Using the on board test points and the expected probe locations based on the sch
       - ~5v works as intended
     
 > WD_Perif:
+
    - [x]  TP 5 → ~4.6v supply to power the watch dog
       - 4.6v works as intended
    - [x]  TP 15 → WD Perif output always pulled low, should be low when the system is off, and held high when the OBC enables it, when the pet fails it will hold low until the subsystem turns off.
 
 > I2C Addresses (3.3v Logic)
+
    - Temperature Sensor I2C Addresses:
       - 0x19
       - 0x1A
