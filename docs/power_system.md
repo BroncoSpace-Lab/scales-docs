@@ -76,7 +76,7 @@ Peripheral Watchdog Circuit:
 ![Perif. Watchdog Circuit](Images/EPSREVF_PerifWD.png)
 
 Jetson Watchdog Circuit:
-![Jetson Watchdog Circuit](images/EPSREVF_JetsonWD.png)
+![Jetson Watchdog Circuit](Images/EPSREVF_JetsonWD.png)
 
 # PCB Layout
 Due to being a power board, having thicker traces was a necessary design constraint along with thicker copper pours on each layer. This board utses 2oz fill on the internal layers and a 1oz fill on the external layers. Traces up to 1mm were used for specific high current lines to ensure low impedance high surface area and volume conductivity.
@@ -111,7 +111,8 @@ Using the on board test points and the expected probe locations based on the sch
 > Testing Notes
 - Output voltage @28v    
 - Current Limit @4.0A (Designed for up to 8A)
-    
+
+  
 > Overall Board
 
 - TP 31, 39, 25 → 28v (Vbatt)
