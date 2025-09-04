@@ -14,11 +14,13 @@ This board took three PCB revisions to get working correctly, and in total seven
 
 # System Requirements
 Overall System - (+28v 8A Max)
+
 - ML/Edge Computer - Nvidia Jetson (+20V 4A)
 - OBC/Flight Computer - IMX8 (+3.3V 2A)
 - Peripheral System - Ethernet Switch (+5V 2A)
 
 Design Requirements:
+
 - Load switch
 - Switching regulator
 - Clock generator
