@@ -1,5 +1,6 @@
 # SCALES IMX8 Carrier Board
-By Luca Lanzillotta, John Pollak, and Kelly Williams 
+By Luca Lanzillotta, John Pollak, and Kelly Williams
+
 Updated 9/2/2025
 
 # Design Notes
