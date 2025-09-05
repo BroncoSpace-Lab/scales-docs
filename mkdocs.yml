@@ -70,27 +70,28 @@ markdown_extensions:
 nav: # Setting up the navigation. The below list will be tabs on left panel
   - Home: 
     - Welcome: index.md
+    - Hardware: hardware_home.md
+    - Software: software_home.md
+    - Testing: testng_home.md
     
   - Hardware:
-    - i.MX 8X Development: imx8x_procedures.md
+    - Hardware Home: hardware_home.md
+    - i.MX 8X Developer's Guide: imx8x_procedures.md
     - i.MX 8X Carrier Board PCB Design: imx_carrier_board.md
-    - FlatSat Development: FlatSat_Development.md
-    - SatCat Custom PCB Design: satcat_board_design.md
     - Power System Design: power_system.md
+    - Peripheral Board Design: peripheral_board.md
   - Software:
+    - Software Home: software_home.md
     - i.MX 8X Yocto BSP Development: imx_yocto_bsp.md
     - SCALES Demo: scales_demo.md
+    - F Prime Jetson Deployment: jetson_fprime.md
   - Testing: 
+    - Testing Home: testing_home.md
     - Test Procedure for i.MX and VOXL: Test Procedure List.md
     - Jetson Inference Performance: ML_Jetson_Performance.md
-    - Jetson Training Performance : ML_Training.md
-  # - Power System:
-  #   - General Power System Notes: power_system/power_system.md
-  # - Meeting Notes:
-  #   - Meeting Notes: meeting_notes/feb_21_25.md
- 
+    - Jetson Training Performance : ML_Training.md 
 
 extra:
   social:
     - icon: material/github 
-      link: https://github.com/proveskit
+      link: https://github.com/BroncoSpace-Lab
