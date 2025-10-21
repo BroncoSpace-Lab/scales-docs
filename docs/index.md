@@ -13,4 +13,6 @@ Visit the [SCALES Website](https://sites.google.com/view/scalesbroncospace)!
 
 See our [GitHub](https://github.com/BroncoSpace-Lab) for more technical information.
 
+If you are a Cal Poly Pomona student interested in applying to join the SCALES team, apply through [this form](https://forms.office.com/r/qujwWtx8fy).
+
 Contact us: broncospace@cpp.edu
