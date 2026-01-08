@@ -14,6 +14,6 @@ Custom board designed to power the SCALES system including a hardware watchdog.
 
 ### [Peripheral Board Design](https://scales-docs.readthedocs.io/en/latest/peripheral_board/)
 
-Custom board designed for ethernet switching and SPI/UART over ethernet.
+Custom board designed for ethernet switching.
 
 
