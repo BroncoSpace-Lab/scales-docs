@@ -33,6 +33,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
+  logo: Images/SCALES Mission Patch.png
+  favicon: Images/SCALES Mission Patch.png
 
 plugins:
   - search  # To have search functionality on the document
