@@ -89,7 +89,6 @@ The Arena SDK was installed from [Lucid](https://thinklucid.com/downloads-hub/)
 
 # To Run the SCALES Demo
 
-<<<<<<< HEAD
 # fprime-scales-ref F' project
 
 Watch our video demo on [YouTube](https://youtu.be/-g3Wv_fr9r8?si=2xow8_22aNjE1XDO)!
@@ -292,14 +291,6 @@ These steps are only required if there are changes made to ImxDeployment. Otherw
 
 1. Follow the instructions above to build ImxDeployment on the host machine. Use the following command to ssh into the IMX.
 
-=======
-SCALES has developed an F Prime project for this demo that can be found in our [fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref/tree/main) GitHub.
-
-## IMX Setup
-
-1. Follow the instructions above to build ImxDeployment on the host machine. Use the following command to ssh into the IMX.
-
->>>>>>> b6a7039bf721fad44ef17f90d523b5b552c1fb8d
     ```
     ssh root@<ip of imx> -o HostKeyAlgorithms=+ssh-rsa -o PubKeyAcceptedAlgorithms=+ssh-rsa
     ```
@@ -313,7 +304,6 @@ SCALES has developed an F Prime project for this demo that can be found in our [
 3. Copy the binary files for the sequences to the IMX.
 
     ```
-<<<<<<< HEAD
     scp -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa ~/fprime-scales-ref/Sequences/save-png.bin root@<ip of imx>:~/.
     scp -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa ~/fprime-scales-ref/Sequences/batch-send-img.bin root@<ip of imx>:~/.
     scp -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa ~/fprime-scales-ref/Sequences/snap-n-save.bin root@<ip of imx>:~/.
@@ -321,10 +311,6 @@ SCALES has developed an F Prime project for this demo that can be found in our [
     scp -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa ~/fprime-scales-ref/Sequences/test-resnet.bin root@<ip of imx>:~/.
     scp -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa ~/fprime-scales-ref/Sequences/demo.bin root@<ip of imx>:~/.
     scp -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa ~/fprime-scales-ref/Sequences/run-ml.bin root@<ip of imx>:~/.
-=======
-    scp -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa ~/fprime-scales-ref/save-png.bin root@<ip of imx>:~/.
-    scp -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa ~/fprime-scales-ref/batch-send-img.bin root@<ip of imx>:~/.
->>>>>>> b6a7039bf721fad44ef17f90d523b5b552c1fb8d
     ```
 
 ## Jetson Setup
@@ -350,10 +336,7 @@ SCALES has developed an F Prime project for this demo that can be found in our [
 
     ```
     sudo ln -s ~/fprime-scales-ref/build-python-fprime-aarch64-linux/Images/ ./Images
-<<<<<<< HEAD
     sudo ln -s ~/fprime-scales-ref/build-pyhon-fprime-aarch64-linux/Images/ ./Images
-=======
->>>>>>> b6a7039bf721fad44ef17f90d523b5b552c1fb8d
     ```
 
     The `Images` folder will be created in your root directory.
@@ -382,10 +365,7 @@ SCALES has developed an F Prime project for this demo that can be found in our [
 6. Combine the GDS dictionaries with the `merger.py` script. Run this command on the host machine.
 
     ```
-<<<<<<< HEAD
     cd GDS-Dictionary
-=======
->>>>>>> b6a7039bf721fad44ef17f90d523b5b552c1fb8d
     python merger.py JetsonDeploymentTopologyAppDictionary.xml ImxDeploymentTopologyAppDictionary.xml GDSDictionary.xml
     ```
 
@@ -393,27 +373,18 @@ You are now ready to run the demo!
 
 ## Running the Demo
 
-<<<<<<< HEAD
 1. After you finished setting up the demo in the previous section, **on the host machine**, navigate to the `GDS-Dictionary` folder and run the fprime-gds.
-=======
-1. After you finished setting up the demo in the previous section, on the host machine, navigate to the `GDS-Dictionary` folder and run the fprime-gds.
->>>>>>> b6a7039bf721fad44ef17f90d523b5b552c1fb8d
 
     ```
     fprime-gds -n --dictionary GDSDictionary.xml --ip-client --ip-address <ip of imx>
     ```
 
-<<<<<<< HEAD
 2. **On the IMX**, run the ImxDeployment binary. You should see a green dot on the fprime-gds and "Accepted client" in the IMX terminal.
-=======
-2. On the IMX, run the ImxDeployment binary. You should see a green dot on the fprime-gds and "Accepted client" in the IMX terminal.
->>>>>>> b6a7039bf721fad44ef17f90d523b5b552c1fb8d
 
     ```
     ./ImxDeployment -a 0.0.0.0 -p 50000
     ```
 
-<<<<<<< HEAD
 3. **On the Jetson**, navigate to the `build-python-fprime-aarch64-linux` directory to run the fprime-gds using python.
 
     ```
@@ -502,31 +473,6 @@ When trying to run the `MULTI_INFERENCE` command on the Jetson, you may experien
 ```
 
 Make sure the Jetson is connected to WiFi and try again. This is a new issue we have encountered that we are still trying to find the root cause of, but a WiFi connection fixes the issue.
-=======
-3. On the Jetson, navigate to the `build-python-fprime-aarch64-linux` directory to run the fprime-gds using python.
-
-    ```
-    cd build-python-fprime-aarch64-linux
-    python
-    ```
-
-    Once the python environment opens, run the following commands to connect to the IMX's fprime-gds using the hub pattern. If you want to exit the python environment, the command is `exit()`.
-
-    ```
-    import python_extension
-    python_extension.main()
-    ```
-
-4. On the host machine, use the fprime-gds to run the `jetson_cmdDisp.CMD_NO_OP` to test the connection with the Jetson. Do the same for the IMX with the `imx_cmdDisp.CMD_NO_OP`. You can see both events and their status in the "Events" tab of the GDS.
-
-5. Once the camera is connected, run the `jetson_lucidCamera.SETUP_CAMERA` command to verify the connection via fprime. 
-
-6. To take a picture with the camera, run the `imx_cmdSeq.CD_RUN` command in the fprime-gds with argument `demo.bin`. This will take a pictire with the camera, downlink it to the IMX, and then downlink it again to the Host Machine. You can download the image from the `Downlink` tab in the GDS. This sequence will also run a resnet ML model to identify what is in the image. The output will be displayed in the Events tab of the GDS. Images are deleted from the Jetson after the `demo.bin` sequence concludes. Repeat this step if you wish to take more images.
-
-That's how to run the SCALES demo!
-
-Watch our video demo on [YouTube](https://youtu.be/-g3Wv_fr9r8?si=2xow8_22aNjE1XDO)!
->>>>>>> b6a7039bf721fad44ef17f90d523b5b552c1fb8d
 
 ---
 
