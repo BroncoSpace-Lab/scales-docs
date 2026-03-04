@@ -33,6 +33,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
+  logo: Images/SCALES Mission Patch.png
+  favicon: Images/SCALES Mission Patch.png
 
 plugins:
   - search  # To have search functionality on the document
@@ -70,6 +72,7 @@ markdown_extensions:
 nav: # Setting up the navigation. The below list will be tabs on left panel
   - Home: 
     - Welcome: index.md
+    - 
     
   - Hardware:
     - i.MX 8X Development: imx8x_procedures.md
@@ -93,4 +96,4 @@ nav: # Setting up the navigation. The below list will be tabs on left panel
 extra:
   social:
     - icon: material/github 
-      link: https://github.com/proveskit
+      link: https://github.com/
