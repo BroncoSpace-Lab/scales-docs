@@ -19,9 +19,7 @@ Code and reference deployment can be found on our [fprime-scales-ref](https://gi
 
 The i.MX8X Flight Computer evaluation board, Jetson Edge Computer evaluation board, and COTS ethernet camera will be connected through a COTS managed ethernet switch. The i.MX will command the Jetson through the Hub Pattern to take a picture using the Ethernet Camera. The picture will be saved on the Jetson. When completed, the i.MX will command the Jetson through the Hub Pattern to run a computer vision algorithm on the images taken with the camera. The results will be sent to the i.MX.
 
-<div style="text-align: center;">
-    <img src="Images/scales-demo-flatsat.png" alt="Hardware Setup" width="600" margin="center">
-    </div>
+![Hardware Setup](Images/scales-demo-flatsat.png)
 
 ## Process
 
@@ -127,13 +125,7 @@ These directions are currently only for the FlatSat, not the custom boards the S
 
 Make sure your hardware is configured as follows:
 
-<div style="text-align: center;">
-    <img src="Images/hardware_setup_diagram.png" alt="Hardware Setup Block Diagram" width="600" margin="center">
-    </div>
-
-<div style="text-align: center;">
-    <img src="Images/hardware_setup_diagram.png" alt="Hardware Setup Block Diagram" width="600" margin="center">
-    </div>
+![Hardware Setup Block Diagram](Images/hardware_setup_diagram.png)
 
 ## How to Build JetsonDeployment
 
@@ -400,15 +392,11 @@ You are now ready to run the demo!
 
 6. To take a picture with the camera, run the `imx_cmdSeq.CD_RUN` command in the fprime-gds with argument `demo.bin`. This will take a pictire with the camera, downlink it to the IMX, and then downlink it again to the Host Machine. You can download the image from the `Downlink` tab in the GDS. This sequence will also run a resnet ML model to identify what is in the image. The output will be displayed in the Events tab of the GDS. Images are deleted from the Jetson after the `demo.bin` sequence concludes. Repeat this step if you wish to take more images.
 
-    <div style="text-align: center;">
-    <img src="docs/Images/run_seq.png" alt="fprime-gds to run sequence" width="600" margin="center">
-    </div>
+    ![fprime-gds to run sequence](Images/run_seq.png)
     
     This sequence will trigger the Images from the Jetson to be downlinked to the IMX, and then again downlinked from the IMX to the Host Machine. Check the `Downlink` tab in the GDS to see the images.
 
-    <div style="text-align: center;">
-    <img src="docs/Images/image_downlink.png" alt="Downlink view" width="600" margin="center">
-    </div>
+    ![Downlink view](Images/image_downlink.png)
 
     Click the `Download` button in the `Downlink` tab of the fprime-gds to download the zipped Image folder to the host machine. You can then unzip the folder and view the images from the Jetson!
 
@@ -420,15 +408,11 @@ You are now ready to run the demo!
     imx_cmdSeq.CS_RUN, "send.bin", BLOCK
     ```
 
-    <div style="text-align: center;">
-    <img src="docs/Images/run_seq.png" alt="fprime-gds to run sequence" width="600" margin="center">
-    </div>
+    ![fprime-gds to run sequence](Images/run_seq.png)
     
     This sequence will trigger the Images from the Jetson to be zipped into a smaller file to be downlinked to the IMX, and then again downlinked from the IMX to the Host Machine.
 
-    <div style="text-align: center;">
-    <img src="docs/Images/image_downlink.png" alt="Downlink view" width="600" margin="center">
-    </div>
+    ![Downlink view](Images/image_downlink.png)
 
     Click the `Download` button in the `Downlink` tab of the fprime-gds to download the zipped Image folder to the host machine. You can then unzip the folder and view the images from the Jetson!
 

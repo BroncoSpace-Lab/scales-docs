@@ -8,12 +8,10 @@
 
 ## Software Architecture
 
-<div style="text-align: center;">
-<figcaption> F Prime Hub Pattern on SCALES </figcaption>
-    <img src="Images/scales demo-Export Page.png" alt = "F Prime Hub Pattern" width = "500" class="center">
-</div>
+F Prime Hub Pattern: 
 
-<div style="text-align: center;">
-<figcaption> SCALES F Prime Component Architecture </figcaption>
-    <img src="Images/scales-fsw-arch.png" alt = "F Prime Component Architecture" width = "500" class="center">
-</div>
+![F Prime Hub Pattern](<Images/scales demo-Export Page.png>)
+
+F Prime Component Architecture:
+
+![SCALES FSW Arch](Images/scales-fsw-arch.png)

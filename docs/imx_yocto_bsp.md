@@ -233,9 +233,7 @@ For more information on how we created the F Prime platform and toolchain files,
     
     Look at line 16 beginning with `export PATH`. The first part of the path is `/opt/ampliphy-vendor/5.0.4-devel/sysroots/x86_64-phytecSDK-linux/usr/bin`.
 
-    <div style="text-align: center;">
-    <img src="Images/imx8x-toolchain.png" alt="imx8x toolchain" width="600" margin="center">
-    </div>
+    ![imx8x toolchain](Images/imx8x-toolchain.png)
 
     If you look at the files in this directory you will see two folders, `aarch64-phytec-linux` and `aarch64-phytec-linux-musl`. If you pay attention to the path, it follows a pattern. After `/sysroots` there is `/x86_64-phytecSDK-linux` which is the architecture of your host computer. So, to complete the path we must use the `aarch64-phytec-linux` folder since that is the architecture on the IMX8X. That folder contains the toolchains for compilation.
 
@@ -245,9 +243,7 @@ For more information on how we created the F Prime platform and toolchain files,
 
     Look at lines 27 and 28 beginning in `export CC` and `export CXX`. The first argument in each path is which toolchain file to use in the toolchain path we just found. For CC, it is `aarch64-phytec-linux-gcc`, and for CXX it is `aarch64-phytec-linux-g++`.
 
-    <div style="text-align: center;">
-    <img src="Images/imx-toolchain-selection.png" alt="imx8x toolchain" width="600" margin="center">
-    </div>
+    ![imx8x toolchain](Images/imx-toolchain-selection.png)
 
     Add these to your toolchain file.
 
@@ -261,9 +257,7 @@ For more information on how we created the F Prime platform and toolchain files,
     
     In the same two lines (27 and 28), the remaining arguments are the same for CC and CXX. These are your compiler options. If you notice, the compiler options end with `--sysroot=$SDKTARGETSYSROOT`. If we left this as-is in the F Prime cmake file, there would be an undefined reference. So, look at line 15 in the environment setup file. It contains the path to that reference.
 
-    <div style="text-align: center;">
-    <img src="Images/imx-compiler-options.png" alt="imx8x toolchain" width="600" margin="center">
-    </div>
+    ![imx compiler options](Images/imx-compiler-options.png)
 
     Replace `$SDKTARGETSYSROOT` with `/opt/ampliphy-vendor/5.0.4-devel/sysroots/cortexa35-phytec-linux` in your toolchain and platform cmake files.
 
