@@ -1,4 +1,4 @@
-# i.MX 8X First Time Setup
+# i.MX 8X Developer's Guide
 
 This document lists the interfacing and testing procedures required to get the i.MX 8X development board up and running for SCALES.
 
@@ -246,27 +246,94 @@ Red goes into pin 1 of X60.
     ```
 6. You should see the temperature sensor readings in the terminal.
 
-## F Prime Test Deployment
+---
 
-We created a test deployment of F Prime version 3.5 found in [this repository](https://github.com/kdizzlle/fprime.git). Make sure the host computer is connected to the i.MX 8X via ethernet.
+# F Prime on the i.MX 8X
 
-1. Use the following code to enter the F Prime directory on the host computer and source the F Prime environment:
-    ```
-    cd fprime/fprime-hub-pattern-example
-    source fprime-venv/bin/activate
-    ```
-2. Use the following code to enter the Test Deployment directory on the host computer and secure copy the deployment to the board. Fill in the blank with the ip address if the board:
-    ```
-    cd build-artifacts/imx8x/TestDeployment/bin
-    scp -o HostKeyAlgorithms=+ssh-rsa -o PubKeyAcceptedAlgorithms=+ssh-rsa TestDeployment root@<ip of imx8x>:~
-    ```
-3. Use the following command on the i.MX 8X to run the Test Deployment:
-    ```
-    ./TestDeployment -a 0.0.0.0 -p 50000
-    ```
-4. Use the following command on the host computer to launch the F Prime gds. Fill in the blank with the ip address if the board:
-    ```
-    cd ..
-    cd dict/
-    fprime-gds -n --dictionary TestDeploymentTopologyDictionary.json --ip-client --ip-address <ip of imx8x>
-    ```
+SCALES has developed an F Prime deployment for the i.MX 8X that can be found in our [fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref/tree/main) GitHub in ImxDeployment.
+
+## How to Clone
+
+There are a few git submodules used here, so when cloning be sure to init and update them.
+
+```
+git clone https://github.com/BroncoSpace-Lab/fprime-scales-ref.git
+cd fprime-scales-ref
+make setup
+make arena-init
+source fprime-venv/bin/activate
+```
+
+### Necessary Changes
+
+Some lines need to be commented in `lib/fprime/cmake/API.cmake` in order to use `fprime-python`. Comment out lines [545](https://github.com/nasa/fprime/blob/5a3b873854fe4d646d6874d134585535652fddb9/cmake/API.cmake#L545) and [562](https://github.com/nasa/fprime/blob/5a3b873854fe4d646d6874d134585535652fddb9/cmake/API.cmake#L562).
+
+After this, you should be good to go!
+
+## ImxDeployment
+
+To correctly generate and build for the IMX, you need to have the build environment on your machine. Refer to [this guide](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/#building-the-bsp) we made on our docs for how to set up the IMX SDK.
+
+<details>
+
+<summary> ImxDeployment Build Configuration Details </summary>
+
+### For Successful Build
+
+Your `settings.ini` should look like this:
+
+```
+[fprime]
+project_root: .
+framework_path:     ./lib/fprime
+; uncomment this line for JetsonDeployment
+; library_locations:  ./lib/fprime-python:./lib/fprime-scales
+; uncomment this line for ImxDeployment
+library_locations:  ./lib/fprime-scales
+
+default_cmake_options:  FPRIME_ENABLE_FRAMEWORK_UTS=OFF
+                        FPRIME_ENABLE_AUTOCODER_UTS=OFF
+```
+
+Your `project.cmake` should look like this:
+
+```
+# This CMake file is intended to register project-wide objects.
+# This allows for reuse between deployments, or other projects.
+
+# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Components")
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/ImxDeployment/")
+# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/JetsonDeployment/")
+# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/lib/")
+# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/lib/fprime-scales/scales/scalesSvc")
+```
+
+Your `CMakeLists.txt` in the root project directory should have line 17 containing `register_fprime_target("${CMAKE_SOURCE_DIR}/lib/fprime-python/cmake/target/pybind.cmake")` **commented**.
+
+Your `Components/CMakeLists.txt` should look like this:
+
+```
+# Include project-wide components here
+
+# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/StandardBlankComponent/")
+# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/PythonComponent/")
+# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/MLComponent/")
+# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/RunLucidCamera/")
+```
+
+</details>
+
+
+After all of this, you should be able to generate and build the ImxDeployment on your host machine.
+
+To generate: 
+
+```
+fprime-util generate imx8x -f
+```
+
+To build:
+
+```
+fprime-util build imx8x
+```
