@@ -43,30 +43,31 @@ For convenience, the exposed signal labels are listed below and may be accessed 
 All GPIO, SPI, I2C, and UART signals made available to the end user are routed through the outermost DF11 connector. Refer to the `scales-hardware` schematic and PCB files for additional implementation details.
 
 ### Component Selection
-The majority of these components are pulled straight from the Phytec PCM-942 Dev board schematic. Although alternative components with similar specifications work as well, we have tried to stay as close as possible to the reference design for the components we wanted to implement in this design. 
 
-* [SOM Connectors](https://www.samtec.com/products/bth-070-02-l-d-a-k-tr#cadmodels)
-* [DF11 Connectors](https://lcsc.com/product-detail/Wire-To-Board-Wire-To-Wire-Connector_HRS-Hirose-HRS-DF11-16DP-2DSA-08_C530981.html)
-* [Power Distribution Switch](https://lcsc.com/product-detail/Power-Distribution-Switches_ROHM-Semicon-BD2204GUL-E2_C314699.html?s_z=n_BD2204GUL-E2)
-* [Micro SD Card Connector](https://lcsc.com/product-detail/SD-Card-Memory-Card-Connector_MOLEX-5027740891_C330255.html?s_z=n_TF-SMD_5027740891)
-* [FTDI Linear Voltage Regulator](https://lcsc.com/product-detail/Linear-Voltage-Regulators_TI_LP38693MP-ADJ-NOPB_LP38693MP-ADJ-NOPB_C181420.html)
-* [FTDI Controller](https://lcsc.com/product-detail/USB_FTDI_FT2232HL_FT2232HL_C27882.html)
-* [Micro USB-B Connector](https://lcsc.com/product-detail/USB-Connectors_MOLEX_47346-0001_47346-0001_C132560.html)
-* [SPI EEPROM](https://jlcpcb.com/parts/componentSearch?searchTxt=C890471)
-* [FTDI Crystal Oscillator](https://www.lcsc.com/product-detail/C9002.html?s_z=n_C9002)
-* [UART Level Shifters](https://lcsc.com/product-detail/Logic-ICs_TI_TXS0101DCKR_TXS0101DCKR_C132031.html)
-* [ESD Surge Protector](https://lcsc.com/product-detail/TVS_SEMTECH_SRV05-4-TCT_SRV05-4-TCT_C13612.html)
-* [Ethernet PHY to MAC 10/100 Base T Translator](https://www.ti.com/cn/lit/ds/symlink/dp83867ir.pdf?ts=1748027510532&ref_url=https%253A%252F%252Fjlcpcb.com%252F)
-* [Ethernet Crystal Osciallator](https://www.lcsc.com/product-detail/C13740.html?s_z=n_C13740)
-* [Low Voltage AND Gate](https://lcsc.com/product-detail/74-Series_TI_SN74AUP1G08DBVR_SN74AUP1G08DBVR_C139409.html)
-* [Ethernet TVS Diodes](https://www.lcsc.com/product-detail/C13612.html)
-* [RJ45 Connector with Integrated Magnetics](https://jlcpcb.com/partdetail/AmphenolIcc-RJHSE5384/C464587)
-* [Linear Regulator](https://www.lcsc.com/product-detail/C2872754.html?s_z=n_C2872754)
-* [Linear Regulator](https://www.lcsc.com/product-detail/C145717.html)
-* [P-Channel MOSFET](https://www.infineon.com/dgdl/irlml6401pbf.pdf?fileId=5546d462533600a401535668b96d2634)
-* [N-Channel MOSFET](https://www.onsemi.com/pub/Collateral/BSS138-D.PDF)
-* [Switch](https://www.lcsc.com/product-detail/C7471372.html?s_z=n_C7471372)
-* [Button](https://www.lcsc.com/product-detail/C72443.html)
+Most of these components are derived directly from the Phytec PCM-942 development board schematic. Although alternative components with similar specifications may also be suitable, this design stays as close as possible to the reference implementation for the features included here.
+
+- [SoM Connectors](https://www.samtec.com/products/bth-070-02-l-d-a-k-tr#cadmodels)
+- [DF11 Connectors](https://lcsc.com/product-detail/Wire-To-Board-Wire-To-Wire-Connector_HRS-Hirose-HRS-DF11-16DP-2DSA-08_C530981.html)
+- [Power Distribution Switch](https://lcsc.com/product-detail/Power-Distribution-Switches_ROHM-Semicon-BD2204GUL-E2_C314699.html?s_z=n_BD2204GUL-E2)
+- [MicroSD Card Connector](https://lcsc.com/product-detail/SD-Card-Memory-Card-Connector_MOLEX-5027740891_C330255.html?s_z=n_TF-SMD_5027740891)
+- [FTDI Linear Voltage Regulator](https://lcsc.com/product-detail/Linear-Voltage-Regulators_TI_LP38693MP-ADJ-NOPB_LP38693MP-ADJ-NOPB_C181420.html)
+- [FTDI Controller](https://lcsc.com/product-detail/USB_FTDI_FT2232HL_FT2232HL_C27882.html)
+- [Micro USB-B Connector](https://lcsc.com/product-detail/USB-Connectors_MOLEX_47346-0001_47346-0001_C132560.html)
+- [SPI EEPROM](https://jlcpcb.com/parts/componentSearch?searchTxt=C890471)
+- [FTDI Crystal Oscillator](https://www.lcsc.com/product-detail/C9002.html?s_z=n_C9002)
+- [UART Level Shifters](https://lcsc.com/product-detail/Logic-ICs_TI_TXS0101DCKR_TXS0101DCKR_C132031.html)
+- [ESD Surge Protector](https://lcsc.com/product-detail/TVS_SEMTECH_SRV05-4-TCT_SRV05-4-TCT_C13612.html)
+- [Ethernet PHY-to-MAC 10/100 Base-T Translator](https://www.ti.com/cn/lit/ds/symlink/dp83867ir.pdf?ts=1748027510532&ref_url=https%253A%252F%252Fjlcpcb.com%252F)
+- [Ethernet Crystal Oscillator](https://www.lcsc.com/product-detail/C13740.html?s_z=n_C13740)
+- [Low-Voltage AND Gate](https://lcsc.com/product-detail/74-Series_TI_SN74AUP1G08DBVR_SN74AUP1G08DBVR_C139409.html)
+- [Ethernet TVS Diodes](https://www.lcsc.com/product-detail/C13612.html)
+- [RJ45 Connector with Integrated Magnetics](https://jlcpcb.com/partdetail/AmphenolIcc-RJHSE5384/C464587)
+- [Linear Regulator](https://www.lcsc.com/product-detail/C2872754.html?s_z=n_C2872754)
+- [Linear Regulator](https://www.lcsc.com/product-detail/C145717.html)
+- [P-Channel MOSFET](https://www.infineon.com/dgdl/irlml6401pbf.pdf?fileId=5546d462533600a401535668b96d2634)
+- [N-Channel MOSFET](https://www.onsemi.com/pub/Collateral/BSS138-D.PDF)
+- [Switch](https://www.lcsc.com/product-detail/C7471372.html?s_z=n_C7471372)
+- [Button](https://www.lcsc.com/product-detail/C72443.html)
 
 ### Ethernet
 
@@ -177,7 +178,7 @@ Since all other boot configurations have been removed, only the final bit needs 
 
 ## SCALES EPS Implementation
 
-The Leviathan 1A version of the SCALES EPS design powers three subsystems, the OBC, Jetson, and the Peripheral subsystem. The OBC and Jetson both have watchdogs while the peripheral system does not. The Jetson, and Peripheral subsystem can be power sequenced on command by the OBC.
+The Leviathan 1A version of the SCALES EPS powers three subsystems: the OBC, the Jetson, and the Peripheral subsystem. The OBC and Jetson both include watchdog protection, while the Peripheral subsystem does not. The Jetson and Peripheral subsystem can be power-sequenced on command by the OBC.
 
 ### Power Requirements
 
@@ -210,15 +211,15 @@ Subsystem power requirements:
 
 #### Fault Response
 
-- **OBC fault**
-  - If the OBC hangs and fails to pet the watchdog, it is power-cycled
-  - The load switch enable pin is held high relative to the battery voltage
+**OBC fault**
+- If the OBC hangs and fails to pet the watchdog, it is power-cycled
+- The load switch enable pin is held high relative to the battery voltage
 
-- **Jetson fault**
-  - If the Jetson hangs and fails to pet the watchdog, it is rebooted
+**Jetson fault**
+- If the Jetson hangs and fails to pet the watchdog, it is rebooted
 
-- **Peripheral fault**
-  - If the Ethernet switch hangs, the OBC can power-sequence it directly
+**Peripheral fault**
+- If the Ethernet switch hangs, the OBC can power-sequence it directly
 
 #### Telemetry and Monitoring
 
@@ -237,11 +238,12 @@ Once an SD card has been flashed with the image:
 1. Set the boot toggle switch to the **SD Card** position
 2. Insert the SD card into the board
 3. Apply power through the XT-60 connector
-4. System will autoboot
-5. Password is 'root'
+4. The system will boot automatically
+5. The default password is `root`
 
-Note that if you have chosed to solder the WD solder pads on the back of the board, it is required that the BSP includes the watchdog petting package, this ensures that the device does not enter a boot loop.
-If this package is not included, unsolder the pads.
+If the watchdog solder pads on the back of the board have been soldered, the BSP must include the watchdog petting package. This ensures that the device does not enter a boot loop.
+
+If this package is not included, leave the watchdog pads unsoldered.
 
 ### Setup Resources
 
