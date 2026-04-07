@@ -1,6 +1,7 @@
-// ...existing code...
+# How to create and Maintain a custom BSP for the IMX8X
+By Luca Lanzillotta, John Williams and John Pollak
 
-# Understanding the Process
+# Understanding the BSP
 
 When working with Yocto, Ubuntu, an i.MX8 BSP, and a custom carrier board, the main goal is to make the software accurately reflect the real hardware. The SoM may already be supported by the vendor BSP, but once the carrier board changes, Linux also has to be updated so it understands the new wiring, peripherals, GPIO usage, buses, and power behavior. In practice, this means you are constantly connecting three things: the schematic, the device tree, and the Yocto build system.
 
