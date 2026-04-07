@@ -4,7 +4,7 @@
 
 How to use the i.MX 8X with the SCALES system.
 
-### [SCALES i.MX 8X Carrier Board + EPS PCB Design](https://scales-docs.readthedocs.io/en/latest/imx8x_merger/)
+### [SCALES i.MX 8X Carrier Board](https://scales-docs.readthedocs.io/en/latest/imx8x_merger/)
 
 Custom carrier board designed for the PHYTEC i.MX 8X SOM that includes the SCALES Power System
 
