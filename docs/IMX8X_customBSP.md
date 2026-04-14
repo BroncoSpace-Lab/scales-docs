@@ -1,4 +1,4 @@
-# How to create and Maintain a custom BSP for the IMX8X
+# How to Create and Maintain a Custom BSP for the IMX8X
 By Luca Lanzillotta, John Williams and John Pollak
 
 # Understanding the BSP
