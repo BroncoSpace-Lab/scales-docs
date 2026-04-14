@@ -249,3 +249,6 @@ If this package is not included, leave the watchdog pads unsoldered.
 
 - For a custom Linux image setup, refer to this [work-in-progress guide](https://scales-docs.readthedocs.io/en/latest/IMX8X_customBSP/)
 - To access the serial terminal over USB, refer to this [guide](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/) and skip to **Flashing and Booting the Board** in Step 3
+
+- The custom linux image for this board is maintained and regularly updated in the scales-firmware repository. This repo also includes thermal testing software along with watchdog software for the jetson.
+Access the repo [here](https://scales-docs.readthedocs.io/en/latest/IMX8X_customBSP/)
