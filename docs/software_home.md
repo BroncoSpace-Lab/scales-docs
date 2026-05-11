@@ -1,6 +1,8 @@
 # SCALES Software
 
-### [i.MX 8X Yocto BSP Development](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/)
+### [i.MX 8X Yocto Custom BSP](https://scales-docs.readthedocs.io/en/latest/IMX8X_customBSP/)
+
+### [i.MX 8X Yocto Phytec BSP](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/)
 
 ### [SCALES Demo](https://scales-docs.readthedocs.io/en/latest/scales_demo/)
 

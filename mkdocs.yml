@@ -79,12 +79,12 @@ nav: # Setting up the navigation. The below list will be tabs on left panel
   - Hardware:
     - Hardware Home: hardware_home.md
     - i.MX 8X Developer's Guide: imx8x_procedures.md
-    - i.MX 8X Carrier Board PCB Design: imx_carrier_board.md
-    - Power System Design: power_system.md
+    - i.MX 8X Carrier Board PCB Design: imx8x_merger.md
     - Peripheral Board Design: peripheral_board.md
   - Software:
     - Software Home: software_home.md
-    - i.MX 8X Yocto BSP Development: imx_yocto_bsp.md
+    - i.MX 8X Yocto BSP for Development Board: imx_yocto_bsp.md
+    - i.MX 8X Custom Yocto BSP for Custom SCALES Board: IMX8X_customBSP.md
     - SCALES Demo: scales_demo.md
     - F Prime Jetson Deployment: jetson_fprime.md
   - Testing: 
