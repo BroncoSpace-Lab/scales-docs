@@ -1,13 +1,12 @@
-# Leviathan 1A
+# Leviathan 2
 
 ## Introduction
 
-Leviathan 1A is the merged implementation of the SCALES i.MX8X Carrier Board and the SCALES EPS. It consolidates two previously separate development boards into a single design:
+Leviathan 2 is the merged implementation of the SCALES i.MX8X Carrier Board and the SCALES EPS. It consolidates two previously separate development boards into a single design:
 
-- A revised version of the Mariner 1-C board, which served as the standalone carrier board for the i.MX8X
-- The Viking 1-C board, which served as the SCALES EPS
+- A revised version of the Leviathan 1A board which served as the first merged implementation of the Mariner 1-C board and the Viking 1-C board.
 
-This merged board is designated **Leviathan 1A**.
+This merged board is designated **Leviathan 2**.
 
 The latest design revisions, SPICE simulation models, and engineering calculations are available in the [scales-hardware](https://github.com/BroncoSpace-Lab/scales-hardware/tree/IMX_EPS_Merger/imx8x_eps_leviathan) repository.
 
@@ -15,7 +14,7 @@ The latest design revisions, SPICE simulation models, and engineering calculatio
 
 ## Hardware Overview
 
-The Leviathan 1A board contains two primary subsystems:
+The Leviathan 2 board contains two primary subsystems:
 
 - i.MX8X carrier board circuitry
 - Power system circuitry for the full SCALES platform
@@ -25,10 +24,10 @@ The Leviathan 1A board contains two primary subsystems:
 ## Board Images
 
 ### Front
-![Leviathan 1A Front](Images/Leviathan-1A-FRONT.png)
+![Leviathan 2 Front](Images/Leviathan2-FRONT.png)
 
 ### Back
-![Leviathan 1A Back](Images/Leviathan-1A-BACK.png)
+![Leviathan 2 Back](Images/Leviathan2-BACK.png)
 
 ---
 
@@ -231,7 +230,7 @@ Subsystem power requirements:
 
 ## Usage Guide
 
-Using the Leviathan 1A board with the i.MX8X is straightforward, but it requires a prebuilt Linux image using the latest SCALES BSP with the updated device tree modifications and additional packages.
+Using the Leviathan 2 board with the i.MX8X is straightforward and requires a prebuilt Linux image using the latest SCALES BSP with the updated device tree modifications and additional packages.
 
 Once an SD card has been flashed with the image:
 
