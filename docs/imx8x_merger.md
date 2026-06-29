@@ -51,7 +51,7 @@ Most of these components are derived directly from the Phytec PCM-942 developmen
 - [MicroSD Card Connector](https://lcsc.com/product-detail/SD-Card-Memory-Card-Connector_MOLEX-5027740891_C330255.html?s_z=n_TF-SMD_5027740891)
 - [FTDI Linear Voltage Regulator](https://lcsc.com/product-detail/Linear-Voltage-Regulators_TI_LP38693MP-ADJ-NOPB_LP38693MP-ADJ-NOPB_C181420.html)
 - [FTDI Controller](https://lcsc.com/product-detail/USB_FTDI_FT2232HL_FT2232HL_C27882.html)
-- [Micro USB-B Connector](https://lcsc.com/product-detail/USB-Connectors_MOLEX_47346-0001_47346-0001_C132560.html)
+- [USB-C Connector](https://www.lcsc.com/product-detail/C2765186.html?s_z=n_q_%2520TYPE-C%252016PIN%25202MD%28073%29&spm=wm.fly.bg.0.xh&lcsc_vid=RFhYVQdWFlleAlFXQAVcBVFeRVZbAlVURwAPAQZfEVYxVlNeRVZaXlZURlZbUDsOAxUeFF5JWBYZEEoKFBINSQcJGk4%3D)
 - [SPI EEPROM](https://jlcpcb.com/parts/componentSearch?searchTxt=C890471)
 - [FTDI Crystal Oscillator](https://www.lcsc.com/product-detail/C9002.html?s_z=n_C9002)
 - [UART Level Shifters](https://lcsc.com/product-detail/Logic-ICs_TI_TXS0101DCKR_TXS0101DCKR_C132031.html)
