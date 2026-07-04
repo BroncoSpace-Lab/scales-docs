@@ -1,17 +1,16 @@
 # SCALES Hardware
 
-### [i.MX 8X Developer's Guide](https://scales-docs.readthedocs.io/en/latest/imx8x_procedures/)
-
-How to use the i.MX 8X with the SCALES system.
-
-### [SCALES i.MX 8X Carrier Board](https://scales-docs.readthedocs.io/en/latest/imx8x_merger/)
-
-Custom carrier board designed for the PHYTEC i.MX 8X SOM that includes the SCALES Power System
+## [SCALES Compute Module](https://scales-docs.readthedocs.io/en/latest/imx8x_merger/)
+- Usage guide and documentation for the SCALES Compute Module.
+- Hardware designed for the PHYTEC i.MX 8X SOM serving as the core of the SCALES system. 
 
 
-### [Peripheral Board Design](https://scales-docs.readthedocs.io/en/latest/peripheral_board/)
+## [Peripheral Board](https://scales-docs.readthedocs.io/en/latest/peripheral_board/)
+- Usage guide and documentation for the SCALES Peripheral Board.
+- Hardware designed for low-power, low-footprint, 1Gb ethernet switching.
 
-Custom board designed for 1Gb ethernet switching.
+## [i.MX 8X Developer's Guide](https://scales-docs.readthedocs.io/en/latest/imx8x_procedures/)
+- How to use the i.MX 8X with the SCALES system.
 
 ## FlatSat and Development Hardware
 
@@ -21,22 +20,16 @@ Flight Computer: NXP i.MX 8X on a PHYTEC Development Board
 - [PHYTEC SOM](https://www.phytec.com/product/phycore-imx8x/)
 - [PHYTEC Dev. Kit](https://www.phytec.com/product/phycore-i-mx-8x-development-kit/)
 
-<div style="text-align: center;">
-    <img src="Images/imx-dev-board.png" alt="IMX Dev Board" width="600" margin="center">
-    </div>
+![IMX Dev Board](Images/imx-dev-board.png){ width="600" style="display: block; margin: 0 auto;" }
 
 Edge Computer: NVIDIA Jetson AGX Orin Developer Kit
 
 - [Jetson Dev Kit](https://www.sparkfun.com/nvidia-jetson-agx-orin-64gb-developer-kit.html)
 
-<div style="text-align: center;">
-    <img src="Images/jetson-dev-kit.png" alt = "Jetson Dev Kit" width = "500" class="center">
-</div>
+![Jetson Dev Kit](Images/jetson-dev-kit.png){ width="500" style="display: block; margin: 0 auto;" }
 
 Example Payload: LUCID Vision Labs Phoenix Ethernet Camera
 
 - [Ethernet Camera](https://thinklucid.com/product/phoenix-04-mp-imx287/)
 
-<div style="text-align: center;">
-    <img src="Images/ethernet-camera.png" alt = "Ethernet Camera" width = "500" class="center">
-</div>
+![Ethernet Camera](Images/ethernet-camera.png){ width="500" style="display: block; margin: 0 auto;" }
