@@ -1,19 +1,91 @@
-# Leviathan 2
+# SCALES Compute Module
+By Luca Lanzillotta
 
-## Introduction
+## Usage Guide
+
+Using the Leviathan 2 board with the i.MX8X requires building a Linux system image using the SCALES BSP. This BSP includes a pre-installed, startup-enabled `ImxDeployment` from the `fprime-scales-ref` project.
+
+Key repositories:
+
+- [BroncoSpace-Lab/scales-firmware](https://github.com/BroncoSpace-Lab/scales-firmware)  
+  Firmware source and supporting software for the SCALES system.
+- [BroncoSpace-Lab/fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref)  
+  F Prime reference deployment used by the SCALES Compute Module and related subsystems.
+- [BroncoSpace-Lab/meta-scales-leviathan](https://github.com/BroncoSpace-Lab/meta-scales-leviathan)  
+  Yocto meta-layer for building the Leviathan Linux image and board support packages.
+
+### 1. Set Up Linux for the SCALES Compute Module
+
+1. Follow the [Setup and Build the BSP](imx_yocto_bsp.md) guide.
+2. If you choose to, you can build your own [fprime-scales-ref/ImxDeployment](https://github.com/BroncoSpace-Lab/fprime-scales-ref).
+3. Flash the built image to an SD card.
+
+!!! note
+
+    If the watchdog solder pads are soldered, both the i.MX8X and the Jetson must have preinstalled reference deployments. The Jetson must also have its designated GPIO wired, or it will be power-cycled approximately every 32 seconds by the watchdog circuitry.
+
+### 2. Boot the SCALES Compute Module
+
+1. Set the boot toggle switch to the **SD Card** position.
+2. Insert the SD card into the board.
+3. Apply power through the XT-60 connector.
+4. Wait for the system to boot automatically.
+
+### 3. Log in to the SCALES Compute Module
+
+The SCALES Compute Module is accessible over SSH through Ethernet or over a USB-C serial connection.
+
+#### USB-C Serial Connection
+
+1. Plug in a USB-C cable from your host machine to the SCALES Compute Module.
+2. Download [Tabby](https://tabby.sh/).
+3. Open Tabby and select **New terminal**.
+4. Navigate to **Profiles & Connections** in the top toolbar.
+5. Search for `ttyUSB0` in the COM ports.
+6. Select `ttyUSB0` and set the baud rate to `115200`.
+7. Default user is `root`, default password is `root`
+
+#### RJ45 Ethernet SSH Connection
+
+Available IP addresses on the SCALES Compute Module:
+
+```text
+10.3.2.10
+10.3.2.11
+```
+
+1. Plug in a CAT5E or higher Ethernet cable from your host machine to the SCALES Peripheral Board.
+2. Connect the SCALES Compute Module to the SCALES Peripheral Board.
+3. Check which SCALES Compute Module Ethernet port is connected. The BSP preconfigures `10.3.2.10` for `eth0` and `10.3.2.11` for `eth1`, and the ports are labeled on the PCB.
+4. On your host machine, open PowerShell on Windows or a terminal on Unix systems.
+5. SSH into the board using the address for the connected port:
+
+   ```bash
+   ssh root@10.3.2.10
+   ```
+
+   or:
+
+   ```bash
+   ssh root@10.3.2.11
+   ```
+
+## Hardware Introduction
 
 Leviathan 2 is the merged implementation of the SCALES i.MX8X Carrier Board and the SCALES EPS. It consolidates two previously separate development boards into a single design:
 
 - A revised version of the Leviathan 1A board which served as the first merged implementation of the Mariner 1-C board and the Viking 1-C board.
 
 This merged board is designated **Leviathan 2**.
+This merged board is designated **Leviathan 2**.
 
-The latest design revisions, SPICE simulation models, and engineering calculations are available in the [scales-hardware](https://github.com/BroncoSpace-Lab/scales-hardware/tree/IMX_EPS_Merger/imx8x_eps_leviathan) repository.
+The latest design revisions, SPICE simulation models, and engineering calculations are available in the [scales-hardware](https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/imx8x_eps_leviathan_v2) repository.
 
 ---
 
 ## Hardware Overview
 
+The Leviathan 2 board contains two primary subsystems:
 The Leviathan 2 board contains two primary subsystems:
 
 - i.MX8X carrier board circuitry
@@ -24,10 +96,10 @@ The Leviathan 2 board contains two primary subsystems:
 ## Board Images
 
 ### Front
-![Leviathan 2 Front](Images/Leviathan2-FRONT.png)
+![Leviathan 2 Front](Images/Leviathan2-FRONT.png){ width="650" }
 
 ### Back
-![Leviathan 2 Back](Images/Leviathan2-BACK.png)
+![Leviathan 2 Back](Images/Leviathan2-BACK.png){ width="650" }
 
 ---
 
@@ -35,7 +107,7 @@ The Leviathan 2 board contains two primary subsystems:
 
 The i.MX8X carrier board section is a reduced version of the development platform provided by Phytec and includes the interfaces listed below.
 
-Each serial and peripheral interface is explicitly defined in the custom BSP, which provides the Linux kernel with the hardware description for this carrier board. Refer to the Leviathan 1A meta-layer in the BSP for complete details on pin configuration and usage.
+Each serial and peripheral interface is explicitly defined in the custom BSP, which provides the Linux kernel with the hardware description for this carrier board. Refer to the Leviathan 2 meta-layer in the BSP for complete details on pin configuration and usage.
 
 For convenience, the exposed signal labels are listed below and may be accessed directly from the operating system.
 
@@ -51,7 +123,7 @@ Most of these components are derived directly from the Phytec PCM-942 developmen
 - [MicroSD Card Connector](https://lcsc.com/product-detail/SD-Card-Memory-Card-Connector_MOLEX-5027740891_C330255.html?s_z=n_TF-SMD_5027740891)
 - [FTDI Linear Voltage Regulator](https://lcsc.com/product-detail/Linear-Voltage-Regulators_TI_LP38693MP-ADJ-NOPB_LP38693MP-ADJ-NOPB_C181420.html)
 - [FTDI Controller](https://lcsc.com/product-detail/USB_FTDI_FT2232HL_FT2232HL_C27882.html)
-- [USB-C Connector](https://www.lcsc.com/product-detail/C2765186.html?s_z=n_q_%2520TYPE-C%252016PIN%25202MD%28073%29&spm=wm.fly.bg.0.xh&lcsc_vid=RFhYVQdWFlleAlFXQAVcBVFeRVZbAlVURwAPAQZfEVYxVlNeRVZaXlZURlZbUDsOAxUeFF5JWBYZEEoKFBINSQcJGk4%3D)
+- [USB-C Connector](https://www.lcsc.com/product-detail/C2765186.html?s_z=n_q_C2765186&globalKeyword=C2765186)
 - [SPI EEPROM](https://jlcpcb.com/parts/componentSearch?searchTxt=C890471)
 - [FTDI Crystal Oscillator](https://www.lcsc.com/product-detail/C9002.html?s_z=n_C9002)
 - [UART Level Shifters](https://lcsc.com/product-detail/Logic-ICs_TI_TXS0101DCKR_TXS0101DCKR_C132031.html)
@@ -60,7 +132,7 @@ Most of these components are derived directly from the Phytec PCM-942 developmen
 - [Ethernet Crystal Oscillator](https://www.lcsc.com/product-detail/C13740.html?s_z=n_C13740)
 - [Low-Voltage AND Gate](https://lcsc.com/product-detail/74-Series_TI_SN74AUP1G08DBVR_SN74AUP1G08DBVR_C139409.html)
 - [Ethernet TVS Diodes](https://www.lcsc.com/product-detail/C13612.html)
-- [RJ45 Connector with Integrated Magnetics](https://jlcpcb.com/partdetail/AmphenolIcc-RJHSE5384/C464587)
+- [RJ45 Connector with Integrated Magnetics](https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/7499111121A/3992675)
 - [Linear Regulator](https://www.lcsc.com/product-detail/C2872754.html?s_z=n_C2872754)
 - [Linear Regulator](https://www.lcsc.com/product-detail/C145717.html)
 - [P-Channel MOSFET](https://www.infineon.com/dgdl/irlml6401pbf.pdf?fileId=5546d462533600a401535668b96d2634)
@@ -77,7 +149,7 @@ Most of these components are derived directly from the Phytec PCM-942 developmen
   - One is preconfigured on the SoM using an onboard RGMII translator
   - The second is implemented on this carrier board
 
-### USB-to-UART (Micro USB)
+### USB-to-UART (USB-C)
 
 - UART0 on the SoM is reserved for UART-to-FTDI usage
 - The default BSP configures UART0 for debugging
@@ -177,7 +249,7 @@ Since all other boot configurations have been removed, only the final bit needs 
 
 ## SCALES EPS Implementation
 
-The Leviathan 1A version of the SCALES EPS powers three subsystems: the OBC, the Jetson, and the Peripheral subsystem. The OBC and Jetson both include watchdog protection, while the Peripheral subsystem does not. The Jetson and Peripheral subsystem can be power-sequenced on command by the OBC.
+The Leviathan 2 version of the SCALES EPS powers three subsystems: the OBC, the Jetson, and the Peripheral subsystem. The OBC and Jetson both include watchdog protection, while the Peripheral subsystem does not. The Jetson and Peripheral subsystems are designed to be power-sequenced by the OBC within the fprime-scales-ref deployment.
 
 ### Power Requirements
 
@@ -211,13 +283,16 @@ Subsystem power requirements:
 #### Fault Response
 
 **OBC fault**
+
 - If the OBC hangs and fails to pet the watchdog, it is power-cycled
 - The load switch enable pin is held high relative to the battery voltage
 
 **Jetson fault**
+
 - If the Jetson hangs and fails to pet the watchdog, it is rebooted
 
 **Peripheral fault**
+
 - If the Ethernet switch hangs, the OBC can power-sequence it directly
 
 #### Telemetry and Monitoring
@@ -225,29 +300,6 @@ Subsystem power requirements:
 - The OBC monitors subsystem current and voltage through the INA260 devices over I2C
 - This provides basic telemetry on subsystem operating state
 - Three dedicated temperature sensors also report telemetry back to the i.MX8X over a 3.3 V I2C bus
+- Such telemetry can be seen in the `fprime-scales-ref` `ImxDeployment` and is visible under **Channels** in the GDS
 
 ---
-
-## Usage Guide
-
-Using the Leviathan 2 board with the i.MX8X is straightforward and requires a prebuilt Linux image using the latest SCALES BSP with the updated device tree modifications and additional packages.
-
-Once an SD card has been flashed with the image:
-
-1. Set the boot toggle switch to the **SD Card** position
-2. Insert the SD card into the board
-3. Apply power through the XT-60 connector
-4. The system will boot automatically
-5. The default password is `root`
-
-If the watchdog solder pads on the back of the board have been soldered, the BSP must include the watchdog petting package. This ensures that the device does not enter a boot loop.
-
-If this package is not included, leave the watchdog pads unsoldered.
-
-### Setup Resources
-
-- For a custom Linux image setup, refer to this [work-in-progress guide](https://scales-docs.readthedocs.io/en/latest/IMX8X_customBSP/)
-- To access the serial terminal over USB, refer to this [guide](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/) and skip to **Flashing and Booting the Board** in Step 3
-
-- The custom linux image for this board is maintained and regularly updated in the scales-firmware repository. This repo also includes thermal testing software along with watchdog software for the jetson.
-Access the repo [here](https://scales-docs.readthedocs.io/en/latest/IMX8X_customBSP/)
