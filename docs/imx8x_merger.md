@@ -74,9 +74,9 @@ Available IP addresses on the SCALES Compute Module:
 
 Leviathan 2 is the merged implementation of the SCALES i.MX8X Carrier Board and the SCALES EPS. It consolidates two previously separate development boards into a single design:
 
-- A revised version of the Mariner 1-C board, which served as the standalone carrier board for the i.MX8X
-- The Viking 1-C board, which served as the SCALES EPS
+- A revised version of the Leviathan 1A board which served as the first merged implementation of the Mariner 1-C board and the Viking 1-C board.
 
+This merged board is designated **Leviathan 2**.
 This merged board is designated **Leviathan 2**.
 
 The latest design revisions, SPICE simulation models, and engineering calculations are available in the [scales-hardware](https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/imx8x_eps_leviathan_v2) repository.
@@ -85,6 +85,7 @@ The latest design revisions, SPICE simulation models, and engineering calculatio
 
 ## Hardware Overview
 
+The Leviathan 2 board contains two primary subsystems:
 The Leviathan 2 board contains two primary subsystems:
 
 - i.MX8X carrier board circuitry
