@@ -7,12 +7,12 @@ Using the Leviathan 2 board with the i.MX8X requires building a Linux system ima
 
 Key repositories:
 
-- [BroncoSpace-Lab/scales-firmware](https://github.com/BroncoSpace-Lab/scales-firmware)  
-  Firmware source and supporting software for the SCALES system.
 - [BroncoSpace-Lab/fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref)  
   F Prime reference deployment used by the SCALES Compute Module and related subsystems.
+- [BroncoSpace-Lab/scales-firmware](https://github.com/BroncoSpace-Lab/scales-firmware)  
+  Firmware source and supporting software for the SCALES system.
 - [BroncoSpace-Lab/meta-scales-leviathan](https://github.com/BroncoSpace-Lab/meta-scales-leviathan)  
-  Yocto meta-layer for building the Leviathan Linux image and board support packages.
+  Yocto meta-layer for building the SCALES imx8x Linux BSP.
 
 ### 1. Set Up Linux for the SCALES Compute Module
 
@@ -145,6 +145,9 @@ Most of these components are derived directly from the Phytec PCM-942 developmen
 - 2 x 1 Gb Ethernet ports are available
 - Ethernet support is configured on the SoM through the BSP
 - The supporting circuitry is directly ported from the i.MX8X development board
+- Both external RJ45 ports use Wurth Elektronik `7499111121A` integrated-magnetics connectors, which keep the Ethernet magnetics inside the connector body and reduce the amount of discrete magnetics circuitry required on the carrier board
+- The Ethernet routing is implemented on the 6-layer KiCad stackup: `F.Cu`, `In1.Cu`, `In2.Cu`, `In3.Cu`, `In4.Cu`, and `B.Cu`
+- Ethernet differential pairs are routed for controlled impedance and length/skew tuned in the PCB layout. The KiCad file records tuned Ethernet routes using `0.124 mm` track width with approximately `0.18 mm` to `0.2032 mm` pair gaps, with matching targets used across the Gigabit copper pairs and related Ethernet timing groups
 - Two Ethernet configurations are available on the SoM:
   - One is preconfigured on the SoM using an onboard RGMII translator
   - The second is implemented on this carrier board
@@ -302,4 +305,5 @@ Subsystem power requirements:
 - Three dedicated temperature sensors also report telemetry back to the i.MX8X over a 3.3 V I2C bus
 - Such telemetry can be seen in the `fprime-scales-ref` `ImxDeployment` and is visible under **Channels** in the GDS
 
+Last updated on 7/7/2026
 ---

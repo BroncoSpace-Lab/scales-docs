@@ -4,15 +4,15 @@
 - Usage guide and documentation for the SCALES Compute Module.
 - Hardware designed for the PHYTEC i.MX 8X SOM serving as the core of the SCALES system. 
 
-
 ## [Peripheral Board](https://scales-docs.readthedocs.io/en/latest/peripheral_board/)
 - Usage guide and documentation for the SCALES Peripheral Board.
-- Hardware designed for low-power, low-footprint, 1Gb ethernet switching.
+- Hardware designed for low-power, small scale, 1Gb ethernet switching.
 
-## [i.MX 8X Developer's Guide](https://scales-docs.readthedocs.io/en/latest/imx8x_procedures/)
-- How to use the i.MX 8X with the SCALES system.
+## [Nvidia Jetson Orin AGX](https://scales-docs.readthedocs.io/en/latest/nvidia_jetson_orin_agx/)
+- Usage guide and documentation for the Nvidia Jetson Orin AGX.
+- Edge computer used by the SCALES system for machine learning and payload processing.
 
-## FlatSat and Development Hardware
+## Consumer Off the Shelf Hardware
 
 Flight Computer: NXP i.MX 8X on a PHYTEC Development Board
 

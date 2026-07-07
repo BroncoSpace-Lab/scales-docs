@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../IMX8X_customBSP/">
+        <link rel="prev" href="../imx8x_merger/">
       
       
-        <link rel="next" href="../software_home/">
+        <link rel="next" href="../nvidia_jetson_orin_agx/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Peripheral Board Design - SCALES Documentation</title>
+        <title>Peripheral Board - SCALES Documentation</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#peripheral-board-design" class="md-skip">
+        <a href="#scales-peripheral-board" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Peripheral Board Design
+              Peripheral Board
             
           </span>
         </div>
@@ -583,42 +583,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../imx8x_procedures/" class="md-nav__link">
+      <a href="../imx8x_merger/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    i.MX 8X Developer's Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IMX8X_customBSP/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    i.MX 8X Carrier Board PCB Design
+    SCALES Compute Module
   
 
     
@@ -655,7 +627,7 @@
   <span class="md-ellipsis">
     
   
-    Peripheral Board Design
+    Peripheral Board
   
 
     
@@ -673,7 +645,7 @@
   <span class="md-ellipsis">
     
   
-    Peripheral Board Design
+    Peripheral Board
   
 
     
@@ -699,33 +671,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#summary-of-the-evelution-of-the-peripheral-board" class="md-nav__link">
+  <a href="#usage-guide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Summary of the evelution of the Peripheral Board
+        Usage Guide
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#peripheral-board-with-the-microcontroller" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Peripheral Board with the Microcontroller
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Peripheral Board with the Microcontroller">
+    <nav class="md-nav" aria-label="Usage Guide">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#general-information-of-each-major-block-of-the-board" class="md-nav__link">
+  <a href="#1-set-the-strap-switches" class="md-nav__link">
     <span class="md-ellipsis">
       
-        General Information of each major block of the board
+        1. Set the Strap Switches
       
     </span>
   </a>
@@ -733,10 +694,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#core-components" class="md-nav__link">
+  <a href="#2-enable-peripheral-board-power" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Components
+        2. Enable Peripheral Board Power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-connect-ethernet-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Connect Ethernet Devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-use-the-board-as-an-unmanaged-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Use the Board as an Unmanaged Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-optional-management-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Optional Management Header
       
     </span>
   </a>
@@ -749,10 +743,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peripheral-board-as-unmanaged-ethernet-switch" class="md-nav__link">
+  <a href="#hardware-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Peripheral Board as Unmanaged Ethernet Switch
+        Hardware Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#board-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Board Images
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Selection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Component Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ksz9896-ethernet-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KSZ9896 Ethernet Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrated-magnetics-rj45-ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrated-Magnetics RJ45 Ports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impedance-and-length-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impedance and Length Matching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#df11-connector-breakout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DF11 Connector Breakout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power Architecture
       
     </span>
   </a>
@@ -763,6 +846,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nvidia_jetson_orin_agx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nvidia Jetson Orin AGX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -867,7 +978,35 @@
   <span class="md-ellipsis">
     
   
-    i.MX 8X Yocto BSP Development
+    i.MX 8X Yocto BSP for Development Board
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IMX8X_customBSP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    i.MX 8X Custom Yocto BSP for Custom SCALES Board
   
 
     
@@ -1140,33 +1279,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#summary-of-the-evelution-of-the-peripheral-board" class="md-nav__link">
+  <a href="#usage-guide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Summary of the evelution of the Peripheral Board
+        Usage Guide
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#peripheral-board-with-the-microcontroller" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Peripheral Board with the Microcontroller
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Peripheral Board with the Microcontroller">
+    <nav class="md-nav" aria-label="Usage Guide">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#general-information-of-each-major-block-of-the-board" class="md-nav__link">
+  <a href="#1-set-the-strap-switches" class="md-nav__link">
     <span class="md-ellipsis">
       
-        General Information of each major block of the board
+        1. Set the Strap Switches
       
     </span>
   </a>
@@ -1174,10 +1302,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#core-components" class="md-nav__link">
+  <a href="#2-enable-peripheral-board-power" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Components
+        2. Enable Peripheral Board Power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-connect-ethernet-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Connect Ethernet Devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-use-the-board-as-an-unmanaged-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Use the Board as an Unmanaged Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-optional-management-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Optional Management Header
       
     </span>
   </a>
@@ -1190,10 +1351,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peripheral-board-as-unmanaged-ethernet-switch" class="md-nav__link">
+  <a href="#hardware-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Peripheral Board as Unmanaged Ethernet Switch
+        Hardware Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#board-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Board Images
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Selection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Component Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ksz9896-ethernet-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KSZ9896 Ethernet Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrated-magnetics-rj45-ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrated-Magnetics RJ45 Ports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impedance-and-length-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impedance and Length Matching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#df11-connector-breakout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DF11 Connector Breakout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power Architecture
       
     </span>
   </a>
@@ -1223,57 +1473,327 @@
 
 
 
-<h1 id="peripheral-board-design">Peripheral Board Design</h1>
-<h2 id="summary-of-the-evelution-of-the-peripheral-board">Summary of the evelution of the Peripheral Board</h2>
-<p>The peripheral board has gone through a few different iterations and changed as the project has moved forward. This board is optional which is why there were different descoping and iterations. Originally the peripheral board was going to be on an FPGA board that was modeled after The Aerospace Corporation called <a href="https://github.com/the-aerospace-corporation/satcat5">SatCat5</a>. That was changed due to a lack of documentation, the current open-source iteration was not working, and I am a team of 1 trying to recreate what they have in a brief period which was not seen as feasible. The idea was scrapped before the creation of custom hardware. </p>
-<p>The board was changed from the described above to a microcontroller that will give the end user a way to communicate to the flight processor and the machine learning computational unit along with lower-level peripherals like I2C, SPI and UART. This was done by using a Raspberry Pi for the lower-level signals, an SPI to Ethernet converter and then an unmanaged Ethernet switch to create a local area network for the satellite to give the end user access to higher speed peripherals over Ethernet. This brought up the problem of having three different system architectures on board all running F´. At the time F´ Arduino and F´ Zephyr was not stable. That is currently being worked on. The flight processor would still need sensors, and the flight processor could be used for those as well. Since the board is optional, it allows the board to simplify its status.</p>
-<p>Currently the peripheral board is just a high-speed unmanaged Ethernet switch. This mirrors closely what our current SCALES demo is and could be changed out with a custom board or payload of the end user's choice. </p>
-<h2 id="peripheral-board-with-the-microcontroller">Peripheral Board with the Microcontroller</h2>
-<p>This board serves two different purposes.</p>
-<ol>
-<li>Inter communication between the Jetson and i.MX8X.</li>
-<li>Gives the end user access to ports to attach the peripherals that they want. 
-    The ports given to user:<ul>
-<li>At least 1 Ethernet port</li>
-<li>At least 2 SPI/UART ports</li>
-</ul>
-</li>
-</ol>
-<h3 id="general-information-of-each-major-block-of-the-board">General Information of each major block of the board</h3>
-<p><img alt="Peripheral Board General Info &amp; Block Diagram" src="/docs/Images/peripheral_board_main.png" /></p>
-<p>The above image is of the root page of the schematic with basic information and a block diagram of the board and its use.</p>
-<p>This is the front of the board in KiCad's 3D view.
-<img alt="Peripheral Board Front" src="/docs/Images/peripheral_board_front.png" /></p>
-<p>This is the back of the board in KiCad's 3D view.
-<img alt="Peripheral Board Back" src="/docs/Images/peripheral_board_back.png" /></p>
-<h3 id="core-components">Core Components</h3>
-<p>Each section is about individual chips, and it has basic information on the layout. </p>
-<ul>
-<li>
-<p>Raspberry Pi bought from 
-    <a href="https://jlcpcb.com/partdetail/RaspberryPi-RP2350A/C42411118">JLC Link</a> to the RP2350A.</p>
-<p>Layout and other information from the <a href="https://github.com/proveskit">PROVES dev kit</a> and the <a href="extension://efaidnbmnnnibpcajpcglclefindmkaj/https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">Raspberry Pi Hardware minimum configuration</a></p>
-</li>
-<li>
-<p>Wiznet bought from 
-    <a href="https://jlcpcb.com/partdetail/Wiznet-W5500/C32843">JLC Link</a> to the Wiznet W5500.</p>
-<p>Layout and other informatuon from the <a href="https://github.com/proveskit">PROVES dev kit</a> and <a href="https://github.com/Wiznet/W5500-EVB">Wiznet W5500 Eval Board</a></p>
-<p>This product can be purchased bought as <a href="https://wiznet.io/products/network-modules/wiz850io">WIZ850io</a> which is a compact module of just the chip and an RJ45 or as <a href="https://wiznet.io/products/evaluation-boards/w5500-evb-pico">W5500-EVB-Pico</a> which is the chip with a Raspberry Pi Pico with open holes for GPIO manipulation.</p>
-<p>There is <a href="https://maker.wiznet.io/viktor/projects/coding-with-circuitpython-on-w5100s-evb-pico2/">Coding with Circuit Python on W5100S-EVB-Pico2</a> that is on the Wiznet Makers website that should be easy to follow for setting up the Wiznet RP combination.</p>
-</li>
-<li>
-<p>5-port Ethernet Switch bought from 
-    <a href="https://jlcpcb.com/partdetail/MicrochipTech-KSZ8795CLXIC/C69416">JLC Link</a> to the Microchip 5-Port Ethernet Switch.</p>
-<p>The original eval board is no longer made but there is an update of the chip with a <a href="https://www.microchip.com/en-us/development-tool/KSZ8795CLXD-EVAL">newer Eval Board</a>. For this project we will be using the strap in mode of the chip to be just a 4 port Etherenet switch that will not require any software or modification.</p>
-<p>The first few boards were not working in their hardware configuration, and it was confirmed by Microchip that there is some aspect of software that should be used to get the switch working.</p>
-</li>
-</ul>
-<h2 id="peripheral-board-as-unmanaged-ethernet-switch">Peripheral Board as Unmanaged Ethernet Switch</h2>
-<p>This board is still being developed and is a current work in progress. We have decided to go with the <a href="https://www.lcsc.com/product-detail/C638297.html?s_z=n_KSZ9896">MICROCHIP KSZ9896CTXI</a> which is a 6-port gigabit unmanaged Ethernet switch.</p>
-<p>Learning from the past, I designed a minimal development board that should be used for all environmental testing. </p>
-<p><em>More on its way</em></p>
-<p>Last updated on 9/8/2025 </p>
+<h1 id="scales-peripheral-board">SCALES Peripheral Board</h1>
 <p>By John Pollak</p>
+<h2 id="usage-guide">Usage Guide</h2>
+<p>The <code>periph_ethernet_switch</code> SCALES Peripheral Board is a low-footprint unmanaged Gigabit Ethernet switch. It is intended to provide a local Ethernet network between Ethernet-capable SCALES boards, payloads, and development hardware.</p>
+<p>The switch design is based on the Microchip <code>KSZ9896CTXI</code>. In the SCALES implementation, five external 1 Gb Ethernet copper ports are routed to integrated-magnetics RJ45 connectors. The sixth switch port is the chip's digital MAC-side interface and is not exposed as an RJ45 port in this design.</p>
+<p>Key repositories:</p>
+<ul>
+<li><a href="https://github.com/BroncoSpace-Lab/scales-hardware">BroncoSpace-Lab/scales-hardware</a><br />
+  Hardware source repository for the SCALES hardware.</li>
+<li><a href="https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/peripheral_board/peripheral_board_v1/periph_ethernet_switch">SCALES Peripheral Ethernet Switch KiCad Project</a><br />
+  KiCad schematic, PCB, and project-local libraries for the current peripheral Ethernet switch.</li>
+</ul>
+<h3 id="1-set-the-strap-switches">1. Set the Strap Switches</h3>
+<p>The switch must be strapped before power is applied. The board includes a 7-position DIP switch labeled <code>SW1</code> for the LED strap-in signals.</p>
+<p>Set the strap switches as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Strap Signal</th>
+<th>Required Position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LED5_1</code></td>
+<td>Off</td>
+</tr>
+<tr>
+<td><code>LED3_1</code></td>
+<td>Off</td>
+</tr>
+<tr>
+<td><code>LED2_0</code></td>
+<td>Off</td>
+</tr>
+<tr>
+<td><code>LED2_1</code></td>
+<td>On</td>
+</tr>
+<tr>
+<td><code>LED4_0</code></td>
+<td>Off</td>
+</tr>
+<tr>
+<td><code>LED4_1</code></td>
+<td>Off</td>
+</tr>
+<tr>
+<td><code>LED1_1</code></td>
+<td>Off</td>
+</tr>
+</tbody>
+</table>
+<p><code>LED2_1</code> must be set to <strong>On</strong> to select normal link-up / auto-negotiation. All other strap switches should be set to <strong>Off</strong> for the current unmanaged-switch configuration.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Set the strap switches before powering the board. The KSZ9896 samples strap pins during reset/power-up, so changing switch positions after boot may not change the active configuration until the board is reset or power-cycled.</p>
+</div>
+<h3 id="2-enable-peripheral-board-power">2. Enable Peripheral Board Power</h3>
+<p>When the Peripheral Board is wired into the SCALES Compute Module, its input power is controlled by the Compute Module power-sequencing circuitry. The <a href="https://github.com/BroncoSpace-Lab/fprime-scales-ref">fprime-scales-ref</a> deployment must be installed and running on the SCALES Compute Module so the Peripheral subsystem power rail can be enabled.</p>
+<ol>
+<li>Before booting the SCALES Compute Module, ensure that a DF11 cable harness has been created and connected between the SCALES Compute Module <code>CN1</code> connector and the Peripheral Board. Use the schematics from <a href="https://github.com/BroncoSpace-Lab/scales-hardware">scales-hardware</a> to build and verify the harness.</li>
+<li>Boot the SCALES Compute Module.</li>
+<li>Confirm the <code>fprime-scales-ref</code> deployment is running.</li>
+<li>Allow the deployment to enable the Peripheral subsystem power rail.</li>
+</ol>
+<p>If the board is powered outside the full SCALES stack, connect the external harness through <code>CN1</code> and provide the board input supply on the <code>VESP</code> pins. <code>VESP</code> is the 5 V input to the Peripheral Board.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>TODO: Add the final required <code>VESP</code> current budget for the flight harness.</p>
+</div>
+<h3 id="3-connect-ethernet-devices">3. Connect Ethernet Devices</h3>
+<ol>
+<li>Use CAT5E or better Ethernet cables.</li>
+<li>Connect Ethernet-capable boards, payloads, or development devices to any of the five RJ45 ports.</li>
+<li>Apply power or reset the board after the strap switches are set.</li>
+<li>Wait for link LEDs to indicate link status.</li>
+<li>Use the IP configuration defined by the connected devices. The switch itself is unmanaged and does not assign IP addresses.</li>
+</ol>
+<h3 id="4-use-the-board-as-an-unmanaged-switch">4. Use the Board as an Unmanaged Switch</h3>
+<p>No firmware load is required for the standard SCALES use case. After the strap configuration is sampled, the KSZ9896 switch forwards Ethernet frames in hardware.</p>
+<p>Typical use:</p>
+<ol>
+<li>Power the Peripheral Board through <code>CN1</code>.</li>
+<li>Connect each Ethernet endpoint to one of the five RJ45 ports.</li>
+<li>Configure IP addresses on the connected endpoints as needed.</li>
+</ol>
+<h3 id="5-optional-management-header">5. Optional Management Header</h3>
+<p>The schematic includes a 1x4 management header, <code>J6</code>, with the following signals:</p>
+<table>
+<thead>
+<tr>
+<th>Pin</th>
+<th>Signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>SDO</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>SDI/SDA/MDIO</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>SCL/MDC</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>TODO: verify connection. <code>SCS_N</code> is present in the schematic, but the parsed header net did not confirm it on <code>J6</code> pin 4.</td>
+</tr>
+</tbody>
+</table>
+<p>This header is not required for the normal unmanaged-switch use case.</p>
+<hr />
+<h2 id="hardware-overview">Hardware Overview</h2>
+<p>The Peripheral Board contains the following major blocks:</p>
+<ul>
+<li>Microchip <code>KSZ9896CTXI</code> Gigabit Ethernet switch</li>
+<li>Five 1 Gb Ethernet RJ45 ports with integrated magnetics</li>
+<li>Strap-in configuration network for unmanaged operation</li>
+<li>Local power conversion for switch core, analog, and I/O rails</li>
+<li>DF11 board-to-board / harness connector for power and status signals</li>
+<li>Optional management header for switch-side control/debug signals</li>
+</ul>
+<h3 id="board-images">Board Images</h3>
+<p>TODO: Add exported KiCad front and back renders for the <code>periph_ethernet_switch</code> design.</p>
+<hr />
+<h2 id="component-selection">Component Selection</h2>
+<p>The current board is built around components already represented in the KiCad schematic and project-local libraries.</p>
+<ul>
+<li><a href="https://www.microchip.com/en-us/product/KSZ9896">Microchip KSZ9896CTXI 6-Port Gigabit Ethernet Switch</a></li>
+<li><a href="https://jlcpcb.com/partdetail/BelFuse-0826_1G1T_23F/C5467573">Bel Fuse 0826-1G1T-23-F Integrated-Magnetics RJ45 Connector</a></li>
+<li><a href="https://lcsc.com/product-detail/Wire-To-Board-Wire-To-Wire-Connector_HRS-Hirose-HRS-DF11-16DP-2DSA-08_C530981.html">Hirose DF11-16DP-2DSA(08) Connector</a></li>
+<li><a href="https://lcsc.com/product-detail/Pre-ordered-Chips_Texas-Instruments-Texas-Instruments-TLV62569PDDCR_C398365.html">Texas Instruments TLV62569PDDCR Buck Regulator</a></li>
+<li><a href="https://www.lcsc.com/product-detail/C3151182.html?s_z=n_XAL4020-222">Coilcraft XAL4020-222MEC 2.2 uH Power Inductor</a></li>
+<li><a href="https://www.ti.com/lit/sg/scyt129e/scyt129e.pdf">74LVC1G14 Schmitt Inverter</a></li>
+<li><a href="https://www.lcsc.com/product-detail/C1517995.html?s_z=n_VXM7-9032-25M0000000">Microchip VXM7-9032-25M0000000 25 MHz Clock Source</a></li>
+<li><a href="https://www.lcsc.com/product-detail/C559142.html">7-Position DIP Switch</a></li>
+<li><a href="https://lcsc.com/product-detail/Tactile-Switches_PANASONIC_EVPAA602W_Switch-3-5-2-9-1-7Plastic-head-3-5N-0-15mm-SMD_C79148.html">Panasonic EVPAA602W Reset Button</a></li>
+<li><a href="https://www.lcsc.com/product-detail/C85840.html?s_z=n_BLM21PG221SN1D">Ferrite Bead</a></li>
+</ul>
+<h3 id="ksz9896-ethernet-switch">KSZ9896 Ethernet Switch</h3>
+<p>The <code>KSZ9896CTXI</code> is a six-port Gigabit Ethernet switch. In this design:</p>
+<ul>
+<li>Ports 1 through 5 are routed to RJ45 connectors.</li>
+<li>Each RJ45 connector includes the Ethernet magnetics inside the connector body.</li>
+<li>Port 6 is the switch's digital MAC-side interface and is not used as an external RJ45 port.</li>
+<li>The switch is configured through strap pins at reset for unmanaged operation.</li>
+<li>The switch performs Layer 2 Ethernet forwarding in hardware after link negotiation.</li>
+</ul>
+<p>The switch learns MAC addresses from incoming frames and forwards traffic to the appropriate destination port. If the destination is unknown, broadcast, or multicast, the frame is flooded according to normal Ethernet-switch behavior. IP assignment is still handled by the connected endpoints; the switch does not run DHCP or assign addresses.</p>
+<h3 id="integrated-magnetics-rj45-ports">Integrated-Magnetics RJ45 Ports</h3>
+<p>Each external Ethernet port uses a Bel Fuse <code>0826-1G1T-23-F</code> RJ45 connector with integrated magnetics. This reduces the number of discrete magnetics on the PCB and keeps the high-speed port layout compact.</p>
+<p>Each port sheet includes:</p>
+<ul>
+<li>Four differential copper pairs: <code>A</code>, <code>B</code>, <code>C</code>, and <code>D</code></li>
+<li>Connector-side center-tap and termination/filtering support</li>
+<li>Two LED signals from the switch:</li>
+<li><code>LEDx_1</code> indicates link status</li>
+<li><code>LEDx_0</code> indicates activity status</li>
+</ul>
+<h3 id="impedance-and-length-matching">Impedance and Length Matching</h3>
+<p>The PCB is implemented as a 6-layer board:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F.Cu</code></td>
+<td>Top signal</td>
+</tr>
+<tr>
+<td><code>In1.Cu</code></td>
+<td>Ground</td>
+</tr>
+<tr>
+<td><code>In2.Cu</code></td>
+<td>Power</td>
+</tr>
+<tr>
+<td><code>In3.Cu</code></td>
+<td>Signal</td>
+</tr>
+<tr>
+<td><code>In4.Cu</code></td>
+<td>Ground</td>
+</tr>
+<tr>
+<td><code>B.Cu</code></td>
+<td>Bottom mixed / ground</td>
+</tr>
+</tbody>
+</table>
+<p>The Ethernet <code>TXRX</code> routes are treated as differential pairs. The KiCad PCB contains diff-pair tuning entries on the <code>TXRX</code> nets with:</p>
+<ul>
+<li><code>0.13 mm</code> trace width</li>
+<li>Approximately <code>0.20 mm</code> differential-pair gap for the length-tuned sections</li>
+<li><code>50 mm</code> target length on many tuned differential pairs</li>
+<li><code>49.9 mm</code> to <code>50.1 mm</code> target-length window</li>
+<li>Additional skew-tuning entries on selected pairs</li>
+</ul>
+<p>TODO: Verify the final controlled-impedance stackup with the PCB manufacturer. The KiCad stackup records FR4 dielectric assumptions, but the manufacturer stackup and impedance calculator should be treated as the source of truth for fabrication.</p>
+<hr />
+<h2 id="df11-connector-breakout">DF11 Connector Breakout</h2>
+<p><code>CN1</code> is a Hirose DF11 16-pin connector used for board input power, ground return, and status/control breakout.</p>
+<table>
+<thead>
+<tr>
+<th>Pin</th>
+<th>Signal</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>VPG2.5</code></td>
+<td>2.5 V power-good/status signal, TODO verify active level</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>GND</code></td>
+<td>Ground return</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>VPG1.2</code></td>
+<td>1.2 V power-good/status signal, TODO verify active level</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>GND</code></td>
+<td>Ground return</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>VPG3.3</code></td>
+<td>3.3 V power-good/status signal, TODO verify active level</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>GND</code></td>
+<td>Ground return</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>GND</code></td>
+<td>Ground return</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>GND</code></td>
+<td>Ground return</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>VESP</code></td>
+<td>5 V Peripheral Board input supply</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>VESP</code></td>
+<td>5 V Peripheral Board input supply</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>VESP</code></td>
+<td>5 V Peripheral Board input supply</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>VESP</code></td>
+<td>5 V Peripheral Board input supply</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>VESP</code></td>
+<td>5 V Peripheral Board input supply</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>VESP</code></td>
+<td>5 V Peripheral Board input supply</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>VESP</code></td>
+<td>5 V Peripheral Board input supply</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>VESP</code></td>
+<td>5 V Peripheral Board input supply</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>TODO: Verify DF11 mating-cable orientation and pin-1 convention before using this table as a harness build document.</p>
+</div>
+<hr />
+<h2 id="power-architecture">Power Architecture</h2>
+<p>The Peripheral Board receives 5 V <code>VESP</code> from the DF11 connector and locally generates the rails required by the KSZ9896 switch. In the integrated SCALES system, <code>VESP</code> is not always present immediately at boot; it is enabled by the SCALES Compute Module power-sequencing logic after the <code>fprime-scales-ref</code> deployment starts.</p>
+<p>Local rails:</p>
+<ul>
+<li><code>+3.3V</code></li>
+<li><code>+2.5V</code></li>
+<li><code>+1.2V</code></li>
+<li><code>+2.5VA</code></li>
+<li><code>+1.2VA</code></li>
+</ul>
+<p>These local rails are internal to the Peripheral Board design and should only be used for the circuitry shown in the <code>periph_ethernet_switch</code> schematics. They should not be used as general-purpose power outputs or to power external hardware.</p>
+<p>The schematic uses three <code>TLV62569PDDCR</code> buck converters with 2.2 uH <code>XAL4020-222MEC</code> inductors. Ferrite beads separate the analog supply rails from the main digital rails where required by the switch design.</p>
+<p>Last updated on 7/7/2026</p>
 
 
 

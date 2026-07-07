@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../peripheral_board/">
+      
+      
+        <link rel="next" href="../software_home/">
       
       
         
@@ -19,7 +23,7 @@
     
     
       
-        <title>SatCat Custom Carrier Board Design - SCALES Documentation</title>
+        <title>Nvidia Jetson Orin AGX - SCALES Documentation</title>
       
     
     
@@ -70,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#satcat-custom-carrier-board-design" class="md-skip">
+        <a href="#nvidia-jetson-orin-agx" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SatCat Custom Carrier Board Design
+              Nvidia Jetson Orin AGX
             
           </span>
         </div>
@@ -230,10 +234,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../hardware_home/" class="md-tabs__link">
           
   
@@ -491,24 +497,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -526,7 +537,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -625,10 +636,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../nvidia_jetson_orin_agx/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nvidia Jetson Orin AGX
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -644,6 +682,148 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-prepare-the-jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Prepare the Jetson
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-set-up-fprime-scales-ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Set Up fprime-scales-ref
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-generate-and-build-jetsondeployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Generate and Build JetsonDeployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-wire-the-watchdog-gpio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Wire the Watchdog GPIO
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#major-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Major Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operating-temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operating Temperature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#board-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Board Image
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1049,35 +1229,124 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mapping-the-signals" class="md-nav__link">
+  <a href="#usage-guide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mapping the Signals
+        Usage Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-prepare-the-jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Prepare the Jetson
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#starting-the-schematic" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-set-up-fprime-scales-ref" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Starting the Schematic
+        2. Set Up fprime-scales-ref
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#design-considerations" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#3-generate-and-build-jetsondeployment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Design Considerations
+        3. Generate and Build JetsonDeployment
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-wire-the-watchdog-gpio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Wire the Watchdog GPIO
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#major-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Major Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operating-temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operating Temperature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#board-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Board Image
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1104,85 +1373,112 @@
 
 
 
-<h1 id="satcat-custom-carrier-board-design">SatCat Custom Carrier Board Design</h1>
-<p>This document shows the progress of development of the carrier board for SatCat5.
-The base of the design is based on Aerospace Corp's SatCat5 open source ethernet switcher. Their GitHub includes a prototype design featuring the AC701 Evaluation Board for the Artix 7 FPGA chip. For the purposes of SCALES, an evaluation board like that is not something we would want in our design, so we are using an SOM of the Artix 7 instead.</p>
-<p>The idea is to take the important signals from SatCat's prototype using the AC701 and modify it to work with the SOM we would use in SCALES. This presents a problem for us, since the AC701 uses a different version of the Artix 7 than the SOM, so the signals don't match up to the same pins on the Artix 7 chip.</p>
-<p>We have currently decided to <strong>pause development on SatCat for SCALES</strong>, as much of the open source design available through Aerospace Corp's GitHub lacks enough detail for s to fully move forward. We have experienced too many barriers in this design to justify the amount of work needed to verify the design.</p>
-<h2 id="mapping-the-signals">Mapping the Signals</h2>
-<p>The AC701 Evaulation Board used in the SatCat prototype uses the xc7a200tfbg676 version of the Artix 7 200t FPGA. The SOM that will be used in SCALES uses the xc7a200tfbg484 version of the Artix 7 200t FPGA.</p>
-<p>Resources:</p>
+<h1 id="nvidia-jetson-orin-agx">Nvidia Jetson Orin AGX</h1>
+<p>By Luca Lanzillotta</p>
+<h2 id="usage-guide">Usage Guide</h2>
+<p>The SCALES system uses the NVIDIA Jetson AGX Orin Developer Kit as the edge computer for machine learning and payload processing. The Jetson runs <code>JetsonDeployment</code> from the SCALES F Prime reference deployment.</p>
+<p>Key repositories and references:</p>
 <ul>
-<li><a href="https://github.com/the-aerospace-corporation/satcat5/tree/main/examples/ac701_proto_v1/proto_pcb">SatCat prototype PCB design</a></li>
-<li><a href="https://www.xilinx.com/products/boards-and-kits/ek-a7-ac701-g.html#resources">AMD Artix 7 FPGA AC701 Evaluation Kit used on SatCat</a></li>
-<li><a href="https://www.en.alinx.com/Product/FPGA-System-on-Modules/Artix-7/AC7200.html">AC7200 FPGA SOM used on SCALES</a></li>
-<li><a href="https://www.xilinx.com/content/dam/xilinx/support/packagefiles/a7packages/xc7a200tfbg676pkg.txt">Pin definitions for the FGB676 on the AC701</a></li>
-<li><a href="https://www.xilinx.com/content/dam/xilinx/support/packagefiles/a7packages/xc7a200tfbg484pkg.txt">Pin definitions for the FBG484 on the SOM</a></li>
-<li><a href="https://docs.amd.com/v/u/en-US/ug475_7Series_Pkg_Pinout">AMD 7 Series FPGA Packaging and Pinout</a></li>
+<li><a href="https://github.com/BroncoSpace-Lab/fprime-scales-ref/tree/demo_4.2.2_test">BroncoSpace-Lab/fprime-scales-ref demo_4.2.2_test</a><br />
+  SCALES F Prime reference deployment containing <code>JetsonDeployment</code>.</li>
+<li><a href="https://developer.download.nvidia.com/assets/embedded/secure/jetson/agx_orin/Jetson-AGX-Orin-Module-Carrier-Board-Specification_SP-10900-001_v1.2.pdf">NVIDIA Jetson AGX Orin Developer Kit Carrier Board Specification</a><br />
+  Carrier-board connector, interface, power, and mechanical specification used for the hardware overview below.</li>
 </ul>
-<p>Steps: </p>
+<h3 id="1-prepare-the-jetson">1. Prepare the Jetson</h3>
 <ol>
-<li>Look at the <a href="https://github.com/the-aerospace-corporation/satcat5/blob/main/examples/ac701_proto_v1/proto_pcb/Prototype%20schematic.pdf">SatCat proto PCB schematic</a>. The FPC connector on page 1 is what connects their proto PCB to the AC701 evaluation board. In a spreadsheet, copy the names of each signal bank letter and pin number used in the FMC connector for SatCat.</li>
-<li>
-<p>Find the <a href="https://docs.amd.com/v/u/en-US/ug952-ac701-a7-eval-bd">datasheet/user's guide</a> for the AC701 evaluation board. Navigate to the "FPGA Mezzanine Card Interface" on page 58. There is a table in this section listing the schematic net names for the FMC connector. The first column is the bank letter and pin number (ex. C10) of the FPC connector and the last column is the corresponding pin on the FPGA chip (ex. G19) of the AC701 eval board. Add these to the sheet for each SatCat signal.</p>
-<p><img alt="FMC pin definitions" src="../Images/FMC%20pin%20definitions.png" /></p>
-<p><em>FMC pin definitions</em></p>
-<p><img alt="SatCat FMC pin signals" src="../Images/satcat%20FMC%20pin%20signals.png" /></p>
-<p><em>SatCat FMC pin signals</em></p>
-</li>
-<li>
-<p>Take the <a href="https://www.xilinx.com/content/dam/xilinx/support/packagefiles/a7packages/xc7a200tfbg676pkg.txt">Pin definitions for the FGB676 on the AC701</a> and add them to the spreadsheet in a different tab. Do the same for the <a href="https://www.xilinx.com/content/dam/xilinx/support/packagefiles/a7packages/xc7a200tfbg484pkg.txt">Pin definitions for the FBG484 on the SOM</a>. It may also help to combine these lists in their own tab to make cross-referencing easier. 
-The spreadsheet used in SCALES is organized as follows:</p>
-<ul>
-<li>signals - main sheet to show and compare the signals between the AC701 eval board and the SCALES SOM</li>
-<li>chips - shows the pin definitions for each chip variation to cross-reference in the signals sheet.</li>
-<li>xc7a200tfbg484pkg - pin definitions of the SOM chip pulled from the txt file. for reference only.</li>
-<li>xc7a200tfbg676pkg - pin definition of the eval board chip pulled from the txt file. for reference only.</li>
-</ul>
-</li>
-<li>
-<p>In the chips tab of the sheet, ctrl+f for the FMC pin name (ex. G19) and find the corresponding signal name for the FBG676 chip used on SatCat. Make sure to select “Match entire cell contents” and that you are searching the Value, not the Formulas in the Find and Replace options. Copy the signal name to the main sheet and repeat for all signals on the FMC.</p>
-<p><img alt="Find and Replace example" src="../Images/find%20and%20replace.png" /></p>
-<p><em>Find and Replace example</em></p>
-<p><img alt="Signal Matching example" src="../Images/signal%20matching.png" /></p>
-<p><em>Signal Matching example</em></p>
-</li>
-<li>
-<p>Now, the same signal on the other chip will not match up to the same pin, so we have to ctrl+f for the signal name of each FMC/SatCat signal in the chips tab of the sheet in the SOM FBG484 column, then copy the pin and signal name name over to the signals sheet.</p>
-<ul>
-<li>Disclaimer: the 484 chip does not have a bank 12, but the 676 does. For our purposes, I am replacing the signals used on bank 12 of the 676 FMC chip with the equivalent signals on bank 13 of the 484 SOM chip. I do not currently see an issue with this, but it is something to keep in mind if issues arise later.</li>
-</ul>
-<p><img alt="Find and Replace for SOM" src="../Images/find%20and%20replace%20part%202.png" /></p>
-<p><em>Find and replace for SOM</em></p>
-</li>
-<li>
-<p>Once that is done, open the <a href="https://www.en.alinx.com/Product/FPGA-System-on-Modules/Artix-7/AC7200.html">SOM schematic</a> (found in the "Documentations" section). Here you will see each bank of the SOM with the FPGA signal name, FPGA pin name, and the SOM signal name listed for each output. Ctrl+F for each FPGA pin on the SOM and copy down the matching SOM output signal name into the spreadsheet. These SOM output signals will be what the board-to-board (B2B) connector uses to communicate with the SCALES custom carrier board.</p>
-<p><img alt="Resulting spreadsheet" src="../Images/final%20spreadsheet%20satcat.png" /></p>
-<p><em>Resulting spreadsheet with the SOM signals on the right</em></p>
-</li>
+<li>Flash and boot the Jetson AGX Orin Developer Kit with the required Jetson Linux / JetPack image for the project.</li>
+<li>Connect the Jetson to the network.</li>
+<li>Confirm that <code>python3.12</code> is installed before running the SCALES setup:</li>
 </ol>
-<h2 id="starting-the-schematic">Starting the Schematic</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3.12<span class="w"> </span>--version
+</span></code></pre></div>
 <ol>
-<li>
-<p>Download the KiCad library files for the <a href="https://www.mouser.com/ProductDetail/Panasonic-Industrial-Devices/AXK680337YG?qs=2rFUEsTwVNwvM0tBXFoKgQ%3D%3D&amp;srsltid=AfmBOopD6WLtmqvJjT_Tc4DEg3aTG5Ke6qfQaTzK9vsHYzJwFyfXXfNc">Board to Board Connector on Mouser</a>. Start a new project in KiCad and place four connectors down.</p>
-</li>
-<li>
-<p>The <a href="https://www.en.alinx.com/Product/FPGA-System-on-Modules/Artix-7/AC7200.html">SOM schematic</a> (found in the "Documentations" section) page 12 shows the Board to Board (B2B) connectors on the SOM that we will be using. Using that schematic as a reference, match the signals on the connectors to the ones listed in the spreadsheet. Replace the SOM signal name on the schematic with the equivalent SatCat signal name.</p>
-<p><img alt="SOM B2B to SatCat signal" src="../Images/somB2B_satcat.png" /></p>
-<p><em>Section from the spreadsheet</em></p>
-<p><img alt="SOM B2B original schematic" src="../Images/b2b_som_original.png" /></p>
-<p><em>SOM B2B original schematic section</em></p>
-<p><img alt="SOM B2B SCALES modification" src="../Images/b2b_section.png" /></p>
-<p><em>SCALES SOM B2B modification (same section)</em></p>
-</li>
+<li>Make sure <code>git lfs</code> is installed because the Arena SDK setup pulls large files through Git LFS.</li>
 </ol>
-<h2 id="design-considerations">Design Considerations</h2>
-<p>We are going to be trying to imitate what Aerospace Corp did with SatCat on Slingshot which was:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the watchdog solder pads on the SCALES Compute Module / Merger board are soldered, the Jetson must have <code>JetsonDeployment</code> preinstalled and ready to run before the Jetson is powered from the SCALES Compute Module. If the Jetson is not running the flight software and petting the watchdog, the watchdog circuitry on the SCALES Compute Module may reset the Jetson approximately every 32 seconds.</p>
+</div>
+<h3 id="2-set-up-fprime-scales-ref">2. Set Up <code>fprime-scales-ref</code></h3>
+<p>Run these commands on the Jetson:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>demo_4.2.2_test<span class="w"> </span>https://github.com/BroncoSpace-Lab/fprime-scales-ref.git
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>fprime-scales-ref
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>make<span class="w"> </span>setup
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>make<span class="w"> </span>arena-init
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">source</span><span class="w"> </span>fprime-venv/bin/activate
+</span></code></pre></div>
+<p><code>make setup</code> creates the F Prime virtual environment and initializes the repository dependencies. <code>make arena-init</code> sets up the Arena SDK used by the Lucid camera integration.</p>
+<h3 id="3-generate-and-build-jetsondeployment">3. Generate and Build <code>JetsonDeployment</code></h3>
+<p><code>JetsonDeployment</code> should be generated and built directly on the Jetson because the SCALES project does not currently use cross-compilation for the <code>aarch64-linux</code> deployment.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>fprime-util<span class="w"> </span>generate<span class="w"> </span>aarch64-linux<span class="w"> </span>-f
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>make<span class="w"> </span>build-jetson
+</span></code></pre></div>
+<p>The <code>make build-jetson</code> target builds the <code>aarch64-linux</code> deployment and sets up the Jetson-side Python/F Prime build environment used by the deployment.</p>
+<h3 id="4-wire-the-watchdog-gpio">4. Wire the Watchdog GPIO</h3>
+<p>When using the Jetson with the SCALES Compute Module / Merger board watchdog circuitry, wire one Jetson GPIO to the Jetson watchdog input on the Merger board.</p>
 <ul>
-<li>4x Gigabit ethernet SGMII</li>
-<li>up to 16 SPI/UART depending on scale of the Handle bus</li>
+<li>Jetson GPIO pin: TODO</li>
+<li>Merger board watchdog input signal: TODO</li>
+<li>Voltage level: TODO</li>
+<li>Expected watchdog behavior: <code>JetsonDeployment</code> must toggle or otherwise service this GPIO often enough to prevent the Merger board watchdog from resetting the Jetson power rail.</li>
 </ul>
-<p>Still working on what comes next. To be continued...</p>
+<p>TODO: Add a picture of the Jetson GPIO header pinout and the Merger board watchdog connection.</p>
+<hr />
+<h2 id="hardware-overview">Hardware Overview</h2>
+<p>The NVIDIA Jetson AGX Orin Developer Kit is built around a Jetson AGX Orin module connected to a developer-kit carrier board. The carrier board exposes the module's high-speed I/O, camera, storage, debug, power, and low-speed expansion interfaces for development and integration.</p>
+<p>The SCALES system uses this developer kit as the machine-learning / edge-compute subsystem.</p>
+<h3 id="major-interfaces">Major Interfaces</h3>
+<ul>
+<li>Jetson AGX Orin module connector: 699-pin board-to-board connector</li>
+<li>Storage:</li>
+<li>MicroSD card socket</li>
+<li>M.2 Key M connector for NVMe storage</li>
+<li>USB:</li>
+<li>Four USB 3.2 Type-A ports total</li>
+<li>Two USB Type-C connectors</li>
+<li>USB Micro-B debug connector</li>
+<li>Ethernet:</li>
+<li>RJ45 connector with built-in magnetics</li>
+<li>Multi-Gigabit Ethernet support up to 10 Gb/s</li>
+<li>PCIe:</li>
+<li>Standard PCIe x16 connector</li>
+<li>Lower x8 portion used for PCIe</li>
+<li>Upper x8 portion reserved</li>
+<li>Display:</li>
+<li>VESA DisplayPort output connector</li>
+<li>Camera expansion:</li>
+<li>120-pin board-to-board camera expansion connector</li>
+<li>Up to 16 CSI lanes</li>
+<li>Supports 6 x 2-lane or 4 x 4-lane camera configurations using DPHY or CPHY</li>
+<li>Includes camera clock, I2C, and control signals</li>
+<li>M.2 Key E:</li>
+<li>PCIe x1</li>
+<li>USB 2.0</li>
+<li>I2S, UART, and control signals</li>
+<li>40-pin expansion header:</li>
+<li>I2C</li>
+<li>SPI</li>
+<li>UART</li>
+<li>I2S</li>
+<li>CAN</li>
+<li>Digital microphone</li>
+<li>PWM</li>
+<li>GPIO</li>
+<li>Debug and control:</li>
+<li>JTAG header</li>
+<li>Power, reset, and force-recovery buttons</li>
+<li>Automation header</li>
+<li>RTC backup battery connector</li>
+<li>Fan connector with 5 V, PWM, and tachometer signals</li>
+</ul>
+<h3 id="power">Power</h3>
+<p>The developer kit can be powered through either USB Type-C input using the included 19 V adapter or through the DC power jack. The carrier-board specification lists the DC jack input range as <code>7 V</code> to <code>20 V</code>.</p>
+<p>The carrier board locally generates the platform rails used by the module and carrier-board interfaces, including the main <code>5 V</code>, <code>3.3 V</code>, and <code>1.8 V</code> supplies and additional interface-specific rails for PCIe, USB, DisplayPort, Ethernet PHY, SD, and camera circuits.</p>
+<h3 id="operating-temperature">Operating Temperature</h3>
+<p>The developer-kit operating temperature range listed in the carrier-board specification is <code>0 C</code> to <code>35 C</code>.</p>
+<h3 id="board-image">Board Image</h3>
+<p><img alt="Jetson Dev Kit" src="../Images/jetson-dev-kit.png" style="display: block; margin: 0 auto;" width="500" /></p>
+<p>Last updated on 7/7/2026</p>
 
 
 
