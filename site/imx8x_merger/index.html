@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../hardware_home/">
+      
+      
+        <link rel="next" href="../peripheral_board/">
       
       
         
@@ -230,10 +234,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../hardware_home/" class="md-tabs__link">
           
   
@@ -491,24 +497,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -526,7 +537,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -569,17 +580,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../imx8x_procedures/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCALES Compute Module
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    i.MX 8X Developer's Guide
+    SCALES Compute Module
   
 
     
@@ -588,34 +626,398 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IMX8X_customBSP/" class="md-nav__link">
+      
         
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-  <span class="md-ellipsis">
+  
     
   
-    i.MX 8X Carrier Board PCB Design
   
-
-    
-  </span>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Guide
+      
+    </span>
+  </a>
   
+    <nav class="md-nav" aria-label="Usage Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-set-up-linux-for-the-scales-compute-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Set Up Linux for the SCALES Compute Module
+      
+    </span>
+  </a>
   
-
-      </a>
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-boot-the-scales-compute-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Boot the SCALES Compute Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-log-in-to-the-scales-compute-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Log in to the SCALES Compute Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Log in to the SCALES Compute Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usb-c-serial-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USB-C Serial Connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rj45-ethernet-ssh-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RJ45 Ethernet SSH Connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#board-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Board Images
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Board Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#front" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Front
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Back
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imx8x-carrier-board-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i.MX8X Carrier Board Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="i.MX8X Carrier Board Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ethernet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ethernet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usb-to-uart-usb-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USB-to-UART (USB-C)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microsd-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MicroSD Card
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-v-gpio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 V GPIO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i2c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I2C
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I2C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reserved-i2c-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reserved I2C Bus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exposed-i2c-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exposed I2C Bus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UART
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-partition-toggler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot Partition Toggler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scales-eps-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SCALES EPS Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SCALES EPS Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-selection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concept-of-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concept of Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concept of Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fault-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fault Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telemetry-and-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telemetry and Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#last-updated-on-772026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Last updated on 7/7/2026
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -635,7 +1037,35 @@
   <span class="md-ellipsis">
     
   
-    Peripheral Board Design
+    Peripheral Board
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nvidia_jetson_orin_agx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nvidia Jetson Orin AGX
   
 
     
@@ -748,7 +1178,35 @@
   <span class="md-ellipsis">
     
   
-    i.MX 8X Yocto BSP Development
+    i.MX 8X Yocto BSP for Development Board
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IMX8X_customBSP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    i.MX 8X Custom Yocto BSP for Custom SCALES Board
   
 
     
@@ -1381,6 +1839,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#last-updated-on-772026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Last updated on 7/7/2026
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1410,12 +1879,12 @@
 <p>Using the Leviathan 2 board with the i.MX8X requires building a Linux system image using the SCALES BSP. This BSP includes a pre-installed, startup-enabled <code>ImxDeployment</code> from the <code>fprime-scales-ref</code> project.</p>
 <p>Key repositories:</p>
 <ul>
-<li><a href="https://github.com/BroncoSpace-Lab/scales-firmware">BroncoSpace-Lab/scales-firmware</a><br />
-  Firmware source and supporting software for the SCALES system.</li>
 <li><a href="https://github.com/BroncoSpace-Lab/fprime-scales-ref">BroncoSpace-Lab/fprime-scales-ref</a><br />
   F Prime reference deployment used by the SCALES Compute Module and related subsystems.</li>
+<li><a href="https://github.com/BroncoSpace-Lab/scales-firmware">BroncoSpace-Lab/scales-firmware</a><br />
+  Firmware source and supporting software for the SCALES system.</li>
 <li><a href="https://github.com/BroncoSpace-Lab/meta-scales-leviathan">BroncoSpace-Lab/meta-scales-leviathan</a><br />
-  Yocto meta-layer for building the Leviathan Linux image and board support packages.</li>
+  Yocto meta-layer for building the SCALES imx8x Linux BSP.</li>
 </ul>
 <h3 id="1-set-up-linux-for-the-scales-compute-module">1. Set Up Linux for the SCALES Compute Module</h3>
 <ol>
@@ -1466,14 +1935,15 @@
 <h2 id="hardware-introduction">Hardware Introduction</h2>
 <p>Leviathan 2 is the merged implementation of the SCALES i.MX8X Carrier Board and the SCALES EPS. It consolidates two previously separate development boards into a single design:</p>
 <ul>
-<li>A revised version of the Mariner 1-C board, which served as the standalone carrier board for the i.MX8X</li>
-<li>The Viking 1-C board, which served as the SCALES EPS</li>
+<li>A revised version of the Leviathan 1A board which served as the first merged implementation of the Mariner 1-C board and the Viking 1-C board.</li>
 </ul>
-<p>This merged board is designated <strong>Leviathan 2</strong>.</p>
+<p>This merged board is designated <strong>Leviathan 2</strong>.
+This merged board is designated <strong>Leviathan 2</strong>.</p>
 <p>The latest design revisions, SPICE simulation models, and engineering calculations are available in the <a href="https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/imx8x_eps_leviathan_v2">scales-hardware</a> repository.</p>
 <hr />
 <h2 id="hardware-overview">Hardware Overview</h2>
-<p>The Leviathan 2 board contains two primary subsystems:</p>
+<p>The Leviathan 2 board contains two primary subsystems:
+The Leviathan 2 board contains two primary subsystems:</p>
 <ul>
 <li>i.MX8X carrier board circuitry</li>
 <li>Power system circuitry for the full SCALES platform</li>
@@ -1521,6 +1991,9 @@
 <li>2 x 1 Gb Ethernet ports are available</li>
 <li>Ethernet support is configured on the SoM through the BSP</li>
 <li>The supporting circuitry is directly ported from the i.MX8X development board</li>
+<li>Both external RJ45 ports use Wurth Elektronik <code>7499111121A</code> integrated-magnetics connectors, which keep the Ethernet magnetics inside the connector body and reduce the amount of discrete magnetics circuitry required on the carrier board</li>
+<li>The Ethernet routing is implemented on the 6-layer KiCad stackup: <code>F.Cu</code>, <code>In1.Cu</code>, <code>In2.Cu</code>, <code>In3.Cu</code>, <code>In4.Cu</code>, and <code>B.Cu</code></li>
+<li>Ethernet differential pairs are routed for controlled impedance and length/skew tuned in the PCB layout. The KiCad file records tuned Ethernet routes using <code>0.124 mm</code> track width with approximately <code>0.18 mm</code> to <code>0.2032 mm</code> pair gaps, with matching targets used across the Gigabit copper pairs and related Ethernet timing groups</li>
 <li>Two Ethernet configurations are available on the SoM:</li>
 <li>One is preconfigured on the SoM using an onboard RGMII translator</li>
 <li>The second is implemented on this carrier board</li>
@@ -1659,7 +2132,7 @@
 <li>Three dedicated temperature sensors also report telemetry back to the i.MX8X over a 3.3 V I2C bus</li>
 <li>Such telemetry can be seen in the <code>fprime-scales-ref</code> <code>ImxDeployment</code> and is visible under <strong>Channels</strong> in the GDS</li>
 </ul>
-<hr />
+<h2 id="last-updated-on-772026">Last updated on 7/7/2026</h2>
 
 
 

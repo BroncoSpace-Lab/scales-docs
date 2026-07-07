@@ -78,9 +78,9 @@ nav: # Setting up the navigation. The below list will be tabs on left panel
     
   - Hardware:
     - Hardware Home: hardware_home.md
-    - i.MX 8X Developer's Guide: imx8x_procedures.md
-    - i.MX 8X Carrier Board PCB Design: imx8x_merger.md
-    - Peripheral Board Design: peripheral_board.md
+    - SCALES Compute Module: imx8x_merger.md
+    - Peripheral Board: peripheral_board.md
+    - Nvidia Jetson Orin AGX: nvidia_jetson_orin_agx.md
   - Software:
     - Software Home: software_home.md
     - i.MX 8X Yocto BSP for Development Board: imx_yocto_bsp.md
