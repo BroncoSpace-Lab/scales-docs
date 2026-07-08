@@ -26,6 +26,126 @@ Key repositories and references:
    ```
 
 4. Make sure `git lfs` is installed because the Arena SDK setup pulls large files through Git LFS.
+5. Setup the Jetson Service and Power Mode Permissions
+
+On the Jetson, we use a system service that automatically tries to connect to the fprime-gds upon boot, using the 'jetson-startup.sh' script. To set this up on your Jetson, complete the following:
+
+1. Create the Jetson Deployment service file on the Jetson:
+
+    ```
+    sudo nano /etc/systemd/system/jetson-deployment.service
+    ```
+
+    Paste the following in the file you just created. Make sure to change the username to match the username of your Jetson, and update the path to where you cloned this repository.
+
+    ```
+    [Unit]
+    Description=fprime-scales JetsonDeployment Flight Software
+    # Wait for network (needed to connect to the IMX hub)
+    After=network-online.target
+    Wants=network-online.target
+
+    [Service]
+    Type=simple
+    # Replace 'jetson' with the actual username on the Jetson
+    User=<jetson username>
+    WorkingDirectory=<path to>/fprime-scales-ref
+
+    ExecStart=<path to>/fprime-scales-ref/jetson-startup.sh
+
+    # Restart on crash, but not on clean exit (exit 0)
+    Restart=on-failure
+    RestartSec=5
+
+    # Give the network and fprime-gds time to be ready before retrying hard failures
+    StartLimitIntervalSec=120
+    StartLimitBurst=5
+
+    # Log stdout/stderr to the journal (view with: journalctl -u jetson-deployment >
+    StandardOutput=journal
+    StandardError=journal
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+2. Enable and start the service:
+
+    ```
+    sudo systemctl daemon-reload
+    sudo systemctl enable jetson-deployment.service
+    sudo systemctl start jetson-deployment.service
+    ```
+
+<details>
+<summary>Helpful commands for using this service:</summary>
+
+To check the status:
+
+```
+sudo systemctl status jetson-deployment.service
+```
+
+To watch live logs:
+
+```
+journalctl -u jetson-deployment -f
+```
+
+To pause the service without disabling completely:
+
+```
+sudo systemctl stop jetson-deployment.service
+```
+
+To stop AND disable the service:
+
+```
+sudo systemctl disable jetson-deployment.service
+```
+
+To restart the service:
+
+```
+sudo systemctl restart jetson-deployment.service
+```
+
+</details>
+
+To change Jetson power modes without user input, you must change sudo permissions for the `nvpmodel` commands on the Jetson.
+
+1. Create a file that will contain this rule.
+
+    ```
+    sudo visudo -f /etc/sudoers.d/fprime-nvpmodel
+    ```
+
+    Add this line to the file. Be sure to add your Jetson's actual username.
+
+    ```
+    <jetson-username> ALL=(ALL) NOPASSWD: /usr/sbin/nvpmodel
+    ```
+
+2. Save and exit, then verify the file has the corrext permissions.
+
+    ```
+    sudo chmod 0440 /etc/sudoers.d/fprime-nvpmodel
+    sudo chown root:root /etc/sudoers.d/fprime-nvpmodel
+    ```
+
+3. Add this new file you created to the sudoers list. Open the sudoers file:
+
+    ```
+    sudo visudo
+    ```
+
+    Add this to the very end, then save and exit.
+
+    ```
+    #includedir /etc/sudoers.d
+    ```
+
+</details>
 
 !!! note
 
