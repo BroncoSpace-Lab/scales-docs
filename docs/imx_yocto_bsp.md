@@ -4,11 +4,8 @@ We are using a custom BSP (board support package) for Yocto Linux v5.0 (scarthga
 
 This version of the BSP is only for the [PhyTec i.MX 8X SOM Development Kit](https://www.phytec.com/product/phycore-i-mx-8x-development-kit/).
 
-We initially tried to rebuild the BSP they had in their guide to make Yocto v3.0 (zeus) using an Ubuntu 18.04 host machine, but we kept running into errors, so we asked Phytec Support for help. This is what they said:
-
-![Phytec Support Response](Images/phytec_support_ampliphy.png)
-
-The guide they sent us will be relayed here.
+If you wish to build the BSP for the SCALES Compute Module, you must follow the [README.md](https://github.com/BroncoSpace-Lab/scales-firmware/tree/main) in scales-firmware.
+Both follow roughly the same process.
 
 ## Building the BSP
 
