@@ -7,8 +7,10 @@ Using the Leviathan 2 board with the i.MX8X requires building a Linux system ima
 
 Key repositories:
 
+- [BroncoSpace-Lab/scales-hardware](https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/imx8x_eps_leviathan_v2)  
+ Kicad and Gerber files for the SCALES Compute Module
 - [BroncoSpace-Lab/fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref)  
-  F Prime reference deployment used by the SCALES Compute Module and related subsystems.
+  F Prime reference deployment used by the SCALES Compute Module and Nvidia Jetson.
 - [BroncoSpace-Lab/scales-firmware](https://github.com/BroncoSpace-Lab/scales-firmware)  
   Firmware source and supporting software for the SCALES system.
 - [BroncoSpace-Lab/meta-scales-leviathan](https://github.com/BroncoSpace-Lab/meta-scales-leviathan)  
