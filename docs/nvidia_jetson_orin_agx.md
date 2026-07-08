@@ -26,7 +26,42 @@ Key repositories and references:
    ```
 
 4. Make sure `git lfs` is installed because the Arena SDK setup pulls large files through Git LFS.
-5. Setup the Jetson Service and Power Mode Permissions
+
+### 2. Set Up `fprime-scales-ref`
+
+Run these commands on the Jetson:
+
+```bash
+git clone https://github.com/BroncoSpace-Lab/fprime-scales-ref.git
+cd fprime-scales-ref
+make setup
+make arena-init
+source fprime-venv/bin/activate
+```
+
+`make setup` creates the F Prime virtual environment and initializes the repository dependencies. `make arena-init` sets up the Arena SDK used by the Lucid camera integration.
+
+### 3. Generate and Build `JetsonDeployment`
+
+`JetsonDeployment` should be generated and built directly on the Jetson because the SCALES project does not currently use cross-compilation for the `aarch64-linux` deployment.
+
+```bash
+fprime-util generate aarch64-linux -f
+make build-jetson
+```
+
+The `make build-jetson` target builds the `aarch64-linux` deployment and sets up the Jetson-side Python/F Prime build environment used by the deployment.
+
+### 4. Wire the Watchdog GPIO
+
+When using the Jetson with the SCALES Compute Module / Merger board watchdog circuitry, wire one Jetson GPIO to the Jetson watchdog input on the Merger board.
+
+- Jetson GPIO Watchdog pin: TODO
+- Expected watchdog behavior: `JetsonDeployment` must toggle or otherwise service this GPIO often enough to prevent the Merger board watchdog from resetting the Jetson power rail.
+
+![Jetson GPIO Breakout](Images/jetson-gpio.png){ style="display:block; margin:0 auto; max-width:600px; width:30%; height:30%;" }
+
+### 5. Setup the Jetson Service and Power Mode Permissions
 
 On the Jetson, we use a system service that automatically tries to connect to the fprime-gds upon boot, using the 'jetson-startup.sh' script. To set this up on your Jetson, complete the following:
 
@@ -150,40 +185,6 @@ To change Jetson power modes without user input, you must change sudo permission
 !!! note
 
     If the watchdog solder pads on the SCALES Compute Module / Merger board are soldered, the Jetson must have `JetsonDeployment` preinstalled and ready to run before the Jetson is powered from the SCALES Compute Module. If the Jetson is not running the flight software and petting the watchdog, the watchdog circuitry on the SCALES Compute Module may reset the Jetson approximately every 32 seconds.
-
-### 2. Set Up `fprime-scales-ref`
-
-Run these commands on the Jetson:
-
-```bash
-git clone https://github.com/BroncoSpace-Lab/fprime-scales-ref.git
-cd fprime-scales-ref
-make setup
-make arena-init
-source fprime-venv/bin/activate
-```
-
-`make setup` creates the F Prime virtual environment and initializes the repository dependencies. `make arena-init` sets up the Arena SDK used by the Lucid camera integration.
-
-### 3. Generate and Build `JetsonDeployment`
-
-`JetsonDeployment` should be generated and built directly on the Jetson because the SCALES project does not currently use cross-compilation for the `aarch64-linux` deployment.
-
-```bash
-fprime-util generate aarch64-linux -f
-make build-jetson
-```
-
-The `make build-jetson` target builds the `aarch64-linux` deployment and sets up the Jetson-side Python/F Prime build environment used by the deployment.
-
-### 4. Wire the Watchdog GPIO
-
-When using the Jetson with the SCALES Compute Module / Merger board watchdog circuitry, wire one Jetson GPIO to the Jetson watchdog input on the Merger board.
-
-- Jetson GPIO Watchdog pin: TODO
-- Expected watchdog behavior: `JetsonDeployment` must toggle or otherwise service this GPIO often enough to prevent the Merger board watchdog from resetting the Jetson power rail.
-
-![Jetson GPIO Breakout](Images/jetson-gpio.png){ style="display:block; margin:0 auto; max-width:600px; width:30%; height:30%;" }
 
 ---
 
