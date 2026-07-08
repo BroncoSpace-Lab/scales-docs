@@ -194,7 +194,7 @@ The Ethernet `TXRX` routes are treated as differential pairs. The KiCad PCB cont
 
 ## Power Architecture
 
-The Peripheral Board receives 5 V `VESP` from the DF11 connector and locally generates the rails required by the KSZ9896 switch. In the integrated SCALES system, `VESP` is not always present immediately at boot; it is enabled by the SCALES Compute Module power-sequencing logic after the `fprime-scales-ref` deployment starts.
+The Peripheral Board receives 5 V `VESP` from the DF11 connector and locally generates the rails required by the KSZ9896 switch. In the integrated SCALES system, `VESP` is not always present immediately at boot; it is enabled by the SCALES Compute Module power-sequencing logic after the `ImxDeployment` deployment starts.
 
 Local rails:
 
