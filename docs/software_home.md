@@ -1,22 +1,16 @@
 # SCALES Software
-By Kelly Williams, Alex Mariano, and Luca Lanzillotta
+By Kelly Williams, Alex Mariano, John Pollak and Luca Lanzillotta
 
 ## SCALES Software Development Guides
 
+### [Build the i.MX 8X Yocto BSP](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/)
+- Guide on how to setup, build and deploy the i.MX 8X BSP for the Development Kit and the SCALES Compute Module.
+
+### [How to Create and Maintain a Custom BSP for the IMX8X]
+- Guide on how to setup, build and deploy your own custom BSP for embedded IMX8X applications using the base Phytec Yocto BSP.
+
 ### [SCALES Demo](https://scales-docs.readthedocs.io/en/latest/scales_demo/)
 - Step by step guide on how to run the SCALES Demo using our custom hardware and LUCID camera test payload.
-
-### [i.MX 8X Yocto SCALES Compute Module BSP](https://scales-docs.readthedocs.io/en/latest/IMX8X_customBSP/)
-- Guide on how to setup, build and deploy the i.MX 8X SCALES Compute Module BSP for our custom hardware.
-- Can be used as a reference guide to modify the existing BSP for custom applications.
-
-### [fprime-scales-ref JetsonDeployment](https://scales-docs.readthedocs.io/en/latest/jetson_fprime/)
-- Guide on how to generate, build, and deploy the JetsonDeployment from the ```fprime-scales-ref``` repo.
-- Detailed information for developers to learn to work within the deployment.
-
-### [fprime-scales-ref ImxDeployment](https://scales-docs.readthedocs.io/en/latest/imx_fprime/)
-- Guide on how to generate, build, and deploy the InmxDeployment from the ```fprime-scales-ref``` repo.
-- Detailed information for developers to learn to work within the deployment.
 
 ## SCALES Software Architecture
 
