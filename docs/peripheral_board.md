@@ -47,10 +47,6 @@ When the Peripheral Board is wired into the SCALES Compute Module, its input pow
 
 If the board is powered outside the full SCALES stack, connect the external harness through `CN1` and provide the board input supply on the `VESP` pins. `VESP` is the 5 V input to the Peripheral Board.
 
-!!! note
-
-    TODO: Add the final required `VESP` current budget for the flight harness.
-
 ### 3. Connect Ethernet Devices
 
 1. Use CAT5E or better Ethernet cables.
@@ -97,7 +93,12 @@ The Peripheral Board contains the following major blocks:
 
 ### Board Images
 
-TODO: Add exported KiCad front and back renders for the `periph_ethernet_switch` design.
+Peripheral Board Front
+![Peripheral Board Front](<Images/perif-front.png>){ style="display:block; margin:0 auto; max-width:600px; width:60%; height:60%;" }
+
+Peripheral Board Back
+![Peripheral Board Back](<Images/perif-back.png>){ style="display:block; margin:0 auto; max-width:600px; width:60%; height:60%;" }
+
 
 ---
 
@@ -160,9 +161,6 @@ The Ethernet `TXRX` routes are treated as differential pairs. The KiCad PCB cont
 - `50 mm` target length on many tuned differential pairs
 - `49.9 mm` to `50.1 mm` target-length window
 - Additional skew-tuning entries on selected pairs
-
-TODO: Verify the final controlled-impedance stackup with the PCB manufacturer. The KiCad stackup records FR4 dielectric assumptions, but the manufacturer stackup and impedance calculator should be treated as the source of truth for fabrication.
-
 ---
 
 ## DF11 Connector Breakout
