@@ -7,7 +7,7 @@ The SCALES system uses the NVIDIA Jetson AGX Orin Developer Kit as the edge comp
 
 Key repositories and references:
 
-- [BroncoSpace-Lab/fprime-scales-ref demo_4.2.2_test](https://github.com/BroncoSpace-Lab/fprime-scales-ref/tree/demo_4.2.2_test)  
+- [BroncoSpace-Lab/fprime-scales-ref demo_4.2.2_test](https://github.com/BroncoSpace-Lab/fprime-scales-ref/tree/main)  
   SCALES F Prime reference deployment containing `JetsonDeployment`.
 - [NVIDIA Jetson AGX Orin Developer Kit Carrier Board Specification](https://developer.download.nvidia.com/assets/embedded/secure/jetson/agx_orin/Jetson-AGX-Orin-Module-Carrier-Board-Specification_SP-10900-001_v1.2.pdf)  
   Carrier-board connector, interface, power, and mechanical specification used for the hardware overview below.
