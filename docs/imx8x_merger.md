@@ -98,10 +98,10 @@ The Leviathan 2 board contains two primary subsystems:
 ## Board Images
 
 ### Front
-![Leviathan 2 Front](Images/Leviathan2-FRONT.png){ width="650" }
+![Leviathan 2 Front](Images/Leviathan2-FRONT.png){ style="display:block; margin:0 auto; max-width:600px; width:60%; height:60%;" }
 
 ### Back
-![Leviathan 2 Back](Images/Leviathan2-BACK.png){ width="650" }
+![Leviathan 2 Back](Images/Leviathan2-BACK.png){ style="display:block; margin:0 auto; max-width:600px; width:60%; height:60%;" }
 
 ---
 
