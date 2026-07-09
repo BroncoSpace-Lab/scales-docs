@@ -15,7 +15,7 @@ Key repositories and references:
 ### 1. Prepare the Jetson
 !!! note
 
-    If you are setting up the Jetson for the first time, we recommend using the included USB-C power cable to power the jetson. Once the SCALES Compute Module and the Jetson have installed versions of the flight software that run on boot, you can then power the Jetson using the built in DF11 to DC Jack connector that comes with the SCALES Dev Kit.
+    If you are setting up the Jetson for the first time, we recommend using the included USB-C power cable to power the jetson, as not having the flight software running and the Watchdog Pin already connected will cause the Watchdog to reset the Jetson every ~32 seconds. Once the SCALES Compute Module and the Jetson have installed versions of the flight software that run on boot, and the Jetson has its GPIO wired, you can then power the Jetson using the built in DF11 to DC Jack connector that comes with the SCALES Dev Kit.
 
 1. Flash and boot the Jetson AGX Orin Developer Kit with the required Jetson Linux / JetPack image for the project.
 2. Connect the Jetson to the network.
