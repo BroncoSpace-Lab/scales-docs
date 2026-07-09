@@ -26,7 +26,8 @@ Key repositories and references:
    ```
 
 4. Make sure `git lfs` is installed because the Arena SDK setup pulls large files through Git LFS.
-5. Install [pytorch for Jetson Platorms](https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html) 
+5. Install [pytorch for Jetson Platorms](https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html)
+6. Make sure the Jetson's Ethernet IPV4 IP address is configured to 10.3.2.12
 
 ### 2. Set Up `fprime-scales-ref`
 
