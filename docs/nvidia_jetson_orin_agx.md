@@ -189,10 +189,6 @@ To change Jetson power modes without user input, you must change sudo permission
 
 </details>
 
-!!! note
-
-    If the watchdog solder pads on the SCALES Compute Module / Merger board are soldered, the Jetson must have `JetsonDeployment` preinstalled and ready to run before the Jetson is powered from the SCALES Compute Module. If the Jetson is not running the flight software and petting the watchdog, the watchdog circuitry on the SCALES Compute Module may reset the Jetson approximately every 32 seconds.
-
 ---
 
 ## Hardware Overview
