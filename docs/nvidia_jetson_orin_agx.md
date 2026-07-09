@@ -57,8 +57,13 @@ The `make build-jetson` target builds the `aarch64-linux` deployment and sets up
 
 When using the Jetson with the SCALES Compute Module / Merger board watchdog circuitry, wire one Jetson GPIO to the Jetson watchdog input on the Merger board.
 
-- Jetson GPIO Watchdog pin: TODO
-- Expected watchdog behavior: `JetsonDeployment` must toggle or otherwise service this GPIO often enough to prevent the Merger board watchdog from resetting the Jetson power rail.
+- Jetson GPIO Watchdog pin: 
+The Nvidia Jetson Orin AGX has a 40-pin 2.54mm Style GPIO headers, we want to wire up the Watchdog Pet Pin from the SCALES Compute Module to Pin 15 on the Jetson. The Fprime OSAL uses ```gpiochip0 108``` mapped to this pin.
+Use the following images for reference to plug in the female dupont wire coming from the SCALES Compute Module and plug it into PIN 15 as shown below.
+
+
+![Jetson GPIO Orientation](Images/jetson-gpio-orientation.png){ style="display:block; margin:0 auto; max-width:600px; width:30%; height:30%;" }
+
 
 ![Jetson GPIO Breakout](Images/jetson-gpio.png){ style="display:block; margin:0 auto; max-width:600px; width:30%; height:30%;" }
 
