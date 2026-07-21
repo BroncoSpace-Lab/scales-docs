@@ -43,7 +43,7 @@ The SCALES Compute Module is accessible over SSH through Ethernet or over a seri
 
 #### ttyLP2 Serial Connection
 
-1. Following the schematic diagram for the Leviathan 2 Board, wire UART2 TX/RX and GND to a 3.3V USB to TTY serial adapter.
+1. Following the schematic diagram for the Leviathan 2 Board DF11 Connector on the top left, wire UART2 TX/RX and GND to a 3.3V USB to TTY serial adapter.
 2. Download [Tabby](https://tabby.sh/).
 3. Open Tabby and select **New terminal**.
 4. Navigate to **Profiles & Connections** in the top toolbar.
