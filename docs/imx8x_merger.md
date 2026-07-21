@@ -23,6 +23,10 @@ Key repositories:
 3. Flash the built image to an SD card.
 
 !!! note
+    SCALES includes a GDS Redundancy feature where if the TCP GDS is not connected, a 15 second timer will cause command authority to be set on the UART GDS. If the TCP GDS is started after this period, you can use a USBC Cable plugged into your host machine to the SCALES Compute Module and start the uart-gds.sh script to connect to the UART GDS directly. If you wish to revert back to the TCP GDS and the SCALES Compute Module and your host machine are connected to the peripheral board, on either GDS you can send the `SWITCH_TO_TCP' command from the GdsCmdAuthMux component on the IMX to send commands over the TCP GDS.
+    Please note that only one GDS can allow commands at the same time, and that the UART GDS is intended as a backup.
+
+!!! note
 
     If the watchdog solder pads are soldered, both the i.MX8X and the Jetson must have preinstalled reference deployments. The Jetson must also have its designated GPIO wired, or it will be power-cycled approximately every 32 seconds by the watchdog circuitry.
 
@@ -35,16 +39,16 @@ Key repositories:
 
 ### 3. Log in to the SCALES Compute Module
 
-The SCALES Compute Module is accessible over SSH through Ethernet or over a USB-C serial connection.
+The SCALES Compute Module is accessible over SSH through Ethernet or over a serial connection.
 
-#### USB-C Serial Connection
+#### ttyLP2 Serial Connection
 
-1. Plug in a USB-C cable from your host machine to the SCALES Compute Module.
+1. Following the schematic diagram for the Leviathan 2 Board, wire UART2 TX/RX and GND to a 3.3V USB to TTY serial adapter.
 2. Download [Tabby](https://tabby.sh/).
 3. Open Tabby and select **New terminal**.
 4. Navigate to **Profiles & Connections** in the top toolbar.
-5. Search for `ttyUSB0` in the COM ports.
-6. Select `ttyUSB0` and set the baud rate to `115200`.
+5. Search for `ttyLP2` in the COM ports.
+6. Select `ttyLP2` and set the baud rate to `115200`.
 7. Default user is `root`, default password is `root`
 
 #### RJ45 Ethernet SSH Connection

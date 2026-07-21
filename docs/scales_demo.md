@@ -19,6 +19,9 @@ The code and reference deployment can be found on our [fprime-scales-ref](https:
 
 The i.MX8X SCALES Compute Module, Jetson edge computer evaluation board, and COTS Ethernet camera will be connected through the SCALES Peripheral Board Ethernet switch. The i.MX will command the Jetson through the Hub Pattern to take a picture using the Ethernet camera. The picture will be saved on the Jetson. When completed, the i.MX will command the Jetson through the Hub Pattern to run a computer vision algorithm on the images taken with the camera. The results will be sent to the i.MX.
 
+!!! note
+    If you wish to use the UART GDS, run `uart-gds.sh` and do not start the TCP GDS and wait for the backup UART GDS to be given command authority. If you wish you use the TCP GDS, you can start `tcp-gds.sh`, and send the `SWITCH_TO_TCP` command to delegate back the command authority to the TCP GDS. Only one GDS is allowed to give commands at a time. This is to prevent race conditions.
+
 ![Hardware Setup](Images/scales-demo-custom-hardware.png)
 
 ## Process
