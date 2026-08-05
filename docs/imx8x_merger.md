@@ -66,8 +66,9 @@ Available IP addresses on the SCALES Compute Module:
 1. Plug in a CAT5E or higher Ethernet cable from your host machine to the SCALES Peripheral Board.
 2. Connect the SCALES Compute Module to the SCALES Peripheral Board.
 3. Check which SCALES Compute Module Ethernet port is connected. The BSP preconfigures `10.3.2.10` for `eth0` and `10.3.2.11` for `eth1`, and the ports are labeled on the PCB.
-4. On your host machine, open PowerShell on Windows or a terminal on Unix systems.
-5. SSH into the board using the address for the connected port:
+4. Ensure that your host machine has its ethernet port configured as manual ipv4, set it to 10.3.2.13 with a 255.255.255.0 subnet mask.
+5. On your host machine, open PowerShell on Windows or a terminal on Unix systems.
+6. SSH into the board using the address for the connected port:
 
    ```bash
    ssh root@10.3.2.10

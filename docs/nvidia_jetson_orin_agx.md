@@ -37,12 +37,12 @@ Key repositories and references:
 
 To clone and setup SCALES on the Jetson, complete the following commands in a terminal:
 
-```bash
+```
 git clone https://github.com/BroncoSpace-Lab/fprime-scales-ref.git
 cd fprime-scales-ref
 make setup main
-make arena-init
 make jetson-setup
+make arena-init
 source fprime-venv/bin/activate
 ```
 
@@ -54,7 +54,7 @@ source fprime-venv/bin/activate
 
 `JetsonDeployment` should be generated and built directly on the Jetson as SCALES project does not currently use the Jetson cross-compilation toolchain for the `aarch64-linux` deployment.
 
-```bash
+```
 make build-jetson
 ```
 
@@ -62,7 +62,7 @@ The `make build-jetson` target builds the `aarch64-linux` deployment and sets up
 Once the build is complete, the program will prompt you to enter the host machines username in order to use `scp` to send the JetsonTopologyDictionary.JSON file to the `~/fprime-scales-ref/GDS-Dictionary` folder on the host machine.
 After the dictionary is copied, the program will prompt the user to restart the system service file with the new binary.
 
-Once this process is complete, the end user can now create the merged dictionary on the host machine given they have also built the ImxDeployment on the host machine using the `make gds-setup` command within the `fprime-scales-ref` directory having sources the fprime-venv.
+Once this process is complete, the end user can now create the merged dictionary on the host machine given they have also built the ImxDeployment on the host machine using the `make gds-setup` command within the `fprime-scales-ref` directory having sourced the fprime-venv.
 
 ### 4. Wire the Watchdog GPIO
 
