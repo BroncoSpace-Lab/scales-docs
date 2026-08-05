@@ -84,7 +84,7 @@ nav: # Setting up the navigation. The below list will be tabs on left panel
   - Software:
     - Software Home: software_home.md
     - i.MX 8X Yocto BSP for Development Board: imx_yocto_bsp.md
-    - i.MX 8X Custom Yocto BSP for Custom SCALES Board: IMX8X_customBSP.md
+    - i.MX 8X Custom Yocto BSP for Custom SCALES Board: imx8x_custom_bsp.md
     - SCALES Demo: scales_demo.md
     - F Prime Jetson Deployment: jetson_fprime.md
   - Testing: 

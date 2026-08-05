@@ -18,13 +18,13 @@ Key repositories:
 
 ### 1. Set Up Linux for the SCALES Compute Module
 
-1. Follow the [Setup and Build the BSP](imx_yocto_bsp.md) guide.
+1. Follow the [Setup and Build the Custom BSP](imx_yocto_bsp.md) guide.
 2. If you choose to, you can build your own [fprime-scales-ref/ImxDeployment](https://github.com/BroncoSpace-Lab/fprime-scales-ref).
 3. Flash the built image to an SD card.
 
 !!! note
 
-    If the watchdog solder pads are soldered, both the i.MX8X and the Jetson must have preinstalled reference deployments. The Jetson must also have its designated GPIO wired, or it will be power-cycled approximately every 32 seconds by the watchdog circuitry.
+    If the watchdog solder pads are soldered on the back of the SCALES Compute Module, both the i.MX8X and the Jetson must have preinstalled reference deployments. The Jetson must also have its designated GPIO wired, or it will be power-cycled approximately every 32 seconds by the watchdog circuitry.
 
 ### 2. Boot the SCALES Compute Module
 
@@ -33,19 +33,26 @@ Key repositories:
 3. Apply power through the XT-60 connector.
 4. Wait for the system to boot automatically.
 
-### 3. Log in to the SCALES Compute Module
+### 3. Open the F` GDS
 
-The SCALES Compute Module is accessible over SSH through Ethernet or over a USB-C serial connection.
+1. Navigate to `fprime-scales-ref` and source the fprime-venv with `source fprime-venv/bin/activate`
+2. To setup the gds you must have built for the Imx and Jetson, refer to the **Build the ImxDeployment** section of this document to complete that.
+3. Once you have built both deployments (cross compiled locally for the imx and natively on the Jetson), run the following command:
+```
+make gds-setup // Combines Imx and Jetson Dictionaries (provided the Jetson Dictionary has been copied over)
+```
+4. You are ready to run the GDS, there are two options, TCP and UART, both of which can be run simultaneously. TCP GDS is the primary commander until lack of TCP GDS connectivity defaults the GDS authority to UART. You can switch back to TCP using the `SWITCH_TO_TCP` command.
+```
+make gds-tcp // Runs the Fprime GDS on 127.0.0.1:5000 using TCP
+```
+```
+make gds-uart // Runs the Fprime GDS on 127.0.0.1:5001 using UART
+```
+5. You can now use SCALES on the Imx. You can now run the demo, refer to the [SCALES Demo](scales_demo.md) document to learn to do this.
 
-#### USB-C Serial Connection
+### Log in to the SCALES Compute Module
 
-1. Plug in a USB-C cable from your host machine to the SCALES Compute Module.
-2. Download [Tabby](https://tabby.sh/).
-3. Open Tabby and select **New terminal**.
-4. Navigate to **Profiles & Connections** in the top toolbar.
-5. Search for `ttyUSB0` in the COM ports.
-6. Select `ttyUSB0` and set the baud rate to `115200`.
-7. Default user is `root`, default password is `root`
+The SCALES Compute Module is accessible over SSH through Ethernet or over a 3.3v USB/TTY serial connection.
 
 #### RJ45 Ethernet SSH Connection
 
@@ -71,6 +78,18 @@ Available IP addresses on the SCALES Compute Module:
    ```bash
    ssh root@10.3.2.11
    ```
+  #### USB/TTY 3.3v Serial Connection
+
+  The Yocto embedded linux serial console has been mapped to `LPUART2` for the Imx, meaning it is available via the exposed DF-11 Header on the SCALES Compute Module.
+  Such connectivity requires a 3.3v USB/TTL Serial Adapter cable. The DF-11 Connector has the bottom right three pins mapped to TX/RX/GND respectively. The image below can be used for reference to wire the adapter.
+
+  ![GPIO DF-11 Breakout](Images/DF11GPIOBREAKOUT.png)
+
+  1. Setup the cable adapter
+  2. Download `Tabby` a free serial console program
+  3. Ensure both ends of the cable adapter are plugged in, one to the SCALES Compute Moduel DF-11 Header, and the other to the USB port of your host machine.
+  4. Run `Tabby`, and open the detected COM Port at 115200 BAUD
+  5. User is `root` and the password is `root`
 
 ## Hardware Introduction
 
@@ -87,7 +106,6 @@ The latest design revisions, SPICE simulation models, and engineering calculatio
 
 ## Hardware Overview
 
-The Leviathan 2 board contains two primary subsystems:
 The Leviathan 2 board contains two primary subsystems:
 
 - i.MX8X carrier board circuitry
@@ -289,8 +307,8 @@ Subsystem power requirements:
 
 **OBC fault**
 
-- If the OBC hangs and fails to pet the watchdog, it is power-cycled
-- The load switch enable pin is held high relative to the battery voltage
+- If the OBC hangs and fails to pet the watchdog, it is power-cycled. The OBC should always be on by design.
+- A build in Fault Protection Manager was designed and implemented in the flight software, more information about it can be found [here](https://github.com/BroncoSpace-Lab/fprime-scales/blob/lucadev/scales/scalesSvc/FPManager/docs/sdd.md)
 
 **Jetson fault**
 
@@ -298,7 +316,7 @@ Subsystem power requirements:
 
 **Peripheral fault**
 
-- If the Ethernet switch hangs, the OBC can power-sequence it directly
+- If the Ethernet switch hangs, the OBC can power-sequence it directly, or the FPManager will detect the fault and notify the end user over the GDS
 
 #### Telemetry and Monitoring
 
@@ -306,6 +324,7 @@ Subsystem power requirements:
 - This provides basic telemetry on subsystem operating state
 - Three dedicated temperature sensors also report telemetry back to the i.MX8X over a 3.3 V I2C bus
 - Such telemetry can be seen in the `fprime-scales-ref` `ImxDeployment` and is visible under **Channels** in the GDS
+- Dataproducts can be produced and downlinked to the TCP GDS through the `DataProducer` component. The Downlinked dataproducts can be converted from dataproduct binaries to JSON files, which can then be parsed into .csv files for plotting in excel.
 
-Last updated on 7/7/2026
+Last updated on 8/5/2026
 ---

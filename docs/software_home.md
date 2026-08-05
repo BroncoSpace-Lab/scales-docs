@@ -6,7 +6,7 @@ By Kelly Williams, Alex Mariano, and Luca Lanzillotta
 ### [SCALES Demo](https://scales-docs.readthedocs.io/en/latest/scales_demo/)
 - Step by step guide on how to run the SCALES Demo using our custom hardware and LUCID camera test payload.
 
-### [i.MX 8X Yocto SCALES Compute Module BSP](https://scales-docs.readthedocs.io/en/latest/IMX8X_customBSP/)
+### [i.MX 8X Yocto SCALES Compute Module BSP](https://scales-docs.readthedocs.io/en/latest/imx8x_custom_bsp/)
 - Guide on how to setup, build and deploy the i.MX 8X SCALES Compute Module BSP for our custom hardware.
 - Can be used as a reference guide to modify the existing BSP for custom applications.
 

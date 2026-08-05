@@ -2,13 +2,8 @@
 
 We are using a custom BSP (board support package) for Yocto Linux v5.0 (scarthgap). The BSP comes directly from Phytec support, and can be built on an Ubuntu 22.04 host machine.
 
-This version of the BSP is only for the [PhyTec i.MX 8X SOM Development Kit](https://www.phytec.com/product/phycore-i-mx-8x-development-kit/).
-
-We initially tried to rebuild the BSP they had in their guide to make Yocto v3.0 (zeus) using an Ubuntu 18.04 host machine, but we kept running into errors, so we asked Phytec Support for help. This is what they said:
-
-![Phytec Support Response](Images/phytec_support_ampliphy.png)
-
-The guide they sent us will be relayed here.
+!!! note
+    If you wish to build the **SCALES v1.3.0 release ImxDeployment**, refer to the **Installing the `meta-scales-leviathan` Layer in the Base i.MX8QXP PHYTEC BSP** section. If you wish to develop your own ImxDeployment, read the **Setting up the SDK** section of this document to setup the Imx cross compile toolchain with Fprime.
 
 ## Building the BSP
 
@@ -109,73 +104,41 @@ The guide they sent us will be relayed here.
 
 6. Once you have successfully built, the generated images can be found at `$BUILDDIR/deploy-ampliphy-vendor/images`. 
 
+## Installing the `meta-scales-leviathan` Layer in the Base i.MX8QXP PHYTEC BSP
+
+To bake the custom `scales-leviathan` Linux image, pull the `meta-scales-leviathan` folder into the Yocto sources directory:
+
+```bash
+git clone https://github.com/BroncoSpace-Lab/meta-scales-leviathan.git /BSP-Yocto-NXP-i.MX8X-PD24.1.y/yocto/sources/
+```
+
+Next, copy the `conf` folder into the Yocto build directory. If a `conf` folder already exists there, replace it with this version:
+
+```bash
+cp -r conf /BSP-Yocto-NXP-i.MX8X-PD24.1.y/yocto/build/
+```
+
+
 ## Flashing and Booting the Board
 
 1. Use [balenaEtcher](https://etcher.balena.io/) to flash one of the generated images to your SD card. We used the image called `phytec-headless-image-phycore-imx8x-1.rootfs-20250604171621.wic.xz`. Your file name may have a different number at the end.
 
-2. Once the SD card is done flashing, insert it into the IMX board. Connect the provided UART Micro USB cable into the Debug port X51 (pictured below). Plug the other end into the host machine.
+2. Once the SD card is done flashing, insert it into the SCALES Compute Module, be sure to set the boot toggle switch to the corresponding `SD Card` state, and power on the board by plugging in the required XT-60 connector supplying 28v to the SCALES Compute Module.
 
-    ![UART debug Port](Images/imx8x_uart_debug_port.png)
+3. On boot, the Imx will load the ImxDeployment binary, which will start the flight software by default. You can connect to the Imx via TCP or UCB-C/UART.
+Use a USB-C cable from your host machine to the SCALES Compute Module or an Ethernet cable from your host machine to the SCALES Ethernet Switch. You can then access the GDS by running the following commands in `fprime-scales-ref` with an activated `fprime-venv`.
 
-3. Connect to the serial port before you power on the board.
+Please note that deployment dictionaries are not created until both (Imx and Jetson) deployments have been generated and built
 
-    <details>
-    <summary>Using Linux Terminal</summary>
-
-    1. Install minicom.
-
-    ```
-    sudo apt-get install minicom
-    ```
-
-    2. Check what port the IMX is using by running the following command with and without the UART Debug cable plugged into your computer. In this example, the IMX is using `/dev/ttyUSB0` and `/dev/tty/USB1`.
-
-    ```
-    ls /dev/tty*
-    ```
-    Before IMX is plugged in:
-
-    ![Before](Images/tty_before_imx.png)
-
-    After IMX is plugged in:
-
-    ![After](Images/tty_after_imx.png)
-
-    3. Connect to the serial ports using minicom. When minicom configuration opens, select `Serial port setup` then select `A` to change the device path to `/dev/ttyUSB0`. The IMX uses one serial port for terminal commands and another for debug. Terminal should be on USB0. Press `Enter` to save changes. Back on the configuration page, select `Exit`. You should be connected to the terminal of the IMX.
-
-    ```
-    sudo minicom -s
-    ```
-    
-    4. Once you have connected to the IMX, plug in the power cable. There will be a short boot sequence with an option to stop autoboot. You do not need to stop autoboot. There will evetually be a prompt to enter a password. The default password is `root`.
-
-    </details>
-
-    <details>
-
-    <summary>Using Windows Tera Term</summary>
-
-    1. Do not power the board yet. Connect the UART debug cable to X51 UART0 on the board, and the USB part into your computer. 
-
-    - There are two serial ports that are specific to the i.MX 8X. One will be the debug terminal, and the other will be the main command terminal. Each different Windows host computer will have different names for these ports, so in the next few steps the ports COM15 and COM16 are example ports from Kelly’s computer. 
-    - It is a good idea to open both serial ports that appear as options in Tera Term during your first setup, so that you know which ports are which for your specific computer. 
-
-    2. Start Tera Term (Windows computer). Select Serial COM15. Go to Setup > Serial Port. Change the speed to 115200. Press OK. 
-
-        - COM15 is the command terminal. To see the debug terminal, follow the same steps for COM16. 
-        - COM15 and 16 may be different on other computers. To be safe, set up both ports on the first boot to your device. 
-        - Make sure to set them up before powering the board, or you will miss the sign in prompt. 
-
-    3. Plug in the DC power cable to power on the board. 
-
-    4. Sign in when prompted. Password is “root”. 
-
-    </details>
-
-4. Once you have connected to the IMX, plug in the power cable. There will be a short boot sequence with an option to stop autoboot. You do not need to stop autoboot. There will evetually be a prompt to enter a password. The default password is `root`. The screen should look like this:
-
-    ![IMX Booting Ampliphy](Images/imx_booting_ampliphy.png)
-
+```
+make gds-setup // Combines Imx and Jetson Dictionaries (provided the Jetson Dictionary has been copied over)
+```
+```
+make gds-tcp // Runs the Fprime GDS on 127.0.0.1:5000 using TCP
+```
+```
+make gds-uart // Runs the Fprime GDS on 127.0.0.1:5001 using UART
+```
 
 # Setting up the SDK
 
@@ -219,7 +182,9 @@ In our F Prime deployment, we use environment variables for the toolchain paths.
     echo $IMX_ROOT_PATH
     ```
 
-## F Prime CMake Setup
+####################################################################################################################################################
+
+## [DEPRECATED] F Prime CMake Setup
 
 This setup is not required for first time users, as these files have already been created and exist in the current F Prime deployment. This is simply here to show how the files were created.
 
