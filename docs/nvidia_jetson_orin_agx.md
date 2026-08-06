@@ -30,14 +30,8 @@ Key repositories and references:
    sudo apt-get install python3.12
    ```
 
-<<<<<<< HEAD
-4. Make sure `git lfs` is installed because the Arena SDK setup pulls large files through Git LFS.
-5. Install [pytorch for Jetson Platorms](https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html)
-6. Make sure the Jetson's Ethernet IPV4 IP address is configured to 10.3.2.12
-=======
 5. Ensure that `git lfs` is installed, as the Arena SDK setup pulls large files through Git LFS.
 6. Install [pytorch for Jetson Platforms](https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html)
->>>>>>> lucadev
 
 ### 2. Set Up `fprime-scales-ref`
 
