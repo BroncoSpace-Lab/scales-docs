@@ -8,9 +8,9 @@ By Kelly Williams, Alex Mariano, and Luca Lanzillotta
 
 ### [SCALES Developer Setup](imx_yocto_bsp.md)
 - Guide on how to build the SCALES BSP. 
-- Setup the imx8x SDK and cross compile toolchain.
+- Setup the i.MX8X SDK and cross compile toolchain.
 
-### [IMX8X Custom BSP Development](imx8x_custom_bsp.md)
+### [i.MX8X Custom BSP Development](imx8x_custom_bsp.md)
 - Guide on how to setup, build and deploy your own BSP, for your own custom hardware.
 
 ## SCALES Software Architecture

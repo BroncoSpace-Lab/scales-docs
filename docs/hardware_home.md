@@ -2,25 +2,25 @@
 
 ## [SCALES Compute Module](https://scales-docs.readthedocs.io/en/latest/imx8x_merger/)
 - Usage guide and documentation for the SCALES Compute Module.
-- Hardware designed for the PHYTEC i.MX 8X SOM serving as the core of the SCALES system. 
+- Hardware designed for the PHYTEC i.MX8X SOM serving as the core of the SCALES system. 
 
 ## [Peripheral Board](https://scales-docs.readthedocs.io/en/latest/peripheral_board/)
 - Usage guide and documentation for the SCALES Peripheral Board.
-- Hardware designed for low-power, small scale, 1Gb ethernet switching.
+- Hardware designed for low-power, small scale, 1Gb Ethernet switching.
 
-## [Nvidia Jetson Orin AGX](https://scales-docs.readthedocs.io/en/latest/nvidia_jetson_orin_agx/)
-- Usage guide and documentation for the Nvidia Jetson Orin AGX.
+## [NVIDIA Jetson AGX Orin](https://scales-docs.readthedocs.io/en/latest/nvidia_jetson_orin_agx/)
+- Usage guide and documentation for the NVIDIA Jetson AGX Orin.
 - Edge computer used by the SCALES system for machine learning and payload processing.
 
-## Consumer Off the Shelf Hardware
+## Commercial Off-The-Shelf Hardware
 
-Flight Computer: NXP i.MX 8X on a PHYTEC Development Board
+Flight Computer: NXP i.MX8X on a PHYTEC Development Board
 
 - [NXP Processor](https://www.nxp.com/products/i.MX8X)
 - [PHYTEC SOM](https://www.phytec.com/product/phycore-imx8x/)
 - [PHYTEC Dev. Kit](https://www.phytec.com/product/phycore-i-mx-8x-development-kit/)
 
-![IMX Dev Board](Images/imx-dev-board.png){ width="600" style="display: block; margin: 0 auto;" }
+![i.MX8X Dev Board](Images/imx-dev-board.png){ width="600" style="display: block; margin: 0 auto;" }
 
 Edge Computer: NVIDIA Jetson AGX Orin Developer Kit
 

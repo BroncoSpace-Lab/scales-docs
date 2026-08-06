@@ -1,4 +1,4 @@
-# Nvidia Jetson Orin AGX
+# NVIDIA Jetson AGX Orin
 By Luca Lanzillotta
 
 ## Usage Guide
@@ -18,20 +18,20 @@ Key repositories and references:
     If you are setting up the Jetson for the first time, we recommend using the included USB-C power cable to power the jetson. Once the SCALES Compute Module and the Jetson have installed versions of the flight software that run on boot, you can then power the Jetson using the built in DF11 to DC Jack connector that comes with the SCALES Dev Kit.
 
 1. Flash and boot the Jetson AGX Orin Developer Kit with the required Jetson JetPack image (Version 6.2.2) for the project.
-2. Connect the Jetson an internet connection via wifi.
+2. Connect the Jetson to an internet connection via wifi.
 3. Setup the Jetson Ethernet port to use a manual ipv4 assignment. Set the Jetson IP to be `10.3.2.12` on the `255.255.255.0` subnet mask.
 4. Confirm that `python3.12` is installed before running the SCALES setup:
 
    ```bash
    python3.12 --version
    ```
-   ```base
+   ```bash
    // To install python3.12
    sudo apt-get install python3.12
    ```
 
 5. Ensure that `git lfs` is installed, as the Arena SDK setup pulls large files through Git LFS.
-6. Install [pytorch for Jetson Platorms](https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html)
+6. Install [pytorch for Jetson Platforms](https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html)
 
 ### 2. Set Up `fprime-scales-ref`
 
@@ -59,14 +59,14 @@ make build-jetson
 ```
 
 The `make build-jetson` target builds the `aarch64-linux` deployment and sets up the Jetson-side Python/F Prime build environment used by the deployment.
-Once the build is complete, the program will prompt you to enter the host machines username in order to use `scp` to send the JetsonTopologyDictionary.JSON file to the `~/fprime-scales-ref/GDS-Dictionary` folder on the host machine.
+Once the build is complete, the program will prompt you to enter the host machine's username in order to use `scp` to send the JetsonTopologyDictionary.JSON file to the `~/fprime-scales-ref/GDS-Dictionary` folder on the host machine.
 After the dictionary is copied, the program will prompt the user to restart the system service file with the new binary.
 
 Once this process is complete, the end user can now create the merged dictionary on the host machine given they have also built the ImxDeployment on the host machine using the `make gds-setup` command within the `fprime-scales-ref` directory having sourced the fprime-venv.
 
 ### 4. Wire the Watchdog GPIO
 
-When using the Jetson with the SCALES Compute Module / Merger board watchdog circuitry, wire one Jetson GPIO to the Jetson watchdog input on the Merger board.
+When using the Jetson with the SCALES Compute Module watchdog circuitry, wire one Jetson GPIO to the Jetson watchdog input on the SCALES Compute Module.
 
 - Jetson GPIO Watchdog pin: GPIO27 / Pin 13
 - Expected watchdog behavior: `JetsonDeployment` must toggle this GPIO to prevent the SCALES Compute Module watchdog from resetting the Jetson power rail.

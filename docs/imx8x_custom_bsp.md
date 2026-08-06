@@ -1,4 +1,4 @@
-# How to Create and Maintain a Custom BSP for the IMX8X
+# How to Create and Maintain a Custom BSP for the i.MX8X
 By Luca Lanzillotta, John Williams and John Pollak
 
 # Understanding the BSP
@@ -2191,4 +2191,4 @@ Once it succeeds, flash and boot the image the same way as the reference build �
 
 ## Using an existing custom layer
 
-If a `meta-` layer for your carrier board already exists — for example, the SCALES Leviathan carrier board's `meta-scales-leviathan` — you don't need to repeat Steps 1-5 from scratch. Follow [Installing the `meta-scales-leviathan` Layer in the Base i.MX8QXP PHYTEC BSP](imx_yocto_bsp.md#installing-the-meta-scales-leviathan-layer-in-the-base-imx8qxp-phytec-bsp) instead.
+If a `meta-` layer for your carrier board already exists — for example, the SCALES Leviathan carrier board's `meta-scales-leviathan` — you don't need to repeat Steps 1-5 from scratch. Follow [Installing the `meta-scales-leviathan` Layer in the Base i.MX8X PHYTEC BSP](imx_yocto_bsp.md#installing-the-meta-scales-leviathan-layer-in-the-base-imx8x-phytec-bsp) instead.

@@ -1,16 +1,16 @@
-# i.MX 8X Developer's Guide
+# i.MX8X Developer's Guide
 
-This document lists the interfacing and testing procedures required to get the i.MX 8X development board up and running for SCALES.
+This document lists the interfacing and testing procedures required to get the i.MX8X development board up and running for SCALES.
 
 Important note: It is ideal to be using a 64-bit Linux host machine as opposed to Windows or a virtual machine. An ARM Cortex Linux machine will not work (cannot use a Jetson as host computer for development). We are using Ubuntu 22.04 native Linux.
 
-## Connecting directly to the i.MX 8X
+## Connecting directly to the i.MX8X
 
 Connect to the dev board following the [Quick Start guide](https://docs.phytec.com/projects/yocto-phycore-imx8x/en/latest/quickstart/index.html#basic-evaluation-requirements). 
 
 ### Required materials
 
-- i.MX 8X development board, with microUSB UART cable and power cable. 
+- i.MX8X development board, with microUSB UART cable and power cable. 
 - A Windows computer with Tera Term installed (or other serial communication software.) 
 
 ### Directions
@@ -26,26 +26,26 @@ Do not power the board until directed. No power makes it easier to verify the se
 sudo apt-get install minicom
 ```
 
-2. Check what port the IMX is using by running the following command with and without the UART Debug cable plugged into your computer. In this example, the IMX is using `/dev/ttyUSB0` and `/dev/tty/USB1`.
+2. Check what port the i.MX8X is using by running the following command with and without the UART Debug cable plugged into your computer. In this example, the i.MX8X is using `/dev/ttyUSB0` and `/dev/ttyUSB1`.
 
 ```
 ls /dev/tty*
 ```
-Before IMX is plugged in:
+Before i.MX8X is plugged in:
 
 ![Before](Images/tty_before_imx.png)
 
-After IMX is plugged in:
+After i.MX8X is plugged in:
 
 ![After](Images/tty_after_imx.png)
 
-3. Connect to the serial ports using minicom. When minicom configuration opens, select `Serial port setup` then select `A` to change the device path to `/dev/ttyUSB0`. The IMX uses one serial port for terminal commands and another for debug. Terminal should be on USB0. Press `Enter` to save changes. Back on the configuration page, select `Exit`. You should be connected to the terminal of the IMX.
+3. Connect to the serial ports using minicom. When minicom configuration opens, select `Serial port setup` then select `A` to change the device path to `/dev/ttyUSB0`. The i.MX8X uses one serial port for terminal commands and another for debug. Terminal should be on USB0. Press `Enter` to save changes. Back on the configuration page, select `Exit`. You should be connected to the terminal of the i.MX8X.
 
 ```
 sudo minicom -s
 ```
 
-4. Once you have connected to the IMX, plug in the power cable. There will be a short boot sequence with an option to stop autoboot. You do not need to stop autoboot. There will evetually be a prompt to enter a password. The default password is `root`.
+4. Once you have connected to the i.MX8X, plug in the power cable. There will be a short boot sequence with an option to stop autoboot. You do not need to stop autoboot. There will eventually be a prompt to enter a password. The default password is `root`.
 
 </details>
 
@@ -54,7 +54,7 @@ sudo minicom -s
 
 1. Do not power the board yet. Connect the UART debug cable to X51 UART0 on the board, and the USB part into your computer. 
 
-- There are two serial ports that are specific to the i.MX 8X. One will be the debug terminal, and the other will be the main command terminal. Each different Windows host computer will have different names for these ports, so in the next few steps the ports COM15 and COM16 are example ports from Kelly’s computer. 
+- There are two serial ports that are specific to the i.MX8X. One will be the debug terminal, and the other will be the main command terminal. Each different Windows host computer will have different names for these ports, so in the next few steps the ports COM15 and COM16 are example ports from Kelly’s computer. 
 - It is a good idea to open both serial ports that appear as options in Tera Term during your first setup, so that you know which ports are which for your specific computer. 
 
 2. Start Tera Term (Windows computer). Select Serial COM15. Go to Setup > Serial Port. Change the speed to 115200. Press OK. 
@@ -72,7 +72,7 @@ sudo minicom -s
 
 ## Setting up Host Computer
 
-Following [this guide to install the SDK](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/) on the host computer. 
+Follow [this guide to install the SDK](imx_yocto_bsp.md) on the host computer. 
 
 Once the SDK is set up on the host computer, it never needs to be done again. 
 
@@ -83,7 +83,7 @@ Once the SDK is set up on the host computer, it never needs to be done again.
 - Windows computer with Tera Term installed or Linux environment
 - Ethernet cable 
 - Router/Ethernet hub 
-- i.MX 8X development board 
+- i.MX8X development board 
 
 ### Directions
 
@@ -121,20 +121,20 @@ Once the SDK is set up on the host computer, it never needs to be done again.
 ### Copying files over to the board
 
 1. Make sure the board is connected to the host computer via ethernet.
-2. Navigate to the directory with the file you would like to copy to the i.MX 8X. Use the following command to secure copy that file to the board. Fill in the blank for the file name and the IP address of the board.
+2. Navigate to the directory with the file you would like to copy to the i.MX8X. Use the following command to secure copy that file to the board. Fill in the blank for the file name and the IP address of the board.
     ```
     scp -o HostKeyAlgorithms=+ssh-rsa -o PubKeyAcceptedAlgorithms=+ssh-rsa <file name> root@<ip address>:~
     ```
-3. You should be able to see the file in the main directory of the i.MX 8X.
+3. You should be able to see the file in the main directory of the i.MX8X.
 
 ## I2C Interfacing
 
-Following [this guide on I2C interfacing](https://docs.phytec.com/projects/yocto-phycore-imx8x/en/latest/interfaceguides/i2c.html). 
+Follow [this guide on I2C interfacing](https://docs.phytec.com/projects/yocto-phycore-imx8x/en/latest/interfaceguides/i2c.html). 
 
 ### Required materials
 
-- MPC9808 Temp. Sensor with 4 female to female dupont wires 
-- i.MX 8X development board 
+- MCP9808 Temp. Sensor with 4 female to female dupont wires 
+- i.MX8X development board 
 - Windows computer with Tera Term installed 
 - 64-bit Linux host computer 
 
@@ -199,7 +199,7 @@ Red goes into pin 1 of X60.
 
 8. This code will generate an executable file. To run this code on the board, you may choose to use a USB flash drive or pull the code from our GitHub repo: 
 
- **USB:**
+#### USB
 
 1. Copy the file to a USB and insert it in the board. Run the following commands on the board to set up the USB: 
     ```
@@ -220,11 +220,11 @@ Red goes into pin 1 of X60.
     ```
 4. You should see the temperature readings in the terminal. 
 
- **GitHub:**
+#### GitHub
 
 1. The board must be connected to internet via wifi or ethernet for this method to work. 
 
-2. Clone the scales-hardware GitHub repo to your home directory if you not previously done so.
+2. Clone the scales-hardware GitHub repo to your home directory if you have not previously done so.
     ```
     cd
     git clone https://github.com/BroncoSpace-Lab/scales-hardware.git
@@ -248,11 +248,11 @@ Red goes into pin 1 of X60.
 
 ---
 
-# F Prime on the i.MX 8X
+## F Prime on the i.MX8X
 
-SCALES has developed an F Prime deployment for the i.MX 8X that can be found in our [fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref/tree/main) GitHub in ImxDeployment.
+SCALES has developed an F Prime deployment for the i.MX8X that can be found in our [fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref/tree/main) GitHub in ImxDeployment.
 
-## How to Clone
+### How to Clone
 
 There are a few git submodules used here, so when cloning be sure to init and update them.
 
@@ -264,21 +264,21 @@ make arena-init
 source fprime-venv/bin/activate
 ```
 
-### Necessary Changes
+#### Necessary Changes
 
 Some lines need to be commented in `lib/fprime/cmake/API.cmake` in order to use `fprime-python`. Comment out lines [545](https://github.com/nasa/fprime/blob/5a3b873854fe4d646d6874d134585535652fddb9/cmake/API.cmake#L545) and [562](https://github.com/nasa/fprime/blob/5a3b873854fe4d646d6874d134585535652fddb9/cmake/API.cmake#L562).
 
 After this, you should be good to go!
 
-## ImxDeployment
+### ImxDeployment
 
-To correctly generate and build for the IMX, you need to have the build environment on your machine. Refer to [this guide](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/#building-the-bsp) we made on our docs for how to set up the IMX SDK.
+To correctly generate and build for the i.MX8X, you need to have the build environment on your machine. Refer to [this guide](imx_yocto_bsp.md#building-the-bsp) we made on our docs for how to set up the i.MX8X SDK.
 
 <details>
 
 <summary> ImxDeployment Build Configuration Details </summary>
 
-### For Successful Build
+#### For Successful Build
 
 Your `settings.ini` should look like this:
 

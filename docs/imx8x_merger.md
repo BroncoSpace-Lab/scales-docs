@@ -10,11 +10,11 @@ Key repositories:
 - [BroncoSpace-Lab/scales-hardware](https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/imx8x_eps_leviathan_v2)  
  KiCad schematic, PCB, and project-local libraries for the current SCALES Compute Module.
 - [BroncoSpace-Lab/fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref)  
-  F Prime reference deployment used by the SCALES Compute Module and Nvidia Jetson.
+  F Prime reference deployment used by the SCALES Compute Module and NVIDIA Jetson.
 - [BroncoSpace-Lab/scales-firmware](https://github.com/BroncoSpace-Lab/scales-firmware)  
   Firmware source and supporting software for the SCALES system.
 - [BroncoSpace-Lab/meta-scales-leviathan](https://github.com/BroncoSpace-Lab/meta-scales-leviathan)  
-  Yocto meta-layer for building the SCALES imx8x Linux BSP.
+  Yocto meta-layer for building the SCALES i.MX8X Linux BSP.
 
 ### 1. Set Up Linux for the SCALES Compute Module
 
@@ -33,11 +33,11 @@ Key repositories:
 3. Apply power through the XT-60 connector.
 4. Wait for the system to boot automatically.
 
-### 3. Open the F` GDS
+### 3. Open the F Prime GDS
 
 1. Navigate to `fprime-scales-ref` and source the fprime-venv with `source fprime-venv/bin/activate`
-2. To setup the gds you must have built for the Imx and Jetson, refer to the **Build the ImxDeployment** section of this document to complete that.
-3. Once you have built both deployments (cross compiled locally for the imx and natively on the Jetson), run the following command:
+2. To setup the gds you must have built for the i.MX8X and Jetson, refer to the [Build the ImxDeployment](#build-the-imxdeployment) section of this document to complete that.
+3. Once you have built both deployments (cross compiled locally for the i.MX8X and natively on the Jetson), run the following command:
 ```
 make gds-setup // Combines Imx and Jetson Dictionaries (provided the Jetson Dictionary has been copied over)
 ```
@@ -48,9 +48,9 @@ make gds-tcp // Runs the Fprime GDS on 127.0.0.1:5000 using TCP
 ```
 make gds-uart // Runs the Fprime GDS on 127.0.0.1:5001 using UART
 ```
-5. You can now use SCALES on the Imx. You can now run the demo, refer to the [SCALES Demo](scales_demo.md) document to learn to do this.
+5. You can now use SCALES on the i.MX8X. You can now run the demo, refer to the [SCALES Demo](scales_demo.md) document to learn to do this.
 
-### Log in to the SCALES Compute Module
+### 4. Log in to the SCALES Compute Module
 
 The SCALES Compute Module is accessible over SSH through Ethernet or over a 3.3v USB/TTY serial connection.
 
@@ -79,26 +79,37 @@ Available IP addresses on the SCALES Compute Module:
    ```bash
    ssh root@10.3.2.11
    ```
-  #### USB/TTY 3.3v Serial Connection
+#### USB/TTY 3.3v Serial Connection
 
-  The Yocto embedded linux serial console has been mapped to `LPUART2` for the Imx, meaning it is available via the exposed DF-11 Header on the SCALES Compute Module.
-  Such connectivity requires a 3.3v USB/TTL Serial Adapter cable. The DF-11 Connector has the bottom right three pins mapped to TX/RX/GND respectively. The image below can be used for reference to wire the adapter.
+The Yocto embedded linux serial console has been mapped to `LPUART2` for the i.MX8X, meaning it is available via the exposed DF-11 Header on the SCALES Compute Module.
+Such connectivity requires a 3.3v USB/TTL Serial Adapter cable. The DF-11 Connector has the bottom right three pins mapped to TX/RX/GND respectively. The image below can be used for reference to wire the adapter.
 
-  ![GPIO DF-11 Breakout](Images/DF11GPIOBREAKOUT.png)
+![GPIO DF-11 Breakout](Images/DF11GPIOBREAKOUT.png)
 
-  1. Setup the cable adapter
-  2. Download `Tabby` a free serial console program
-  3. Ensure both ends of the cable adapter are plugged in, one to the SCALES Compute Moduel DF-11 Header, and the other to the USB port of your host machine.
-  4. Run `Tabby`, and open the detected COM Port at 115200 BAUD
-  5. User is `root` and the password is `root`
+1. Setup the cable adapter
+2. Download `Tabby` a free serial console program
+3. Ensure both ends of the cable adapter are plugged in, one to the SCALES Compute Module DF-11 Header, and the other to the USB port of your host machine.
+4. Run `Tabby`, and open the detected COM Port at 115200 BAUD
+5. User is `root` and the password is `root`
+
+### Build the ImxDeployment
+Once you have cloned the `fprime-scales-ref` repo on your host machine, and you have setup the SDK and cross compile toolchain, run the following commands to build the ImxDeployment.
+
+```
+make setup main  // Ensures all dependencies are installed on the host machine, and does so with the `main` branch of fprime-scales
+make build-imx8x // Generates and builds the ImxDeployment. Use `nogen` flag to skip generation on a simple rebuild (no fpp changes)
+make gds-setup   // Built in command that loads both dictionaries, merges them, and spits out the merged file in the /GDS-Dictionary directory
+make gds-tcp     // Built in command that runs the GDS with the TCP flag
+make gds-uart    // Built in command that runs the GDS with the UART flag 
+```
 
 ## Hardware Introduction
 
 Leviathan 2 is the merged implementation of the SCALES i.MX8X Carrier Board and the SCALES EPS. It consolidates two previously separate development boards into a single design:
 
 - A revised version of the Leviathan 1A board which served as the first merged implementation of the Mariner 1-C board and the Viking 1-C board.
+- A revised version of the Viking 1-C board, the SCALES EPS.
 
-This merged board is designated **Leviathan 2**.
 This merged board is designated **Leviathan 2**.
 
 The latest design revisions, SPICE simulation models, and engineering calculations are available in the [scales-hardware](https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/imx8x_eps_leviathan_v2) repository.
@@ -126,7 +137,7 @@ The Leviathan 2 board contains two primary subsystems:
 
 ## i.MX8X Carrier Board Implementation
 
-The i.MX8X carrier board section is a reduced version of the development platform provided by Phytec and includes the interfaces listed below.
+The i.MX8X carrier board section is a reduced version of the development platform provided by PHYTEC and includes the interfaces listed below.
 
 Each serial and peripheral interface is explicitly defined in the custom BSP, which provides the Linux kernel with the hardware description for this carrier board. Refer to the Leviathan 2 meta-layer in the BSP for complete details on pin configuration and usage.
 
@@ -136,7 +147,7 @@ All GPIO, SPI, I2C, and UART signals made available to the end user are routed t
 
 ### Component Selection
 
-Most of these components are derived directly from the Phytec PCM-942 development board schematic. Although alternative components with similar specifications may also be suitable, this design stays as close as possible to the reference implementation for the features included here.
+Most of these components are derived directly from the PHYTEC PCM-942 development board schematic. Although alternative components with similar specifications may also be suitable, this design stays as close as possible to the reference implementation for the features included here.
 
 - [SoM Connectors](https://www.samtec.com/products/bth-070-02-l-d-a-k-tr#cadmodels)
 - [DF11 Connectors](https://lcsc.com/product-detail/Wire-To-Board-Wire-To-Wire-Connector_HRS-Hirose-HRS-DF11-16DP-2DSA-08_C530981.html)
@@ -179,7 +190,7 @@ Most of these components are derived directly from the Phytec PCM-942 developmen
 - The default BSP configures UART0 for debugging
 - This interface allows direct transmission and reception of commands and telemetry over UART
 - The onboard chip provides UART-to-FTDI translation so the board can interface with a host machine over a serial port
-- This design and supporting chip originate from the Phytec reference implementation
+- This design and supporting chip originate from the PHYTEC reference implementation
 
 ### MicroSD Card
 
@@ -309,7 +320,7 @@ Subsystem power requirements:
 **OBC fault**
 
 - If the OBC hangs and fails to pet the watchdog, it is power-cycled. The OBC should always be on by design.
-- A build in Fault Protection Manager was designed and implemented in the flight software, more information about it can be found [here](https://github.com/BroncoSpace-Lab/fprime-scales/blob/lucadev/scales/scalesSvc/FPManager/docs/sdd.md)
+- A built-in Fault Protection Manager was designed and implemented in the flight software, more information about it can be found [here](https://github.com/BroncoSpace-Lab/fprime-scales/blob/lucadev/scales/scalesSvc/FPManager/docs/sdd.md)
 
 **Jetson fault**
 

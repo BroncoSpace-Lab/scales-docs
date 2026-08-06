@@ -1,15 +1,15 @@
 # i.MX 8X Yocto BSP Development and Usage
 
-We are using a custom BSP (board support package) for Yocto Linux v5.0 (scarthgap). The BSP comes directly from Phytec support, and can be built on an Ubuntu 22.04 host machine.
+We are using a custom BSP (board support package) for Yocto Linux v5.0 (scarthgap). The BSP comes directly from PHYTEC support, and can be built on an Ubuntu 22.04 host machine.
 
 !!! note
-    If you wish to build the **SCALES v1.3.0 release ImxDeployment**, refer to the **Installing the `meta-scales-leviathan` Layer in the Base i.MX8QXP PHYTEC BSP** section. If you wish to develop your own ImxDeployment, read the **Setting up the SDK** section of this document to setup the Imx cross compile toolchain with Fprime.
+    If you wish to build the **SCALES v1.3.0 release ImxDeployment**, refer to the **Installing the `meta-scales-leviathan` Layer in the Base i.MX8X PHYTEC BSP** section. If you wish to develop your own ImxDeployment, read the **Setting up the SDK** section of this document to setup the i.MX8X cross compile toolchain with F Prime.
 
 ## Building the BSP
 
 **Requirements**
 
-- Ubuntu 22.04_ LTS, 64-bit Host Machine with root permission
+- Ubuntu 22.04 LTS, 64-bit Host Machine with root permission
 - At least 100GB of free disk space
 - At least 8GB of RAM
 - Internet Connection
@@ -52,7 +52,7 @@ We are using a custom BSP (board support package) for Yocto Linux v5.0 (scarthga
     podman run --rm=true -v /home:/home -e USER=$USER --userns=keep-id --workdir=$PWD -it docker.io/phybuilder/yocto-ubuntu-22.04 bash
     ```
 
-2. Download the BSP Meta Layers. This command will lead you through an interactive tool to set up the BSP. The platfrom and release are preselected, so you can just enter `1` when prompted.
+2. Download the BSP Meta Layers. This command will lead you through an interactive tool to set up the BSP. The platform and release are preselected, so you can just enter `1` when prompted.
 
     ```
     phyLinux init -p imx8x -r BSP-Yocto-NXP-i.MX8X-PD24.1.y
@@ -104,7 +104,7 @@ We are using a custom BSP (board support package) for Yocto Linux v5.0 (scarthga
 
 6. Once you have successfully built, the generated images can be found at `$BUILDDIR/deploy-ampliphy-vendor/images`. 
 
-## Installing the `meta-scales-leviathan` Layer in the Base i.MX8QXP PHYTEC BSP
+## Installing the `meta-scales-leviathan` Layer in the Base i.MX8X PHYTEC BSP
 
 To bake the custom `scales-leviathan` Linux image, pull the `meta-scales-leviathan` folder into the Yocto sources directory:
 
@@ -125,10 +125,10 @@ cp -r conf /BSP-Yocto-NXP-i.MX8X-PD24.1.y/yocto/build/
 
 2. Once the SD card is done flashing, insert it into the SCALES Compute Module, be sure to set the boot toggle switch to the corresponding `SD Card` state, and power on the board by plugging in the required XT-60 connector supplying 28v to the SCALES Compute Module.
 
-3. On boot, the Imx will load the ImxDeployment binary, which will start the flight software by default. You can connect to the Imx via TCP or UCB-C/UART.
+3. On boot, the i.MX8X will load the ImxDeployment binary, which will start the flight software by default. You can connect to the i.MX8X via TCP or USB-C/UART.
 Use a USB-C cable from your host machine to the SCALES Compute Module or an Ethernet cable from your host machine to the SCALES Ethernet Switch. You can then access the GDS by running the following commands in `fprime-scales-ref` with an activated `fprime-venv`.
 
-Please note that deployment dictionaries are not created until both (Imx and Jetson) deployments have been generated and built
+Please note that deployment dictionaries are not created until both (i.MX8X and Jetson) deployments have been generated and built
 
 ```
 make gds-setup // Combines Imx and Jetson Dictionaries (provided the Jetson Dictionary has been copied over)
@@ -140,15 +140,15 @@ make gds-tcp // Runs the Fprime GDS on 127.0.0.1:5000 using TCP
 make gds-uart // Runs the Fprime GDS on 127.0.0.1:5001 using UART
 ```
 
-# Setting up the SDK
+## Setting up the SDK
 
-1. Make sure you set up the BSP build enviornment (described above), and run the following command to populate the SDK.
+1. Make sure you set up the BSP build environment (described above), and run the following command to populate the SDK.
 
     ```
     bitbake phytec-headless-image -c populate_sdk
     ```
 
-2. The SDK files are generated in `BSP-Yocto-NSP-i.MX8X-PD24.1.y/yocyo/build/deploy-ampliphy-vendor/sdk`. Navigate to that directory.
+2. The SDK files are generated in `BSP-Yocto-NXP-i.MX8X-PD24.1.y/yocto/build/deploy-ampliphy-vendor/sdk`. Navigate to that directory.
 
 3. Find the file `phytec-ampliphy-vendor-glibc-x86_64-phytec-headless-image-cortexa35-toolchain-5.0.4-devel.sh` and right click to “Run as Program”
 
@@ -156,7 +156,7 @@ make gds-uart // Runs the Fprime GDS on 127.0.0.1:5001 using UART
 
 5. The toolchains for compiling will be here: `/opt/ampliphy-vendor/5.0.4-devel/sysroots/x86_64-phytecsdk-linux/usr/bin/aarch64-phytec-linux`
 
-# F Prime Integration
+## F Prime Integration
 
 In our F Prime deployment, we use environment variables for the toolchain paths. The following instructions will guide you through setting up global environment variables.
 
@@ -182,8 +182,6 @@ In our F Prime deployment, we use environment variables for the toolchain paths.
     echo $IMX_ROOT_PATH
     ```
 
-####################################################################################################################################################
-
 ## [DEPRECATED] F Prime CMake Setup
 
 This setup is not required for first time users, as these files have already been created and exist in the current F Prime deployment. This is simply here to show how the files were created.
@@ -200,9 +198,9 @@ For more information on how we created the F Prime platform and toolchain files,
 
     ![imx8x toolchain](Images/imx8x-toolchain.png)
 
-    If you look at the files in this directory you will see two folders, `aarch64-phytec-linux` and `aarch64-phytec-linux-musl`. If you pay attention to the path, it follows a pattern. After `/sysroots` there is `/x86_64-phytecSDK-linux` which is the architecture of your host computer. So, to complete the path we must use the `aarch64-phytec-linux` folder since that is the architecture on the IMX8X. That folder contains the toolchains for compilation.
+    If you look at the files in this directory you will see two folders, `aarch64-phytec-linux` and `aarch64-phytec-linux-musl`. If you pay attention to the path, it follows a pattern. After `/sysroots` there is `/x86_64-phytecSDK-linux` which is the architecture of your host computer. So, to complete the path we must use the `aarch64-phytec-linux` folder since that is the architecture on the i.MX8X. That folder contains the toolchains for compilation.
 
-4. Make sure you set up your enironment variables as described in the previous section.
+4. Make sure you set up your environment variables as described in the previous section.
 
 5. Pick which toolchains to use, from the same `environment-setup-cortexa35-phytec-linux` file.
 
@@ -215,7 +213,7 @@ For more information on how we created the F Prime platform and toolchain files,
     ```
     # STEP 3: Specify the path to C and CXX cross compilers
     set (CMAKE_C_COMPILER "${IMX_TOOLCHAIN_DIR}/aarch64-phytec-linux-gcc")
-    set (CMAKE_CXX_COMPILER "${IMX_TOOLCHAIN_DIR/aarch64-phytec-linux-g++")
+    set (CMAKE_CXX_COMPILER "${IMX_TOOLCHAIN_DIR}/aarch64-phytec-linux-g++")
     ```
 
 6. Add compiler options, found in the same `environment-setup-cortexa35-phytec-linux` file.
@@ -226,7 +224,7 @@ For more information on how we created the F Prime platform and toolchain files,
 
     Replace `$SDKTARGETSYSROOT` with `/opt/ampliphy-vendor/5.0.4-devel/sysroots/cortexa35-phytec-linux` in your toolchain and platform cmake files.
 
-    We also added the `-O` compiler option, due to the [GitHub discussion](https://github.com/nasa/fprime/discussions/3002) from piror compliation issues.
+    We also added the `-O` compiler option, due to the [GitHub discussion](https://github.com/nasa/fprime/discussions/3002) from prior compilation issues.
 
     Code for `toolchain/imx8x.cmake`:
 
@@ -267,11 +265,13 @@ For more information on how we created the F Prime platform and toolchain files,
     <summary> Code. </summary>
         
         ```powershell
-        # STEP 4: Specify paths to root of toolchain package, for searching for#         libraries, executables, etc.set (CMAKE_FIND_ROOT_PATH "/opt/ampliphy-vendor")
+        # STEP 4: Specify paths to root of toolchain package, for searching for
+        #         libraries, executables, etc.
+        set (CMAKE_FIND_ROOT_PATH "/opt/ampliphy-vendor")
         ```
     </details>
 
-7. Finishing `platform/imx8x.cmake`
+8. Finishing `platform/imx8x.cmake`
     
     Complete Step 1 of the template by commenting out or deleting the fail-safe line.
     
