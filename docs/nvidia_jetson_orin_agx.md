@@ -68,7 +68,7 @@ Once this process is complete, the end user can now create the merged dictionary
 
 When using the Jetson with the SCALES Compute Module watchdog circuitry, wire one Jetson GPIO to the Jetson watchdog input on the SCALES Compute Module.
 
-- Jetson GPIO Watchdog pin: GPIO27 / Pin 13
+- Jetson GPIO Watchdog pin: GPIO27 / Pin 15
 - Expected watchdog behavior: `JetsonDeployment` must toggle this GPIO to prevent the SCALES Compute Module watchdog from resetting the Jetson power rail.
 
 ![Jetson GPIO Breakout](Images/jetson-gpio.png){ style="display:block; margin:0 auto; max-width:600px; width:30%; height:30%;" }
