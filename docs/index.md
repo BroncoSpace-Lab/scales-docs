@@ -1,6 +1,6 @@
 # Welcome to the SCALES Documentation Site!
 
->   Spacecraft Compartmentalized Autonomous Learning and Edge-computing System
+>   Spacecraft Compartmentalized Autonomous Learning and Edge-Computing System
 
 <p align="center">
     <img src="Images/SCALES Mission Patch.png" alt = "SCALES Mission Patch" width = "200" class="center">

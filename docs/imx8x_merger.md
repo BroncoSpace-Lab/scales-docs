@@ -10,15 +10,15 @@ Key repositories:
 - [BroncoSpace-Lab/scales-hardware](https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/imx8x_eps_leviathan_v2)  
  KiCad schematic, PCB, and project-local libraries for the current SCALES Compute Module.
 - [BroncoSpace-Lab/fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref)  
-  F Prime reference deployment used by the SCALES Compute Module and Nvidia Jetson.
+  F Prime reference deployment used by the SCALES Compute Module and NVIDIA Jetson.
 - [BroncoSpace-Lab/scales-firmware](https://github.com/BroncoSpace-Lab/scales-firmware)  
   Firmware source and supporting software for the SCALES system.
 - [BroncoSpace-Lab/meta-scales-leviathan](https://github.com/BroncoSpace-Lab/meta-scales-leviathan)  
-  Yocto meta-layer for building the SCALES imx8x Linux BSP.
+  Yocto meta-layer for building the SCALES i.MX8X Linux BSP.
 
 ### 1. Set Up Linux for the SCALES Compute Module
 
-1. Follow the [Setup and Build the BSP](imx_yocto_bsp.md) guide.
+1. Follow the [Setup and Build the Custom BSP](imx_yocto_bsp.md) guide.
 2. If you choose to, you can build your own [fprime-scales-ref/ImxDeployment](https://github.com/BroncoSpace-Lab/fprime-scales-ref).
 3. Flash the built image to an SD card.
 
@@ -28,7 +28,7 @@ Key repositories:
 
 !!! note
 
-    If the watchdog solder pads are soldered, both the i.MX8X and the Jetson must have preinstalled reference deployments. The Jetson must also have its designated GPIO wired, or it will be power-cycled approximately every 32 seconds by the watchdog circuitry.
+    If the watchdog solder pads are soldered on the back of the SCALES Compute Module, both the i.MX8X and the Jetson must have preinstalled reference deployments. The Jetson must also have its designated GPIO wired, or it will be power-cycled approximately every 32 seconds by the watchdog circuitry.
 
 ### 2. Boot the SCALES Compute Module
 
@@ -37,19 +37,26 @@ Key repositories:
 3. Apply power through the XT-60 connector.
 4. Wait for the system to boot automatically.
 
-### 3. Log in to the SCALES Compute Module
+### 3. Open the F Prime GDS
 
-The SCALES Compute Module is accessible over SSH through Ethernet or over a serial connection.
+1. Navigate to `fprime-scales-ref` and source the fprime-venv with `source fprime-venv/bin/activate`
+2. To setup the gds you must have built for the i.MX8X and Jetson, refer to the [Build the ImxDeployment](#build-the-imxdeployment) section of this document to complete that.
+3. Once you have built both deployments (cross compiled locally for the i.MX8X and natively on the Jetson), run the following command:
+```
+make gds-setup // Combines Imx and Jetson Dictionaries (provided the Jetson Dictionary has been copied over)
+```
+4. You are ready to run the GDS, there are two options, TCP and UART, both of which can be run simultaneously. TCP GDS is the primary commander until lack of TCP GDS connectivity defaults the GDS authority to UART. You can switch back to TCP using the `SWITCH_TO_TCP` command.
+```
+make gds-tcp // Runs the Fprime GDS on 127.0.0.1:5000 using TCP
+```
+```
+make gds-uart // Runs the Fprime GDS on 127.0.0.1:5001 using UART
+```
+5. You can now use SCALES on the i.MX8X. You can now run the demo, refer to the [SCALES Demo](scales_demo.md) document to learn to do this.
 
-#### ttyLP2 Serial Connection
+### 4. Log in to the SCALES Compute Module
 
-1. Following the schematic diagram for the Leviathan 2 Board DF11 Connector on the top left, wire UART2 TX/RX and GND to a 3.3V USB to TTY serial adapter.
-2. Download [Tabby](https://tabby.sh/).
-3. Open Tabby and select **New terminal**.
-4. Navigate to **Profiles & Connections** in the top toolbar.
-5. Search for `ttyLP2` in the COM ports.
-6. Select `ttyLP2` and set the baud rate to `115200`.
-7. Default user is `root`, default password is `root`
+The SCALES Compute Module is accessible over SSH through Ethernet or over a 3.3v USB/TTY serial connection.
 
 #### RJ45 Ethernet SSH Connection
 
@@ -63,8 +70,9 @@ Available IP addresses on the SCALES Compute Module:
 1. Plug in a CAT5E or higher Ethernet cable from your host machine to the SCALES Peripheral Board.
 2. Connect the SCALES Compute Module to the SCALES Peripheral Board.
 3. Check which SCALES Compute Module Ethernet port is connected. The BSP preconfigures `10.3.2.10` for `eth0` and `10.3.2.11` for `eth1`, and the ports are labeled on the PCB.
-4. On your host machine, open PowerShell on Windows or a terminal on Unix systems.
-5. SSH into the board using the address for the connected port:
+4. Ensure that your host machine has its ethernet port configured as manual ipv4, set it to 10.3.2.13 with a 255.255.255.0 subnet mask.
+5. On your host machine, open PowerShell on Windows or a terminal on Unix systems.
+6. SSH into the board using the address for the connected port:
 
    ```bash
    ssh root@10.3.2.10
@@ -75,14 +83,37 @@ Available IP addresses on the SCALES Compute Module:
    ```bash
    ssh root@10.3.2.11
    ```
+#### USB/TTY 3.3v Serial Connection
+
+The Yocto embedded linux serial console has been mapped to `LPUART2` for the i.MX8X, meaning it is available via the exposed DF-11 Header on the SCALES Compute Module.
+Such connectivity requires a 3.3v USB/TTL Serial Adapter cable. The DF-11 Connector has the bottom right three pins mapped to TX/RX/GND respectively. The image below can be used for reference to wire the adapter.
+
+![GPIO DF-11 Breakout](Images/DF11GPIOBREAKOUT.png)
+
+1. Setup the cable adapter
+2. Download `Tabby` a free serial console program
+3. Ensure both ends of the cable adapter are plugged in, one to the SCALES Compute Module DF-11 Header, and the other to the USB port of your host machine.
+4. Run `Tabby`, and open the detected COM Port at 115200 BAUD
+5. User is `root` and the password is `root`
+
+### Build the ImxDeployment
+Once you have cloned the `fprime-scales-ref` repo on your host machine, and you have setup the SDK and cross compile toolchain, run the following commands to build the ImxDeployment.
+
+```
+make setup main  // Ensures all dependencies are installed on the host machine, and does so with the `main` branch of fprime-scales
+make build-imx8x // Generates and builds the ImxDeployment. Use `nogen` flag to skip generation on a simple rebuild (no fpp changes)
+make gds-setup   // Built in command that loads both dictionaries, merges them, and spits out the merged file in the /GDS-Dictionary directory
+make gds-tcp     // Built in command that runs the GDS with the TCP flag
+make gds-uart    // Built in command that runs the GDS with the UART flag 
+```
 
 ## Hardware Introduction
 
 Leviathan 2 is the merged implementation of the SCALES i.MX8X Carrier Board and the SCALES EPS. It consolidates two previously separate development boards into a single design:
 
 - A revised version of the Leviathan 1A board which served as the first merged implementation of the Mariner 1-C board and the Viking 1-C board.
+- A revised version of the Viking 1-C board, the SCALES EPS.
 
-This merged board is designated **Leviathan 2**.
 This merged board is designated **Leviathan 2**.
 
 The latest design revisions, SPICE simulation models, and engineering calculations are available in the [scales-hardware](https://github.com/BroncoSpace-Lab/scales-hardware/tree/main/imx8x_eps_leviathan_v2) repository.
@@ -91,7 +122,6 @@ The latest design revisions, SPICE simulation models, and engineering calculatio
 
 ## Hardware Overview
 
-The Leviathan 2 board contains two primary subsystems:
 The Leviathan 2 board contains two primary subsystems:
 
 - i.MX8X carrier board circuitry
@@ -111,7 +141,7 @@ The Leviathan 2 board contains two primary subsystems:
 
 ## i.MX8X Carrier Board Implementation
 
-The i.MX8X carrier board section is a reduced version of the development platform provided by Phytec and includes the interfaces listed below.
+The i.MX8X carrier board section is a reduced version of the development platform provided by PHYTEC and includes the interfaces listed below.
 
 Each serial and peripheral interface is explicitly defined in the custom BSP, which provides the Linux kernel with the hardware description for this carrier board. Refer to the Leviathan 2 meta-layer in the BSP for complete details on pin configuration and usage.
 
@@ -121,7 +151,7 @@ All GPIO, SPI, I2C, and UART signals made available to the end user are routed t
 
 ### Component Selection
 
-Most of these components are derived directly from the Phytec PCM-942 development board schematic. Although alternative components with similar specifications may also be suitable, this design stays as close as possible to the reference implementation for the features included here.
+Most of these components are derived directly from the PHYTEC PCM-942 development board schematic. Although alternative components with similar specifications may also be suitable, this design stays as close as possible to the reference implementation for the features included here.
 
 - [SoM Connectors](https://www.samtec.com/products/bth-070-02-l-d-a-k-tr#cadmodels)
 - [DF11 Connectors](https://lcsc.com/product-detail/Wire-To-Board-Wire-To-Wire-Connector_HRS-Hirose-HRS-DF11-16DP-2DSA-08_C530981.html)
@@ -164,7 +194,7 @@ Most of these components are derived directly from the Phytec PCM-942 developmen
 - The default BSP configures UART0 for debugging
 - This interface allows direct transmission and reception of commands and telemetry over UART
 - The onboard chip provides UART-to-FTDI translation so the board can interface with a host machine over a serial port
-- This design and supporting chip originate from the Phytec reference implementation
+- This design and supporting chip originate from the PHYTEC reference implementation
 
 ### MicroSD Card
 
@@ -293,8 +323,8 @@ Subsystem power requirements:
 
 **OBC fault**
 
-- If the OBC hangs and fails to pet the watchdog, it is power-cycled
-- The load switch enable pin is held high relative to the battery voltage
+- If the OBC hangs and fails to pet the watchdog, it is power-cycled. The OBC should always be on by design.
+- A built-in Fault Protection Manager was designed and implemented in the flight software, more information about it can be found [here](https://github.com/BroncoSpace-Lab/fprime-scales/blob/lucadev/scales/scalesSvc/FPManager/docs/sdd.md)
 
 **Jetson fault**
 
@@ -302,7 +332,7 @@ Subsystem power requirements:
 
 **Peripheral fault**
 
-- If the Ethernet switch hangs, the OBC can power-sequence it directly
+- If the Ethernet switch hangs, the OBC can power-sequence it directly, or the FPManager will detect the fault and notify the end user over the GDS
 
 #### Telemetry and Monitoring
 
@@ -310,6 +340,7 @@ Subsystem power requirements:
 - This provides basic telemetry on subsystem operating state
 - Three dedicated temperature sensors also report telemetry back to the i.MX8X over a 3.3 V I2C bus
 - Such telemetry can be seen in the `fprime-scales-ref` `ImxDeployment` and is visible under **Channels** in the GDS
+- Dataproducts can be produced and downlinked to the TCP GDS through the `DataProducer` component. The Downlinked dataproducts can be converted from dataproduct binaries to JSON files, which can then be parsed into .csv files for plotting in excel.
 
-Last updated on 7/7/2026
+Last updated on 8/5/2026
 ---

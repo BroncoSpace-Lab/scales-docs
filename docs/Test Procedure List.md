@@ -1,5 +1,5 @@
 # Testing Procedure Script
-This document will create a mock DRM test to run on both the VOXL2 and IMX8. This document also includes individual component testing and system level testing according to the DRM.
+This document will create a mock DRM test to run on both the VOXL2 and i.MX8X. This document also includes individual component testing and system level testing according to the DRM.
 
 ## Mock DRM
 
@@ -30,11 +30,11 @@ FC Tasks:
 
  <ins>Test Equipment:</ins>
  
- - Flight Computer (IMX8 dev board / VOXL2 dev board)
+ - Flight Computer (i.MX8X dev board / VOXL2 dev board)
  - Sensors for each communication protocol (SPI, I2C, UART, Ethernet, USB, CAN, GPIO)
  - variety of jumper wires
 
-<ins>FPrime Component and Commands (need to be developed):</ins>
+<ins>F Prime Component and Commands (need to be developed):</ins>
 
 - Component: REALTIME_DATA_PROCESSING
    - Description: This component will have commands that take data from sensors and write it to the flight computer's memory for 30 seconds
@@ -58,7 +58,7 @@ FC Tasks:
 
 | Test        | FAIL        | PASS        | yes/no?     |
 | ----------- | ----------- | ----------- | ----------- |
-| Data transfer| doesnt write to memory| writes to memeory| ? |
+| Data transfer| doesn't write to memory| writes to memory| ? |
 | individual functionality|not every protocol works|every protocol works|?|
 |multi-sensor functionality| no/partial functionality | full functionality |?|
 |runtime| | |?|
@@ -68,15 +68,15 @@ FC Tasks:
 
 > <ins>Procedure:</ins>
 
-> - wire all sensors to the filght computer
-> - run REALTIME_DATA_PROCESSING FPrime deployment and start GDS
+> - wire all sensors to the flight computer
+> - run REALTIME_DATA_PROCESSING F Prime deployment and start GDS
 > - run SPI_START command
 > - Measure runtime, bandwidth, powerdraw, etc.
 > - verify data was written into memory
 > - Repeat this process to each command listed below:
 >   - I2C_START: TEMP SENSOR
 >   - UART_START: IMU
->   - Ethernet_START: CAMERA
+>   - ETHERNET_START: CAMERA
 >   - USB_START: CAMERA
 >   - CAN_START: PHOTORESISTIVE SENSOR
 >   - GPIO_START: WATCHDOG
@@ -88,7 +88,7 @@ FC Tasks:
 
  <ins>Test Equipment:</ins>
  
- - Flight Computer (IMX8 dev board / VOXL2 dev board)
+ - Flight Computer (i.MX8X dev board / VOXL2 dev board)
 
 <ins>Pass/Fail Criteria:</ins>
 
@@ -100,9 +100,9 @@ FC Tasks:
 | Low power state 100% | Draw: |         |
 | Low power state 50% | Draw: |          |
 | Low power state 10% | Draw: |          |
-| Undeclock state 100% | Draw: |          |
-| Undeclock state 50% | Draw: |          |
-| Undeclock state 100% | Draw: |          |
+| Underclock state 100% | Draw: |          |
+| Underclock state 50% | Draw: |          |
+| Underclock state 10% | Draw: |          |
 | Overclocking state 100% | Draw: |          |
 | Overclocking state 50% | Draw: |          |
 | Overclocking state 10% | Draw: |          |
@@ -126,20 +126,20 @@ FC Tasks:
 
  <ins>Test Equipment:</ins>
  
- - Flight Computer (IMX8 dev board / VOXL2 dev board)
+ - Flight Computer (i.MX8X dev board / VOXL2 dev board)
  - external watchdog timer circuit
  - jumper wires
 
-<ins>FPrime Component and Commands (need to be developed):</ins>
+<ins>F Prime Component and Commands (need to be developed):</ins>
 
 - Component: WATCHDOG
    - Description: This component will serve as the trigger for an external watchdog circuit.
     - Commands: (GPIO on/off timers)
       - GPIO_ON (turns gpio pin on)
       - GPIO_OFF (turns gpio pin off)
-      - GPIO_ON_5SEC (toggles gpio pin ever 5 seconds)
-      - GPIO_ON_4.8SEC (toggles gpio pin ever 4.8 seconds)
-      -GPIO_ON_5.2SEC (toggles gpio pin ever 5.2 seconds)
+      - GPIO_ON_5SEC (toggles gpio pin every 5 seconds)
+      - GPIO_ON_4.8SEC (toggles gpio pin every 4.8 seconds)
+      - GPIO_ON_5.2SEC (toggles gpio pin every 5.2 seconds)
     - Telemetry Channels:
         - gpioState
 
@@ -149,13 +149,13 @@ FC Tasks:
 | ----------- | ----------- | ----------- | ----------- |
 | 5sec cycle|WDT does reset FC|WDT does NOT reset FC|?|
 |4.8sec cycle|WDT does reset FC|WDT does NOT reset FC|?|
-|5.2sec cyle|WDT does NOT reset FC|WDT does reset FC|?|
+|5.2sec cycle|WDT does NOT reset FC|WDT does reset FC|?|
 
 
 > <ins>Procedure:</ins>
 
 > - Attach watchdog circuit to FC
-> - run WATCHDOG FPrime deployment and start GDS
+> - run WATCHDOG F Prime deployment and start GDS
 > - run the command GPIO_ON 
 > - Wait 15 seconds and verify FC stays ON
 > - run the command GPIO_OFF
@@ -168,7 +168,7 @@ FC Tasks:
 > - wait 10 seconds and verify FC RESETS
 
 
-### Jetson
+## Jetson
 ### 1. Power Testing
 
 > <ins>Objective:</ins> We will be observing different power states of the Jetson AGX Orin (high, middle, low, overclocked, underclocked, idle) to obtain a better understanding of how much power it will generally use. To do this, we will use different percentages of gpu burn to test high, middle, and low power states. For over and under clocking, we will manually set the clockspeed of the cpu to (clockspeed-0.4GHz) for underclocking and (clockspeed+0.2GHz) for overclocking. For the idle state, we will turn the Jetson on with no tasks running and observe power consumption.
@@ -193,9 +193,9 @@ FC Tasks:
 | 15W power state 100% | Draw: |         |
 | 15W power state 50% | Draw: |          |
 | 15W power state 10% | Draw: |          |
-| Undeclock state 100% | Draw: |          |
-| Undeclock state 50% | Draw: |          |
-| Undeclock state 100% | Draw: |          |
+| Underclock state 100% | Draw: |          |
+| Underclock state 50% | Draw: |          |
+| Underclock state 10% | Draw: |          |
 | Overclocking state 100% | Draw: |          |
 | Overclocking state 50% | Draw: |          |
 | Overclocking state 10% | Draw: |          |
@@ -221,13 +221,13 @@ FC Tasks:
 
  <ins>Test Equipment:</ins>
  
- - Flight computer (IMX8 dev board / VOXL2 dev board)
+ - Flight computer (i.MX8X dev board / VOXL2 dev board)
  - Jetson
  - variety of jumper wires
 
  <ins>FC and Jetson Scripts: (need to be developed)</ins>
  
- - The FC will have a script that will have a counter. One the counter reaches 5 seconds, it will pull the reset button on the Jetson high to reset the Jetson. This counter will reset to zero when the FC recieves a pulse from the GPIO pin from the Jetson.
+ - The FC will have a script that will have a counter. Once the counter reaches 5 seconds, it will pull the reset button on the Jetson high to reset the Jetson. This counter will reset to zero when the FC receives a pulse from the GPIO pin from the Jetson.
  - The Jetson will have a script that will send a pulse through the GPIO pin every 4 seconds.
 
 
@@ -238,7 +238,7 @@ FC Tasks:
 | ----------- | ----------- | ----------- | ----------- |
 | 5sec cycle|FC does reset Jetson|FC does NOT reset Jetson|?|
 |4.8sec cycle|FC does reset Jetson|FC does NOT reset Jetson|?|
-|5.2sec cyle|FC does NOT reset Jetson|FC does reset Jetson|?|
+|5.2sec cycle|FC does NOT reset Jetson|FC does reset Jetson|?|
 
 
 > <ins>Procedure:</ins>
@@ -252,11 +252,11 @@ FC Tasks:
 
 ### 2. FC to Jetson Reflashing Test
 
-> <ins>Objective:</ins> We will be verifying that the FC is capabable of reflashing the Jetson. We will do this by connecting the FC to the Jetson through USB, and running a script that will reflash the Jetson.
+> <ins>Objective:</ins> We will be verifying that the FC is capable of reflashing the Jetson. We will do this by connecting the FC to the Jetson through USB, and running a script that will reflash the Jetson.
 
  <ins>Test Equipment:</ins>
  
- - Flight computer (IMX8 dev board / VOXL2 dev board)
+ - Flight computer (i.MX8X dev board / VOXL2 dev board)
  - Jetson
  - USB to USB-C Cable
 
@@ -268,7 +268,7 @@ FC Tasks:
 
 | Test        | FAIL        | PASS        | yes/no?     |
 | ----------- | ----------- | ----------- | ----------- |
-| Reflash capability | unable to relfash | successfully reflash |?|
+| Reflash capability | unable to reflash | successfully reflash |?|
 
 
 > <ins>Procedure:</ins>
@@ -281,13 +281,13 @@ FC Tasks:
 ## Final System Level Test (FC, SatCat5, and Jetson)
 ### 1. Data Transfer Test
 
-> <ins>Objective:</ins> We will be verifying ethernet switching capability on the Arty A7 FPGA dev board between a FC and Jetson. To do this, we will have data collected from a sensor connected to a FC. That FC will be connected through ethernet to SatCat5, where it will relay the data to the Jetson through ethernet as well. Then, the data recieved on the Jetson will be echoed back to the FC and save it to the FC's memory.
+> <ins>Objective:</ins> We will be verifying ethernet switching capability on the Arty A7 FPGA dev board between a FC and Jetson. To do this, we will have data collected from a sensor connected to a FC. That FC will be connected through ethernet to SatCat5, where it will relay the data to the Jetson through ethernet as well. Then, the data received on the Jetson will be echoed back to the FC and save it to the FC's memory.
 
  <ins>Test Equipment:</ins>
  
  - SatCat5 FPGA dev board
  - Jetson
- - flight computer (IMX8 dev board / VOXL2 dev board)
+ - flight computer (i.MX8X dev board / VOXL2 dev board)
  - 2x ethernet cables
  - 1x Ethernet PMod connector
  - sensor (for data)
@@ -298,8 +298,8 @@ FC Tasks:
 
 <ins>Flight Computer and Jetson Script (need to be developed):</ins>
 
-- The flight computer that will start the sensor data and send it through its ethernet port, and also to recieve data and write it down in its memory. 
-- The Jetson script will recieve data from its ethernet port, save it, and echo it back to the flight computer.
+- The flight computer that will start the sensor data and send it through its ethernet port, and also to receive data and write it down in its memory. 
+- The Jetson script will receive data from its ethernet port, save it, and echo it back to the flight computer.
 
 <ins>Pass/Fail Criteria:</ins>
 
@@ -307,7 +307,7 @@ FC Tasks:
 | ----------- | ----------- | ----------- | ----------- |
 | full system functionality | system does not transfer data from FC to Jetson and vice versa | system is able to transfer data between FC and Jetson and vice versa |?|
 | Jetson Writing | Jetson is unable to write data received from FC | Jetson successfully writes data received from FC |?|
-| transfer speed | noticable lag | no noticeable lag |?|
+| transfer speed | noticeable lag | no noticeable lag |?|
 | SatCat5 functionality | SatCat5 stops working during data transfer | SatCat5 runs with no issues during data transfer |?|
 
 
@@ -321,13 +321,13 @@ FC Tasks:
 
 ### 2. Total Power Test
 
-> <ins>Objective:</ins> We will be oberving the overall power draw of the entire system including the FC, SatCat5, and Jetson. We will do this by running the data transfer test (the test right above this test) and monitor the power draw levels on the FC, SatCat5, and Jetson. We will add up the power draw from each of these components to obtain the overall power draw of the sytem.
+> <ins>Objective:</ins> We will be observing the overall power draw of the entire system including the FC, SatCat5, and Jetson. We will do this by running the data transfer test (the test right above this test) and monitor the power draw levels on the FC, SatCat5, and Jetson. We will add up the power draw from each of these components to obtain the overall power draw of the system.
 
  <ins>Test Equipment:</ins>
  
  - SatCat5 FPGA dev board
  - Jetson
- - flight computer (IMX8 dev board / VOXL2 dev board)
+ - flight computer (i.MX8X dev board / VOXL2 dev board)
  - 2x ethernet cables
  - 1x Ethernet PMod connector
  - sensor (for data)
@@ -348,21 +348,21 @@ FC Tasks:
 > - Sum the power draws together to obtain the overall power draw
 
 
-### 3. Full FPrime-to-FPrime Communication Test
+### 3. Full F Prime-to-F Prime Communication Test
 
-> <ins>Objective:</ins> We will verify the communication between the FC and the Jetson with FPrime running on both of the systems. We will do this by having the FC FPrime deployment pull telemetry channel data through the Jetson's FPrime Deployment and vice versa.
+> <ins>Objective:</ins> We will verify the communication between the FC and the Jetson with F Prime running on both of the systems. We will do this by having the FC F Prime deployment pull telemetry channel data through the Jetson's F Prime Deployment and vice versa.
 
 
  <ins>Test Equipment:</ins>
  
  - SatCat5 FPGA dev board
  - Jetson
- - flight computer (IMX8 dev board / VOXL2 dev board)
+ - flight computer (i.MX8X dev board / VOXL2 dev board)
  - 2x ethernet cables
  - 1x Ethernet PMod connector
  - sensor (for data)
  
-<ins>FPrime Component and Commands (need to be developed):</ins>
+<ins>F Prime Component and Commands (need to be developed):</ins>
 
 - Component: ?
    - Description: ?
@@ -383,12 +383,12 @@ FC Tasks:
 
 | Test        | FAIL        | PASS        | yes/no?     |
 | ----------- | ----------- | ----------- | ----------- |
-| FC to Jetson Communication | FC unable to retreive data | FC able to retreive data |?|
-| Jetson to FC Communication | Jetson unable to retreive data | Jetson able to retreive data |?|
+| FC to Jetson Communication | FC unable to retrieve data | FC able to retrieve data |?|
+| Jetson to FC Communication | Jetson unable to retrieve data | Jetson able to retrieve data |?|
 
 
 > <ins>Procedure:</ins>
 > - Connect the FC, SatCat5, and Jetson together
-> - Run the respective FPrime deployments on the FC and Jetson
+> - Run the respective F Prime deployments on the FC and Jetson
 > - Run the GDS's for the FC deployment and the Jetson deployment
-> - (**need help on Alex's side to finish the rest of the procedure and making the right components on FPrime**)
+> - (**need help on Alex's side to finish the rest of the procedure and making the right components on F Prime**)

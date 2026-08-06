@@ -80,15 +80,15 @@ nav: # Setting up the navigation. The below list will be tabs on left panel
     - Hardware Home: hardware_home.md
     - SCALES Compute Module: imx8x_merger.md
     - Peripheral Board: peripheral_board.md
-    - Nvidia Jetson Orin AGX: nvidia_jetson_orin_agx.md
+    - NVIDIA Jetson AGX Orin: nvidia_jetson_orin_agx.md
   - Software:
     - Software Home: software_home.md
-    - Build the i.MX 8X Yocto BSP: imx_yocto_bsp.md
-    - How to Create and Maintain a Custom BSP for the IMX8X: IMX8X_customBSP.md
+    - i.MX8X Yocto BSP for Development Board: imx_yocto_bsp.md
+    - i.MX8X Custom Yocto BSP for Custom SCALES Board: imx8x_custom_bsp.md
     - SCALES Demo: scales_demo.md
   - Testing: 
     - Testing Home: testing_home.md
-    - Test Procedure for i.MX and VOXL: Test Procedure List.md
+    - Test Procedure for i.MX8X and VOXL: Test Procedure List.md
     - Jetson Inference Performance: ML_Jetson_Performance.md
     - Jetson Training Performance : ML_Training.md 
 
