@@ -9,7 +9,7 @@ The i.MX8X Flight Computer evaluation board, Jetson Edge Computer evaluation boa
 
 The code and reference deployment can be found on our [fprime-scales-ref](https://github.com/BroncoSpace-Lab/fprime-scales-ref/tree/main) GitHub.
 
-SCALES v1.3.0 Demo Video Coming Soon!
+[SCALES v1.3.0 Demo Video](https://youtu.be/couJlSxT0MU)
 
 # SCALES Demo Hardware
 ![SCALES Demo with Custom Hardware](Images/scales_custom_hardware_setup.png)
