@@ -25,12 +25,12 @@ Set the strap switches as follows:
 | `LED5_1` | Off |
 | `LED3_1` | Off |
 | `LED2_0` | Off |
-| `LED2_1` | On |
+| `LED2_1` | Off |
 | `LED4_0` | Off |
 | `LED4_1` | Off |
 | `LED1_1` | Off |
 
-`LED2_1` must be set to **On** to select normal link-up / auto-negotiation. All other strap switches should be set to **Off** for the current unmanaged-switch configuration.
+All strap switches should be set to **Off** for the current unmanaged-switch configuration at 1000Mbps.
 
 !!! warning
 
